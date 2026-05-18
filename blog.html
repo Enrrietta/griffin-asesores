@@ -215,6 +215,52 @@
     }
     .btn-dark:hover { background: rgba(255,255,255,.12); border-color: rgba(236, 214, 89, .65); }
 
+    /* Menú desplegable de Herramientas */
+    .nav-links { align-self: stretch; }
+    .nav-dropdown { position: relative; display: flex; align-items: center; align-self: stretch; }
+    .nav-dropdown > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 13px; height: 13px; transition: transform .3s ease; }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      min-width: 240px;
+      background: rgba(4, 15, 37, .98);
+      border: 1px solid rgba(236, 214, 89, .2);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, .45);
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 60;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      padding: 11px 14px !important;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #f5f1e6;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a::after { display: none !important; }
+    .nav-dropdown-menu a:hover { background: rgba(236, 214, 89, .12); color: var(--gold); }
+    .mobile-panel a.mobile-sub { padding-left: 20px; font-size: .92rem; color: #c8d2e2; }
+    .mobile-panel a.mobile-sub::before { content: '— '; color: var(--old-gold); }
+
     .menu-toggle {
       display: none;
       width: 44px;
@@ -800,7 +846,20 @@
           <a href="index-option-c.html#servicios">Servicios</a>
           <a href="index-option-c.html#sectores">Sectores</a>
           <a href="index-option-c.html#faq">FAQ</a>
-          <a href="herramientas.html">Herramientas</a>
+          <div class="nav-dropdown">
+            <a href="herramientas.html">Herramientas
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="nav-dropdown-menu">
+              <a href="herramientas.html#imponible">Líquido → Imponible</a>
+              <a href="herramientas.html#proporcional">Sueldo proporcional</a>
+              <a href="herramientas.html#honorarios">Boleta de honorarios</a>
+              <a href="herramientas.html#finiquito">Finiquito</a>
+              <a href="herramientas.html#gratificacion">Gratificación legal</a>
+              <a href="herramientas.html#independiente">Cotizaciones del independiente</a>
+              <a href="herramientas.html#conversor">Conversor UF / UTM</a>
+            </div>
+          </div>
           <a href="blog.html" class="active">Blog</a>
           <a href="index-option-c.html#contacto">Contacto</a>
         </div>
@@ -819,6 +878,13 @@
           <a href="index-option-c.html#sectores">Sectores</a>
           <a href="index-option-c.html#faq">FAQ</a>
           <a href="herramientas.html">Herramientas</a>
+          <a href="herramientas.html#imponible" class="mobile-sub">Líquido → Imponible</a>
+          <a href="herramientas.html#proporcional" class="mobile-sub">Sueldo proporcional</a>
+          <a href="herramientas.html#honorarios" class="mobile-sub">Boleta de honorarios</a>
+          <a href="herramientas.html#finiquito" class="mobile-sub">Finiquito</a>
+          <a href="herramientas.html#gratificacion" class="mobile-sub">Gratificación legal</a>
+          <a href="herramientas.html#independiente" class="mobile-sub">Cotizaciones del independiente</a>
+          <a href="herramientas.html#conversor" class="mobile-sub">Conversor UF / UTM</a>
           <a href="blog.html">Blog</a>
           <a href="index-option-c.html#contacto">Contacto</a>
           <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>

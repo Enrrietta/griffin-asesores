@@ -213,6 +213,52 @@
     }
     .btn-dark:hover { background: rgba(255,255,255,.12); border-color: rgba(236, 214, 89, .65); }
 
+    /* Menú desplegable de Herramientas */
+    .nav-links { align-self: stretch; }
+    .nav-dropdown { position: relative; display: flex; align-items: center; align-self: stretch; }
+    .nav-dropdown > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 13px; height: 13px; transition: transform .3s ease; }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      min-width: 240px;
+      background: rgba(4, 15, 37, .98);
+      border: 1px solid rgba(236, 214, 89, .2);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, .45);
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 60;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      padding: 11px 14px !important;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #f5f1e6;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a::after { display: none !important; }
+    .nav-dropdown-menu a:hover { background: rgba(236, 214, 89, .12); color: var(--gold); }
+    .mobile-panel a.mobile-sub { padding-left: 20px; font-size: .92rem; color: #c8d2e2; }
+    .mobile-panel a.mobile-sub::before { content: '— '; color: var(--old-gold); }
+
     .menu-toggle {
       display: none;
       width: 44px;
@@ -851,7 +897,20 @@
           <a href="index-option-c.html#servicios">Servicios</a>
           <a href="index-option-c.html#sectores">Sectores</a>
           <a href="index-option-c.html#faq">FAQ</a>
-          <a href="herramientas.html" class="active">Herramientas</a>
+          <div class="nav-dropdown">
+            <a href="herramientas.html" class="active">Herramientas
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="nav-dropdown-menu">
+              <a href="herramientas.html#imponible">Líquido → Imponible</a>
+              <a href="herramientas.html#proporcional">Sueldo proporcional</a>
+              <a href="herramientas.html#honorarios">Boleta de honorarios</a>
+              <a href="herramientas.html#finiquito">Finiquito</a>
+              <a href="herramientas.html#gratificacion">Gratificación legal</a>
+              <a href="herramientas.html#independiente">Cotizaciones del independiente</a>
+              <a href="herramientas.html#conversor">Conversor UF / UTM</a>
+            </div>
+          </div>
           <a href="blog.html">Blog</a>
           <a href="index-option-c.html#contacto">Contacto</a>
         </div>
@@ -870,6 +929,13 @@
           <a href="index-option-c.html#sectores">Sectores</a>
           <a href="index-option-c.html#faq">FAQ</a>
           <a href="herramientas.html">Herramientas</a>
+          <a href="herramientas.html#imponible" class="mobile-sub">Líquido → Imponible</a>
+          <a href="herramientas.html#proporcional" class="mobile-sub">Sueldo proporcional</a>
+          <a href="herramientas.html#honorarios" class="mobile-sub">Boleta de honorarios</a>
+          <a href="herramientas.html#finiquito" class="mobile-sub">Finiquito</a>
+          <a href="herramientas.html#gratificacion" class="mobile-sub">Gratificación legal</a>
+          <a href="herramientas.html#independiente" class="mobile-sub">Cotizaciones del independiente</a>
+          <a href="herramientas.html#conversor" class="mobile-sub">Conversor UF / UTM</a>
           <a href="blog.html">Blog</a>
           <a href="index-option-c.html#contacto">Contacto</a>
           <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
@@ -907,6 +973,51 @@
             <span>
               <span class="tt-title">Sueldo proporcional</span>
               <span class="tt-desc">Calcula el pago por días trabajados (resto sin goce de sueldo).</span>
+            </span>
+          </button>
+          <button type="button" class="tool-tab" data-tool="honorarios">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3Z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Boleta de honorarios</span>
+              <span class="tt-desc">Calcula bruto, retención y líquido de una boleta.</span>
+            </span>
+          </button>
+          <button type="button" class="tool-tab" data-tool="finiquito">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M9 13l2 2 4-4"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Finiquito</span>
+              <span class="tt-desc">Indemnización por años, aviso previo y feriado proporcional.</span>
+            </span>
+          </button>
+          <button type="button" class="tool-tab" data-tool="gratificacion">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7Z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7Z"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Gratificación legal</span>
+              <span class="tt-desc">El 25% del sueldo con tope de 4,75 ingresos mínimos.</span>
+            </span>
+          </button>
+          <button type="button" class="tool-tab" data-tool="independiente">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11h-6M19 8v6"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Cotizaciones del independiente</span>
+              <span class="tt-desc">Cálculo anual sobre el 80% de los honorarios brutos.</span>
+            </span>
+          </button>
+          <button type="button" class="tool-tab" data-tool="conversor">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Conversor UF / UTM</span>
+              <span class="tt-desc">Convierte UF y UTM a pesos y viceversa.</span>
             </span>
           </button>
         </div>
@@ -1118,6 +1229,283 @@
             </ul>
           </div>
         </div><!-- /tool-proporcional -->
+
+        <div class="tool-panel" id="tool-honorarios" hidden>
+          <div class="calc-shell">
+
+            <div class="calc-card reveal">
+              <h2>Boleta de honorarios</h2>
+              <p class="calc-sub">Calcula el bruto, la retención y el líquido de una boleta de honorarios.</p>
+
+              <div class="field">
+                <label>Monto que vas a ingresar</label>
+                <div class="seg">
+                  <label><input type="radio" name="tipoBoleta" value="bruto" checked><span>Honorario bruto</span></label>
+                  <label><input type="radio" name="tipoBoleta" value="liquido"><span>Líquido a recibir</span></label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="montoBoleta" id="montoBoletaLabel">Honorario bruto de la boleta</label>
+                <input type="text" inputmode="numeric" id="montoBoleta" class="ctrl" placeholder="$ 500.000" autocomplete="off">
+              </div>
+
+              <div class="field">
+                <label for="tasaRet">Tasa de retención (%)</label>
+                <input type="text" inputmode="decimal" id="tasaRet" class="ctrl" value="15,25">
+                <span class="hint">2025: 14,5% · 2026: 15,25% · 2027: 16% · 2028: 17%. La fija la Ley 21.133.</span>
+              </div>
+
+              <div class="calc-actions">
+                <button type="button" class="btn btn-gold" id="boletaBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3Z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+                  Calcular
+                </button>
+                <button type="button" class="btn btn-ghost" id="boletaReset" aria-label="Limpiar">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="calc-card result-card reveal reveal-delay-1">
+              <h2>Resultado estimado</h2>
+              <div class="result-empty" id="boletaEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14v18l-3-2-3 2-3-2-3 2V3Z"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="9" y1="12" x2="15" y2="12"/></svg>
+                Ingresa el monto de la boleta y presiona <strong>Calcular</strong>.
+              </div>
+              <div id="boletaBody" style="display:none"></div>
+            </div>
+
+          </div>
+
+          <div class="calc-note reveal reveal-delay-2">
+            <strong>Cómo funciona:</strong> al emitir una boleta de honorarios se aplica una retención sobre el monto bruto. Si quien paga es una empresa, ella retiene y declara ese monto; si es una persona natural, lo paga el emisor como PPM.
+            <ul>
+              <li>La retención no es un impuesto perdido: es un pago provisional que se imputa a tus cotizaciones e impuestos en la Operación Renta de abril.</li>
+              <li>La tasa sube cada año hasta llegar al 17% en 2028 (Ley 21.133) — revísala según el año de emisión.</li>
+            </ul>
+          </div>
+        </div><!-- /tool-honorarios -->
+
+        <div class="tool-panel" id="tool-finiquito" hidden>
+          <div class="calc-shell">
+
+            <div class="calc-card reveal">
+              <h2>Finiquito</h2>
+              <p class="calc-sub">Estima indemnización por años de servicio, mes de aviso y feriado proporcional.</p>
+
+              <div class="field">
+                <label for="sueldoFin">Última remuneración mensual</label>
+                <input type="text" inputmode="numeric" id="sueldoFin" class="ctrl" placeholder="$ 700.000" autocomplete="off">
+                <span class="hint">Base de cálculo de las indemnizaciones.</span>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="fechaIni">Fecha de inicio</label>
+                  <input type="date" id="fechaIni" class="ctrl">
+                </div>
+                <div class="field">
+                  <label for="fechaFin">Fecha de término</label>
+                  <input type="date" id="fechaFin" class="ctrl">
+                </div>
+              </div>
+
+              <div class="field">
+                <label>¿Se dio aviso previo de 30 días?</label>
+                <div class="seg">
+                  <label><input type="radio" name="avisoPrevio" value="si" checked><span>Sí</span></label>
+                  <label><input type="radio" name="avisoPrevio" value="no"><span>No (se indemniza)</span></label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="diasFeriado">Días de feriado pendientes</label>
+                <input type="text" inputmode="numeric" id="diasFeriado" class="ctrl" placeholder="0" autocomplete="off">
+                <span class="hint">Días corridos de vacaciones no tomadas. Déjalo en blanco si no aplica.</span>
+              </div>
+
+              <div class="calc-actions">
+                <button type="button" class="btn btn-gold" id="finBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
+                  Calcular
+                </button>
+                <button type="button" class="btn btn-ghost" id="finReset" aria-label="Limpiar">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="calc-card result-card reveal reveal-delay-1">
+              <h2>Resultado estimado</h2>
+              <div class="result-empty" id="finEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
+                Completa los datos del contrato y presiona <strong>Calcular</strong>.
+              </div>
+              <div id="finBody" style="display:none"></div>
+            </div>
+
+          </div>
+
+          <div class="calc-note reveal reveal-delay-2">
+            <strong>Importante:</strong> estimación referencial para un finiquito por necesidades de la empresa (art. 161).
+            <ul>
+              <li>La indemnización por años de servicio considera la fracción superior a 6 meses como un año, con tope de 11 años.</li>
+              <li>No incluye recargos por despido injustificado ni el tope de 90 UF sobre la remuneración. No reemplaza el finiquito legal.</li>
+            </ul>
+          </div>
+        </div><!-- /tool-finiquito -->
+
+        <div class="tool-panel" id="tool-gratificacion" hidden>
+          <div class="calc-shell">
+
+            <div class="calc-card reveal">
+              <h2>Gratificación legal</h2>
+              <p class="calc-sub">Calcula la gratificación mensual: 25% del sueldo con tope legal.</p>
+
+              <div class="field">
+                <label for="sueldoGrat">Sueldo base mensual</label>
+                <input type="text" inputmode="numeric" id="sueldoGrat" class="ctrl" placeholder="$ 600.000" autocomplete="off">
+                <span class="hint">Remuneración mensual sobre la que se calcula el 25%.</span>
+              </div>
+
+              <div class="field">
+                <label for="immGrat">Ingreso mínimo mensual (IMM)</label>
+                <input type="text" inputmode="numeric" id="immGrat" class="ctrl" value="539.000">
+                <span class="hint">Se actualiza solo desde PREVIRED. Define el tope de la gratificación.</span>
+              </div>
+
+              <div class="calc-actions">
+                <button type="button" class="btn btn-gold" id="gratBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/></svg>
+                  Calcular
+                </button>
+                <button type="button" class="btn btn-ghost" id="gratReset" aria-label="Limpiar">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="calc-card result-card reveal reveal-delay-1">
+              <h2>Resultado estimado</h2>
+              <div class="result-empty" id="gratEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/></svg>
+                Ingresa el sueldo base y presiona <strong>Calcular</strong>.
+              </div>
+              <div id="gratBody" style="display:none"></div>
+            </div>
+
+          </div>
+
+          <div class="calc-note reveal reveal-delay-2">
+            <strong>Cómo funciona:</strong> el empleador con utilidades puede pagar gratificación abonando el 25% de lo devengado, con un tope anual de 4,75 ingresos mínimos mensuales (art. 50 del Código del Trabajo).
+            <ul>
+              <li>El tope mensual equivale a 4,75 × IMM ÷ 12.</li>
+              <li>La gratificación a pagar es el menor valor entre el 25% del sueldo y ese tope.</li>
+            </ul>
+          </div>
+        </div><!-- /tool-gratificacion -->
+
+        <div class="tool-panel" id="tool-independiente" hidden>
+          <div class="calc-shell">
+
+            <div class="calc-card reveal">
+              <h2>Cotizaciones del independiente</h2>
+              <p class="calc-sub">Estima las cotizaciones anuales de quien emite boletas de honorarios.</p>
+
+              <div class="field">
+                <label for="honAnual">Honorarios brutos del año</label>
+                <input type="text" inputmode="numeric" id="honAnual" class="ctrl" placeholder="$ 9.000.000" autocomplete="off">
+                <span class="hint">Suma de todas las boletas brutas emitidas en el año.</span>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="baseImpPct">Base imponible (%)</label>
+                  <input type="text" inputmode="decimal" id="baseImpPct" class="ctrl" value="80">
+                </div>
+                <div class="field">
+                  <label for="tasaCotiz">Tasa cotizaciones (%)</label>
+                  <input type="text" inputmode="decimal" id="tasaCotiz" class="ctrl" value="20">
+                </div>
+              </div>
+              <span class="hint">La base imponible legal es el 80% de los honorarios. La tasa total reúne AFP, salud, SIS y accidentes (~20%).</span>
+
+              <div class="field">
+                <label for="tasaRetInd">Tasa de retención del año (%)</label>
+                <input type="text" inputmode="decimal" id="tasaRetInd" class="ctrl" value="15,25">
+                <span class="hint">Retención acumulada en las boletas. 2026: 15,25%.</span>
+              </div>
+
+              <div class="calc-actions">
+                <button type="button" class="btn btn-gold" id="indBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  Calcular
+                </button>
+                <button type="button" class="btn btn-ghost" id="indReset" aria-label="Limpiar">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="calc-card result-card reveal reveal-delay-1">
+              <h2>Resultado estimado</h2>
+              <div class="result-empty" id="indEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                Ingresa los honorarios del año y presiona <strong>Calcular</strong>.
+              </div>
+              <div id="indBody" style="display:none"></div>
+            </div>
+
+          </div>
+
+          <div class="calc-note reveal reveal-delay-2">
+            <strong>Importante:</strong> estimación referencial para la Operación Renta del trabajador independiente (Ley 21.133).
+            <ul>
+              <li>Las cotizaciones se calculan sobre el 80% de los honorarios brutos anuales, con tope imponible mensual.</li>
+              <li>La retención de las boletas se imputa a estas cotizaciones: si sobra, hay devolución; si falta, se paga la diferencia.</li>
+              <li>La tasa total es aproximada — el monto exacto depende de la AFP, el plan de salud y la cobertura elegida.</li>
+            </ul>
+          </div>
+        </div><!-- /tool-independiente -->
+
+        <div class="tool-panel" id="tool-conversor" hidden>
+          <div class="calc-shell">
+
+            <div class="calc-card reveal">
+              <h2>Conversor UF / UTM</h2>
+              <p class="calc-sub">Convierte entre UF, UTM y pesos con los valores del día.</p>
+
+              <div class="field">
+                <label>¿Qué unidad vas a ingresar?</label>
+                <div class="seg">
+                  <label><input type="radio" name="unidadConv" value="uf" checked><span>UF</span></label>
+                  <label><input type="radio" name="unidadConv" value="utm"><span>UTM</span></label>
+                  <label><input type="radio" name="unidadConv" value="pesos"><span>Pesos</span></label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="montoConv" id="montoConvLabel">Cantidad de UF</label>
+                <input type="text" inputmode="decimal" id="montoConv" class="ctrl" placeholder="1" autocomplete="off">
+              </div>
+
+              <div class="calc-actions">
+                <button type="button" class="btn btn-gold" id="convBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg>
+                  Convertir
+                </button>
+                <button type="button" class="btn btn-ghost" id="convReset" aria-label="Limpiar">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="calc-card result-card reveal reveal-delay-1">
+              <h2>Equivalencias</h2>
+              <div class="result-empty" id="convEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 3l4 4-4 4"/><path d="M20 7H4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h16"/></svg>
+                Ingresa una cantidad y presiona <strong>Convertir</strong>.
+              </div>
+              <div id="convBody" style="display:none"></div>
+            </div>
+
+          </div>
+
+          <div class="calc-note reveal reveal-delay-2">
+            <strong>Valores en uso:</strong> la UF y la UTM provienen de los indicadores de PREVIRED que se cargan al abrir la página. Puedes ajustarlos en la calculadora "Líquido → Imponible" si necesitas otra fecha.
+          </div>
+        </div><!-- /tool-conversor -->
       </div>
     </section>
 
@@ -1414,6 +1802,15 @@
     }
     toolTabs.forEach(t => t.addEventListener('click', () => showTool(t.dataset.tool)));
 
+    /* Abre la herramienta indicada en el enlace (#imponible, #proporcional, #honorarios) */
+    function aplicarHashHerramienta() {
+      const t = (location.hash || '').replace('#', '');
+      if (['imponible', 'proporcional', 'honorarios', 'finiquito',
+           'gratificacion', 'independiente', 'conversor'].includes(t)) showTool(t);
+    }
+    aplicarHashHerramienta();
+    window.addEventListener('hashchange', aplicarHashHerramienta);
+
     /* ---------- Calculadora de sueldo proporcional ---------- */
     $('sueldoMes').addEventListener('input', e => {
       const v = onlyNum(e.target.value);
@@ -1506,6 +1903,267 @@
       $('sueldoMes').focus();
     });
 
+    /* ---------- Boleta de honorarios ---------- */
+    function updateMontoBoletaLabel() {
+      const t = document.querySelector('input[name="tipoBoleta"]:checked').value;
+      $('montoBoletaLabel').textContent = t === 'bruto'
+        ? 'Honorario bruto de la boleta' : 'Líquido a recibir';
+      $('montoBoleta').placeholder = t === 'bruto' ? '$ 500.000' : '$ 423.750';
+    }
+    document.querySelectorAll('input[name="tipoBoleta"]').forEach(r =>
+      r.addEventListener('change', updateMontoBoletaLabel));
+
+    $('montoBoleta').addEventListener('input', e => {
+      const v = onlyNum(e.target.value);
+      e.target.value = v ? '$ ' + v.toLocaleString('es-CL') : '';
+    });
+
+    function calcularBoleta() {
+      const monto = onlyNum($('montoBoleta').value);
+      const tipo = document.querySelector('input[name="tipoBoleta"]:checked').value;
+      const tasa = onlyDec($('tasaRet').value);
+      if (monto < 1000) { alert('Ingresa un monto válido.'); return; }
+      if (!(tasa > 0 && tasa < 100)) { alert('Ingresa una tasa de retención válida.'); return; }
+      let bruto, liquido;
+      if (tipo === 'bruto') {
+        bruto = monto;
+        liquido = bruto * (1 - tasa / 100);
+      } else {
+        liquido = monto;
+        bruto = liquido / (1 - tasa / 100);
+      }
+      renderBoleta({ bruto, liquido, retencion: bruto - liquido, tasa, tipo });
+    }
+
+    function renderBoleta(r) {
+      $('boletaEmpty').style.display = 'none';
+      const body = $('boletaBody');
+      body.style.display = 'block';
+      const titulo = r.tipo === 'bruto' ? 'Líquido a recibir' : 'Honorario bruto a emitir';
+      const headlineVal = r.tipo === 'bruto' ? r.liquido : r.bruto;
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">${titulo}</span>
+          <span class="value">${clp(headlineVal)}</span>
+        </div>
+        <div class="res-block">
+          <p class="res-title">Detalle de la boleta</p>
+          <div class="res-line"><span>Honorario bruto</span><span>${clp(r.bruto)}</span></div>
+          <div class="res-line"><span>Retención (${String(r.tasa).replace('.', ',')}%)</span><span>- ${clp(r.retencion)}</span></div>
+          <div class="res-line total"><span>Líquido a recibir</span><span>${clp(r.liquido)}</span></div>
+        </div>
+        <div class="res-line grand"><span>Retención a declarar</span><span>${clp(r.retencion)}</span></div>
+      `;
+    }
+
+    $('boletaBtn').addEventListener('click', calcularBoleta);
+    $('montoBoleta').addEventListener('keydown', e => { if (e.key === 'Enter') calcularBoleta(); });
+    $('boletaReset').addEventListener('click', () => {
+      $('montoBoleta').value = '';
+      $('boletaBody').style.display = 'none';
+      $('boletaEmpty').style.display = 'block';
+      $('montoBoleta').focus();
+    });
+
+    /* ---------- Formato de campos de pesos ---------- */
+    function formatoPesos(e) {
+      const v = onlyNum(e.target.value);
+      e.target.value = v ? '$ ' + v.toLocaleString('es-CL') : '';
+    }
+    ['sueldoFin', 'sueldoGrat', 'immGrat', 'honAnual'].forEach(id =>
+      $(id).addEventListener('input', formatoPesos));
+
+    const num2 = n => n.toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const flagSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+      '<path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>';
+
+    /* ---------- Finiquito ---------- */
+    function calcularFiniquito() {
+      const sueldo = onlyNum($('sueldoFin').value);
+      const ini = $('fechaIni').value;
+      const fin = $('fechaFin').value;
+      const aviso = document.querySelector('input[name="avisoPrevio"]:checked').value;
+      const diasFer = onlyNum($('diasFeriado').value);
+      if (sueldo < 1000) { alert('Ingresa una remuneración válida.'); return; }
+      if (!ini || !fin) { alert('Indica las fechas de inicio y término.'); return; }
+      const dIni = new Date(ini + 'T00:00');
+      const dFin = new Date(fin + 'T00:00');
+      if (dFin <= dIni) { alert('La fecha de término debe ser posterior a la de inicio.'); return; }
+      let meses = (dFin.getFullYear() - dIni.getFullYear()) * 12 + (dFin.getMonth() - dIni.getMonth());
+      if (dFin.getDate() < dIni.getDate()) meses--;
+      const anios = Math.floor(meses / 12);
+      const restoMeses = meses % 12;
+      let aniosIAS = anios + (restoMeses > 6 ? 1 : 0);
+      const topeAplicado = aniosIAS > 11;
+      if (topeAplicado) aniosIAS = 11;
+      const ias = aniosIAS * sueldo;
+      const indAviso = aviso === 'no' ? sueldo : 0;
+      const feriado = diasFer * sueldo / 30;
+      renderFiniquito({ sueldo, anios, restoMeses, aniosIAS, topeAplicado, ias,
+        indAviso, feriado, diasFer, aviso, total: ias + indAviso + feriado });
+    }
+    function renderFiniquito(r) {
+      $('finEmpty').style.display = 'none';
+      const body = $('finBody');
+      body.style.display = 'block';
+      const lineaAviso = r.aviso === 'no'
+        ? `<div class="res-line"><span>Indemnización sustitutiva del aviso previo</span><span>${clp(r.indAviso)}</span></div>` : '';
+      const lineaFeriado = r.diasFer > 0
+        ? `<div class="res-line"><span>Feriado proporcional (${r.diasFer} día(s))</span><span>${clp(r.feriado)}</span></div>` : '';
+      const topeMsg = r.topeAplicado
+        ? `<div class="tope-flag">${flagSvg}<span>Tope de 11 años aplicado a la indemnización por años de servicio.</span></div>` : '';
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">Total finiquito estimado</span>
+          <span class="value">${clp(r.total)}</span>
+        </div>
+        ${topeMsg}
+        <div class="res-block">
+          <p class="res-title">Detalle</p>
+          <div class="res-line"><span>Antigüedad</span><span>${r.anios} año(s) ${r.restoMeses} mes(es)</span></div>
+          <div class="res-line"><span>Indemnización años de servicio (${r.aniosIAS} año/s)</span><span>${clp(r.ias)}</span></div>
+          ${lineaAviso}
+          ${lineaFeriado}
+          <div class="res-line total"><span>Total a pagar</span><span>${clp(r.total)}</span></div>
+        </div>
+      `;
+    }
+    $('finBtn').addEventListener('click', calcularFiniquito);
+    $('finReset').addEventListener('click', () => {
+      ['sueldoFin', 'fechaIni', 'fechaFin', 'diasFeriado'].forEach(id => $(id).value = '');
+      $('finBody').style.display = 'none';
+      $('finEmpty').style.display = 'block';
+      $('sueldoFin').focus();
+    });
+
+    /* ---------- Gratificación legal ---------- */
+    function calcularGratificacion() {
+      const sueldo = onlyNum($('sueldoGrat').value);
+      const imm = onlyNum($('immGrat').value);
+      if (sueldo < 1000) { alert('Ingresa un sueldo válido.'); return; }
+      if (imm < 1000) { alert('Ingresa el ingreso mínimo mensual.'); return; }
+      const veinticinco = sueldo * 0.25;
+      const tope = 4.75 * imm / 12;
+      const grat = Math.min(veinticinco, tope);
+      renderGratificacion({ veinticinco, tope, grat, aplicaTope: tope < veinticinco });
+    }
+    function renderGratificacion(r) {
+      $('gratEmpty').style.display = 'none';
+      const body = $('gratBody');
+      body.style.display = 'block';
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">Gratificación legal mensual</span>
+          <span class="value">${clp(r.grat)}</span>
+        </div>
+        <div class="res-block">
+          <p class="res-title">Detalle</p>
+          <div class="res-line"><span>25% del sueldo base</span><span>${clp(r.veinticinco)}</span></div>
+          <div class="res-line"><span>Tope mensual (4,75 IMM ÷ 12)</span><span>${clp(r.tope)}</span></div>
+          <div class="res-line total"><span>Gratificación a pagar</span><span>${clp(r.grat)}</span></div>
+        </div>
+        <div class="res-line grand"><span>${r.aplicaTope ? 'Se aplica el tope legal' : 'Se paga el 25% del sueldo'}</span><span>${clp(r.grat)}</span></div>
+      `;
+    }
+    $('gratBtn').addEventListener('click', calcularGratificacion);
+    $('gratReset').addEventListener('click', () => {
+      $('sueldoGrat').value = '';
+      $('gratBody').style.display = 'none';
+      $('gratEmpty').style.display = 'block';
+      $('sueldoGrat').focus();
+    });
+
+    /* ---------- Cotizaciones del independiente ---------- */
+    function calcularIndependiente() {
+      const brutos = onlyNum($('honAnual').value);
+      const basePct = onlyDec($('baseImpPct').value) || 80;
+      const tasaCot = onlyDec($('tasaCotiz').value) || 20;
+      const tasaRet = onlyDec($('tasaRetInd').value) || 15.25;
+      if (brutos < 1000) { alert('Ingresa los honorarios del año.'); return; }
+      const base = brutos * basePct / 100;
+      const cotiz = base * tasaCot / 100;
+      const retencion = brutos * tasaRet / 100;
+      renderIndependiente({ brutos, base, basePct, cotiz, tasaCot, retencion, tasaRet,
+        dif: retencion - cotiz });
+    }
+    function renderIndependiente(r) {
+      $('indEmpty').style.display = 'none';
+      const body = $('indBody');
+      body.style.display = 'block';
+      const aFavor = r.dif >= 0;
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">${aFavor ? 'Saldo a favor (posible devolución)' : 'Diferencia estimada a pagar'}</span>
+          <span class="value">${clp(Math.abs(r.dif))}</span>
+        </div>
+        <div class="res-block">
+          <p class="res-title">Detalle anual</p>
+          <div class="res-line"><span>Honorarios brutos del año</span><span>${clp(r.brutos)}</span></div>
+          <div class="res-line"><span>Base imponible (${String(r.basePct).replace('.', ',')}%)</span><span>${clp(r.base)}</span></div>
+          <div class="res-line"><span>Cotizaciones estimadas (${String(r.tasaCot).replace('.', ',')}%)</span><span>${clp(r.cotiz)}</span></div>
+          <div class="res-line"><span>Retención acumulada (${String(r.tasaRet).replace('.', ',')}%)</span><span>${clp(r.retencion)}</span></div>
+          <div class="res-line total"><span>${aFavor ? 'Saldo a favor' : 'Falta por pagar'}</span><span>${clp(Math.abs(r.dif))}</span></div>
+        </div>
+      `;
+    }
+    $('indBtn').addEventListener('click', calcularIndependiente);
+    $('indReset').addEventListener('click', () => {
+      $('honAnual').value = '';
+      $('indBody').style.display = 'none';
+      $('indEmpty').style.display = 'block';
+      $('honAnual').focus();
+    });
+
+    /* ---------- Conversor UF / UTM ---------- */
+    function updateMontoConvLabel() {
+      const u = document.querySelector('input[name="unidadConv"]:checked').value;
+      $('montoConvLabel').textContent =
+        u === 'uf' ? 'Cantidad de UF' : u === 'utm' ? 'Cantidad de UTM' : 'Monto en pesos';
+    }
+    document.querySelectorAll('input[name="unidadConv"]').forEach(r =>
+      r.addEventListener('change', updateMontoConvLabel));
+
+    function calcularConversor() {
+      const u = document.querySelector('input[name="unidadConv"]:checked').value;
+      const uf = onlyNum($('uf').value);
+      const utm = onlyNum($('utm').value);
+      if (uf <= 0 || utm <= 0) { alert('No hay valores de UF/UTM cargados.'); return; }
+      const monto = u === 'pesos' ? onlyNum($('montoConv').value) : onlyDec($('montoConv').value);
+      if (!(monto > 0)) { alert('Ingresa una cantidad válida.'); return; }
+      let pesos, enUF, enUTM;
+      if (u === 'uf') { enUF = monto; pesos = monto * uf; enUTM = pesos / utm; }
+      else if (u === 'utm') { enUTM = monto; pesos = monto * utm; enUF = pesos / uf; }
+      else { pesos = monto; enUF = pesos / uf; enUTM = pesos / utm; }
+      renderConversor({ u, pesos, enUF, enUTM });
+    }
+    function renderConversor(r) {
+      $('convEmpty').style.display = 'none';
+      const body = $('convBody');
+      body.style.display = 'block';
+      const headLabel = r.u === 'pesos' ? 'Equivalente en UF' : 'Equivalente en pesos';
+      const headValue = r.u === 'pesos' ? num2(r.enUF) + ' UF' : clp(r.pesos);
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">${headLabel}</span>
+          <span class="value">${headValue}</span>
+        </div>
+        <div class="res-block">
+          <p class="res-title">Equivalencias</p>
+          <div class="res-line"><span>En UF</span><span>${num2(r.enUF)} UF</span></div>
+          <div class="res-line"><span>En UTM</span><span>${num2(r.enUTM)} UTM</span></div>
+          <div class="res-line"><span>En pesos</span><span>${clp(r.pesos)}</span></div>
+        </div>
+      `;
+    }
+    $('convBtn').addEventListener('click', calcularConversor);
+    $('montoConv').addEventListener('keydown', e => { if (e.key === 'Enter') calcularConversor(); });
+    $('convReset').addEventListener('click', () => {
+      $('montoConv').value = '';
+      $('convBody').style.display = 'none';
+      $('convEmpty').style.display = 'block';
+      $('montoConv').focus();
+    });
+
     /* ---------- Indicadores previsionales (assets/indicadores.json) ----------
        Ese archivo lo genera a diario el scraper de PREVIRED vía GitHub Actions. */
     (function cargarIndicadores() {
@@ -1520,6 +2178,7 @@
           if (d.topeCesantiaUF)  $('topeUFafc').value  = dec(d.topeCesantiaUF);
           if (d.sis != null)          $('sisRate').value  = dec(d.sis);
           if (d.seguroSocial != null) $('segSocial').value = dec(d.seguroSocial);
+          if (d.rentaMinima)          $('immGrat').value  = Math.round(d.rentaMinima).toLocaleString('es-CL');
           if (d.afp) {
             comisionesAFP = {};
             let cargoEmpleador = null;
