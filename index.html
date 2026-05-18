@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Griffin Asesores | Contabilidad y RRHH en Coquimbo</title>
+  <meta name="description" content="Contabilidad, RRHH, auditorias y gestion administrativa para empresas de la Region de Coquimbo y Chile.">
+  <link rel="icon" href="assets/logo-completo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #040f25;
+      --navy-2: #0f2646;
+      --ink: #132238;
+      --muted: #5e6b7a;
+      --line: #dce3ea;
+      --paper: #f8f5ea;
+      --white: #ffffff;
+      --gold: #af8f29;
+      --gold-2: #ecd659;
+      --green: #177245;
+      --shadow: 0 24px 70px rgba(11, 31, 58, .14);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      letter-spacing: 0;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(247, 245, 239, .94);
+      border-bottom: 1px solid rgba(7, 20, 38, .08);
+      backdrop-filter: blur(14px);
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      box-shadow: 0 8px 22px rgba(7, 20, 38, .14);
+    }
+
+    .brand strong {
+      display: block;
+      font-family: Cinzel, Georgia, serif;
+      color: var(--navy);
+      font-size: 1rem;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: .74rem;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: #3c4a5d;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      padding: 10px 0;
+      border-bottom: 2px solid transparent;
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-weight: 700;
+      font-size: .92rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 12px 24px rgba(200, 151, 45, .24);
+    }
+
+    .btn-primary:hover { background: var(--gold-2); }
+
+    .btn-secondary {
+      color: var(--white);
+      border-color: rgba(255, 255, 255, .24);
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, .52);
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .btn-outline {
+      color: var(--navy);
+      border-color: rgba(7, 20, 38, .16);
+      background: transparent;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(7, 20, 38, .14);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--navy);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle svg { width: 21px; height: 21px; }
+
+    .hero {
+      padding: 28px 0 56px;
+    }
+
+    .hero-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .86fr);
+      min-height: 620px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      position: relative;
+      padding: clamp(38px, 5.4vw, 70px);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      isolation: isolate;
+    }
+
+    .hero-copy:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(115deg, rgba(200, 151, 45, .16), transparent 42%),
+        radial-gradient(circle at 0 100%, rgba(255, 255, 255, .08), transparent 34%);
+    }
+
+    .trust-line {
+      width: fit-content;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--gold);
+      color: #d9e3ef;
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .brand-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold-2);
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(1.22rem, 1.8vw, 1.65rem);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .brand-kicker:before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--gold-2);
+      transform: rotate(45deg);
+      box-shadow: 0 0 0 5px rgba(236, 214, 89, .08);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      color: inherit;
+    }
+
+    h1 {
+      max-width: 690px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.35rem, 3.5vw, 3.95rem);
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .hero-copy p {
+      max-width: 650px;
+      margin: 20px 0 0;
+      color: #d7dfeb;
+      font-size: clamp(.98rem, 1.25vw, 1.06rem);
+      line-height: 1.68;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, .16);
+    }
+
+    .proof-item strong {
+      display: block;
+      color: var(--gold-2);
+      font-size: 1.06rem;
+      margin-bottom: 5px;
+    }
+
+    .value-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .value-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid rgba(236, 214, 89, .2);
+      border-radius: var(--radius);
+      color: #f3ead0;
+      background: rgba(255, 255, 255, .045);
+      font-weight: 700;
+      font-size: .86rem;
+    }
+
+    .value-pill svg {
+      width: 20px;
+      height: 20px;
+      color: var(--gold-2);
+      flex: 0 0 auto;
+    }
+
+    .proof-item span {
+      color: #c0cad7;
+      font-size: .78rem;
+      line-height: 1.45;
+    }
+
+    .hero-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      padding: 32px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(244, 240, 230, .98)),
+        var(--white);
+    }
+
+    .logo-stage {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-height: auto;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(7, 20, 38, .1);
+    }
+
+    .logo-stage img {
+      width: 74px;
+      height: 74px;
+      flex: 0 0 auto;
+      filter: drop-shadow(0 12px 22px rgba(7, 20, 38, .14));
+    }
+
+    .logo-stage h2 {
+      color: var(--navy);
+      font-family: Cinzel, Georgia, serif;
+      font-size: 1.25rem;
+      line-height: 1.15;
+    }
+
+    .assurance-panel {
+      padding: 26px;
+      border-radius: var(--radius);
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: 0 20px 44px rgba(4, 15, 37, .16);
+    }
+
+    .assurance-panel h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.6rem, 2.1vw, 2.2rem);
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+
+    .assurance-panel p {
+      margin: 0;
+      color: #d8e0ec;
+      line-height: 1.65;
+    }
+
+    .assurance-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .assurance-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(236, 214, 89, .18);
+    }
+
+    .assurance-item svg {
+      width: 21px;
+      height: 21px;
+      color: var(--gold-2);
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .assurance-item strong {
+      display: block;
+      color: var(--white);
+      font-size: .94rem;
+      margin-bottom: 3px;
+    }
+
+    .assurance-item span {
+      display: block;
+      color: #bfccdb;
+      font-size: .84rem;
+      line-height: 1.45;
+    }
+
+    .logo-stage p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .diagnostic-card {
+      margin-top: 0;
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid rgba(7, 20, 38, .1);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 36px rgba(7, 20, 38, .08);
+    }
+
+    .scope-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .scope-item {
+      padding: 14px;
+      border: 1px solid rgba(7, 20, 38, .1);
+      border-radius: var(--radius);
+      background: #fbfcfd;
+    }
+
+    .scope-item strong {
+      display: block;
+      color: var(--navy);
+      font-size: .88rem;
+      margin-bottom: 4px;
+    }
+
+    .scope-item span {
+      display: block;
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.4;
+    }
+
+    .diagnostic-card h2 {
+      font-size: 1.18rem;
+      color: var(--navy);
+      font-weight: 800;
+      font-family: Inter, sans-serif;
+    }
+
+    .diagnostic-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: .95rem;
+    }
+
+    .check-row {
+      display: flex;
+      gap: 11px;
+      align-items: flex-start;
+      margin-top: 16px;
+      color: var(--ink);
+      font-size: .92rem;
+      line-height: 1.45;
+    }
+
+    .check-row svg {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 auto;
+      color: var(--gold);
+      margin-top: 1px;
+    }
+
+    section {
+      padding: 74px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, .7fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .section-head h2 {
+      font-family: Cinzel, Georgia, serif;
+      color: var(--navy);
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      line-height: 1.08;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .services {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .service-card {
+      min-height: 330px;
+      padding: 32px;
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 26px;
+    }
+
+    .service-card:last-child { border-right: 0; }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      color: var(--gold);
+      margin-bottom: 26px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      font-size: 1.25rem;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 12px 0 0;
+      font-size: .96rem;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 9px;
+      color: #38475a;
+      font-size: .9rem;
+      line-height: 1.45;
+    }
+
+    .service-card li {
+      position: relative;
+      padding-left: 17px;
+    }
+
+    .service-card li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .62em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .approach {
+      background: var(--paper);
+    }
+
+    .approach-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .approach-note {
+      position: sticky;
+      top: 112px;
+      padding: 34px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .approach-note h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .approach-note p {
+      color: #d5dde8;
+      line-height: 1.7;
+      margin: 18px 0 0;
+    }
+
+    .process-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .process-item {
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 20px;
+      padding: 26px 0;
+      border-bottom: 1px solid rgba(7, 20, 38, .12);
+    }
+
+    .process-item:first-child { padding-top: 0; }
+
+    .process-number {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--gold);
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(7, 20, 38, .08);
+    }
+
+    .process-item h3 {
+      color: var(--navy);
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .process-item p {
+      color: var(--muted);
+      line-height: 1.68;
+      margin: 0;
+    }
+
+    .industries {
+      padding-top: 0;
+    }
+
+    .industry-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid rgba(7, 20, 38, .14);
+      border-bottom: 1px solid rgba(7, 20, 38, .14);
+    }
+
+    .industry {
+      padding: 26px 24px;
+      border-right: 1px solid rgba(7, 20, 38, .14);
+    }
+
+    .industry:last-child { border-right: 0; }
+
+    .industry h3 {
+      color: var(--navy);
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .industry p {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0;
+      font-size: .9rem;
+    }
+
+    .contact {
+      padding: 0 0 78px;
+    }
+
+    .contact-shell {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(340px, .7fr);
+      gap: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-copy {
+      padding: clamp(38px, 5vw, 62px);
+      color: var(--white);
+    }
+
+    .contact-copy h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2rem, 3.8vw, 3.8rem);
+      line-height: 1.06;
+    }
+
+    .contact-copy p {
+      margin: 18px 0 0;
+      color: #d7dfeb;
+      line-height: 1.72;
+      max-width: 620px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .contact-form {
+      padding: 34px;
+      background: var(--white);
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: #334257;
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 13px 14px;
+      color: var(--ink);
+      background: #fbfcfd;
+      font: inherit;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    textarea {
+      min-height: 116px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--gold);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(200, 151, 45, .14);
+    }
+
+    .form-note {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: .8rem;
+      margin: 2px 0 0;
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid rgba(7, 20, 38, .12);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-panel {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links, .header-actions .btn-primary { display: none; }
+      .menu-toggle { display: inline-flex; }
+
+      .mobile-panel {
+        display: grid;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .24s ease;
+        border-top: 1px solid rgba(7, 20, 38, .08);
+      }
+
+      .mobile-panel.open { max-height: 420px; }
+
+      .mobile-panel-inner {
+        display: grid;
+        gap: 4px;
+        padding: 12px 0 20px;
+      }
+
+      .mobile-panel a {
+        padding: 13px 0;
+        color: var(--navy);
+        font-weight: 700;
+        border-bottom: 1px solid rgba(7, 20, 38, .08);
+      }
+
+      .hero-shell,
+      .approach-layout,
+      .contact-shell,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-shell { min-height: auto; }
+      .hero-panel { padding: 26px; }
+      .logo-stage { min-height: 260px; }
+      .logo-stage {
+        min-height: auto;
+        align-items: flex-start;
+      }
+      .approach-note { position: static; }
+      .service-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: 0; border-bottom: 1px solid var(--line); min-height: auto; }
+      .service-card:last-child { border-bottom: 0; }
+      .industry-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .industry:nth-child(2) { border-right: 0; }
+      .industry:nth-child(-n + 2) { border-bottom: 1px solid rgba(7, 20, 38, .14); }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .nav { min-height: 68px; }
+      .brand img { width: 42px; height: 42px; }
+      .brand strong { font-size: .9rem; }
+      .brand span { display: none; }
+      .hero { padding: 24px 0 50px; }
+      .hero-copy { padding: 34px 24px; }
+      .value-row { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; }
+      .hero-proof { grid-template-columns: 1fr; margin-top: 34px; }
+      .hero-panel { padding: 18px; }
+      .logo-stage {
+        gap: 12px;
+      }
+      .logo-stage img {
+        width: 58px;
+        height: 58px;
+      }
+      .scope-list { grid-template-columns: 1fr; }
+      .diagnostic-card { padding: 22px; }
+      section { padding: 54px 0; }
+      .service-card { padding: 26px; }
+      .process-item { grid-template-columns: 1fr; gap: 12px; }
+      .industry-strip { grid-template-columns: 1fr; }
+      .industry,
+      .industry:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid rgba(7, 20, 38, .14);
+      }
+      .industry:last-child { border-bottom: 0; }
+      .contact { padding-bottom: 56px; }
+      .contact-form { padding: 24px; }
+      .contact-methods .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav" aria-label="Navegacion principal">
+        <a class="brand" href="#inicio" aria-label="Inicio Griffin Asesores">
+          <img src="assets/logo-completo.png" alt="Logo de Griffin Asesores">
+          <span>
+            <strong>Griffin Asesores</strong>
+            <span>Confianza, precision y crecimiento</span>
+          </span>
+        </a>
+
+        <div class="nav-links" aria-label="Secciones">
+          <a href="#quienes-somos">Quiénes somos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#enfoque">Enfoque</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+
+        <div class="header-actions">
+          <a class="btn btn-primary" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-panel" aria-label="Abrir menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <div class="mobile-panel" id="mobile-panel">
+        <div class="mobile-panel-inner">
+          <a href="#quienes-somos">Quiénes somos</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#enfoque">Enfoque</a>
+          <a href="#contacto">Contacto</a>
+          <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-shell">
+          <div class="hero-copy">
+            <div class="brand-kicker">Griffin Asesores</div>
+            <div class="trust-line">Contabilidad, RRHH y cumplimiento para pymes en Chile</div>
+            <h1 id="hero-title">Asesoría contable y laboral seria, clara y cercana.</h1>
+            <p>
+              Acompañamos a empresas de la Región de Coquimbo y de todo Chile con contabilidad mensual, liquidaciones, Previred, auditorías y control administrativo. Trabajamos con orden, trazabilidad y comunicación directa para que tomes decisiones con respaldo.
+            </p>
+            <div class="value-row" aria-label="Valores de Griffin Asesores">
+              <div class="value-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg>
+                Seguridad
+              </div>
+              <div class="value-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a3 3 0 0 0 4-4l-2-2"></path><path d="m13 7-2-2a3 3 0 0 0-4 4l2 2"></path><path d="m8 16 8-8"></path></svg>
+                Confianza
+              </div>
+              <div class="value-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                Claridad
+              </div>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
+              <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
+            </div>
+            <div class="hero-proof" aria-label="Puntos de confianza">
+              <div class="proof-item">
+                <strong>SII y DT</strong>
+                <span>Seguimiento tributario y laboral sin esperar a la fiscalización.</span>
+              </div>
+              <div class="proof-item">
+                <strong>Mensual</strong>
+                <span>Gestión continua, con entregables y fechas claras.</span>
+              </div>
+              <div class="proof-item">
+                <strong>A medida</strong>
+                <span>Alcance y honorarios según la realidad de tu empresa.</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Diagnostico Griffin">
+            <div class="logo-stage">
+              <img src="assets/logo-completo.png" alt="Emblema Griffin Asesores">
+              <div>
+                <h2>Confianza, precisión y crecimiento.</h2>
+                <p>Una identidad sobria para una asesoría que combina rigor técnico y trato humano.</p>
+              </div>
+            </div>
+            <div class="assurance-panel">
+              <h2>Tu empresa en regla, con información entendible cada mes.</h2>
+              <p>Centralizamos obligaciones contables, laborales y administrativas para que el cumplimiento no dependa de urgencias de último minuto.</p>
+              <div class="assurance-list">
+                <div class="assurance-item">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <div><strong>Proceso claro</strong><span>Fechas, responsables y entregables definidos desde el diagnóstico.</span></div>
+                </div>
+                <div class="assurance-item">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg>
+                  <div><strong>Respaldo documental</strong><span>Ordenamos contratos, libros, declaraciones, cotizaciones y reportes.</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="diagnostic-card">
+              <h2>Diagnóstico inicial</h2>
+              <p>Revisamos tu situación contable, laboral y administrativa para detectar riesgos, atrasos y oportunidades de orden.</p>
+              <div class="scope-list" aria-label="Alcance del diagnostico">
+                <div class="scope-item">
+                  <strong>Tributario</strong>
+                  <span>F29, libros, respaldos y vencimientos.</span>
+                </div>
+                <div class="scope-item">
+                  <strong>Laboral</strong>
+                  <span>Contratos, liquidaciones y Previred.</span>
+                </div>
+                <div class="scope-item">
+                  <strong>Finanzas</strong>
+                  <span>Flujo, reportes y control interno.</span>
+                </div>
+                <div class="scope-item">
+                  <strong>Plan mensual</strong>
+                  <span>Entregables, fechas y responsables.</span>
+                </div>
+              </div>
+              <div class="check-row">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span>Recibes una propuesta clara: qué hacemos, qué queda fuera y cómo se mide el avance.</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicios">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servicios pensados para operar mejor, no para llenar una plantilla.</h2>
+          <p>La promesa central es simple: que tengas tus obligaciones en regla, tus números ordenados y una administración que no dependa de apagar incendios a fin de mes.</p>
+        </div>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <div>
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-3 2-3-2-3 2V5a2 2 0 0 1 2-2Z"></path><path d="M9 8h6M9 12h6M9 16h4"></path>
+              </svg>
+              <h3>Orden tributario y contable</h3>
+              <p>Declaraciones, registros, conciliaciones y control mensual para mantener tu relación con el SII bajo control.</p>
+            </div>
+            <ul>
+              <li>F29, libros y cierres mensuales</li>
+              <li>Regularización de atrasos</li>
+              <li>Reportes para toma de decisiones</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <h3>Recursos humanos y laboral</h3>
+              <p>Liquidaciones, contratos, Previred y respaldo documental para reducir errores y exposición ante la Dirección del Trabajo.</p>
+            </div>
+            <ul>
+              <li>Liquidaciones y cotizaciones</li>
+              <li>Contratos, anexos y finiquitos</li>
+              <li>Preparación ante fiscalizaciones</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-4 4"></path><path d="M19 9h-4"></path><path d="M19 9v4"></path>
+              </svg>
+              <h3>Auditoría y gestión financiera</h3>
+              <p>Una segunda mirada sobre procesos, saldos, documentos y flujos para detectar desorden antes de que cueste caro.</p>
+            </div>
+            <ul>
+              <li>Revisión independiente</li>
+              <li>Tesorería y backoffice</li>
+              <li>Procesos digitales y control interno</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach" id="enfoque">
+      <div class="container">
+        <div class="approach-layout">
+          <div class="approach-note">
+            <h2>Un método simple, con responsabilidades claras.</h2>
+            <p>El objetivo no es llenarte de reuniones. Es ordenar la información, definir un calendario de trabajo y dejar trazabilidad de lo que se entrega cada mes.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contacto">Solicitar contacto</a>
+            </div>
+          </div>
+
+          <div class="process-list" id="quienes-somos">
+            <article class="process-item">
+              <div class="process-number">01</div>
+              <div>
+                <h3>Diagnóstico operativo</h3>
+                <p>Levantamos tu realidad contable, tributaria, laboral y administrativa. Si hay atrasos, riesgos o información incompleta, queda identificado desde el inicio.</p>
+              </div>
+            </article>
+            <article class="process-item">
+              <div class="process-number">02</div>
+              <div>
+                <h3>Propuesta a medida</h3>
+                <p>Definimos alcance, responsables, entregables, calendario y honorarios. Sin paquetes rígidos que no calzan con tu tamaño o etapa.</p>
+              </div>
+            </article>
+            <article class="process-item">
+              <div class="process-number">03</div>
+              <div>
+                <h3>Gestión mensual y seguimiento</h3>
+                <p>Ejecutamos el trabajo recurrente, avisamos vencimientos, ordenamos respaldos y mantenemos reportes útiles para que puedas decidir con datos.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="industries" aria-labelledby="industries-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="industries-title">Sectores que atendemos con criterio local.</h2>
+          <p>Trabajamos con empresas que necesitan control y cumplimiento sin perder agilidad en su operación diaria.</p>
+        </div>
+        <div class="industry-strip">
+          <article class="industry">
+            <h3>Comercio y alimentos</h3>
+            <p>Turnos, ventas mensuales, proveedores y obligaciones recurrentes.</p>
+          </article>
+          <article class="industry">
+            <h3>Servicios profesionales</h3>
+            <p>Facturación, gastos, honorarios y planificación tributaria ordenada.</p>
+          </article>
+          <article class="industry">
+            <h3>Industria y minería</h3>
+            <p>Documentación laboral, jornadas, contratistas y respaldo ante revisiones.</p>
+          </article>
+          <article class="industry">
+            <h3>Emprendimientos en crecimiento</h3>
+            <p>Formalización, inicio de actividades y estructura administrativa base.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contacto">
+      <div class="container">
+        <div class="contact-shell">
+          <div class="contact-copy">
+            <h2>Partamos revisando dónde está el desorden.</h2>
+            <p>Cuéntanos qué necesitas resolver: contabilidad mensual, RRHH, regularización, auditoría o backoffice. Te responderemos con el siguiente paso más razonable para tu caso.</p>
+            <div class="contact-methods">
+              <a class="btn btn-primary" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
+              <a class="btn btn-secondary" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
+            </div>
+          </div>
+
+          <form class="contact-form" action="https://formsubmit.co/contacto@griffinasesores.cl" method="POST">
+            <input type="hidden" name="_subject" value="Solicitud de contacto - Griffin Asesores">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="form-grid">
+              <label>
+                Nombre
+                <input name="nombre" autocomplete="name" required>
+              </label>
+              <label>
+                Empresa
+                <input name="empresa" autocomplete="organization">
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" autocomplete="email" required>
+              </label>
+              <label>
+                Servicio
+                <select name="servicio" required>
+                  <option value="">Selecciona una opción</option>
+                  <option>Contabilidad y tributario</option>
+                  <option>Recursos humanos</option>
+                  <option>Auditoría o revisión</option>
+                  <option>Backoffice integral</option>
+                  <option>Regularización puntual</option>
+                </select>
+              </label>
+              <label>
+                ¿Qué necesitas ordenar?
+                <textarea name="mensaje" required></textarea>
+              </label>
+              <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+              <p class="form-note">Usaremos tus datos solo para responder esta solicitud y coordinar el diagnóstico.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 Griffin Asesores. Región de Coquimbo, Chile.</span>
+      <span>Contabilidad · RRHH · Auditorías · Backoffice</span>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const panel = document.querySelector("#mobile-panel");
+    const links = panel.querySelectorAll("a");
+
+    toggle.addEventListener("click", () => {
+      const isOpen = panel.classList.toggle("open");
+      document.body.classList.toggle("menu-open", isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        panel.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Carpeta de configuración de Claude
+.claude/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dependencias (por si se agregan en el futuro)
+node_modules/

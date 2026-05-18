@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog — Griffin Asesores | Contabilidad, RRHH y Auditoría</title>
+  <meta name="description" content="Artículos, guías y recursos sobre contabilidad, RRHH, auditoría y cumplimiento para pymes en Chile. Griffin Asesores.">
+  <link rel="icon" href="assets/logo-completo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #040f25;
+      --night: #0f2646;
+      --gold: #ecd659;
+      --old-gold: #af8f29;
+      --ivory: #f8f5ea;
+      --cream: #fffdf7;
+      --graphite: #1e1e1e;
+      --gray: #6b7280;
+      --muted: #667085;
+      --line: #e4ded0;
+      --white: #fff;
+      --shadow: 0 22px 70px rgba(4, 15, 37, .16);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--navy);
+      background: var(--ivory);
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    svg { display: block; }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 15, 37, .82);
+      backdrop-filter: saturate(1.5) blur(16px);
+      -webkit-backdrop-filter: saturate(1.5) blur(16px);
+      color: var(--white);
+      border-bottom: 1px solid rgba(236, 214, 89, .1);
+      transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(4, 15, 37, .96);
+      box-shadow: 0 10px 40px rgba(4, 15, 37, .3);
+      border-color: rgba(236, 214, 89, .18);
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      width: 0%;
+      z-index: 51;
+      transition: width .1s linear;
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+
+    .nav {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 230px;
+    }
+    .brand img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(236, 214, 89, .35), 0 12px 28px rgba(0,0,0,.3);
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+    }
+    .brand:hover img {
+      transform: scale(1.08) rotate(-5deg);
+      box-shadow: 0 0 0 2px rgba(236, 214, 89, .55), 0 18px 40px rgba(0,0,0,.4);
+    }
+    .brand strong {
+      display: block;
+      font-family: Cinzel, Georgia, serif;
+      color: var(--gold);
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: .04em;
+    }
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: #f3ead0;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      color: #f5f1e6;
+      font-size: .93rem;
+      font-weight: 600;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 10px 0;
+      transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      border-radius: 2px;
+      transition: width .4s cubic-bezier(.22,1,.36,1);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a.active::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 26px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: .92rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease, background .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform .7s ease;
+    }
+    .btn:hover::before { transform: translateX(100%); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-gold {
+      color: var(--navy);
+      background: linear-gradient(135deg, #fff1a7, var(--gold) 44%, #d6a93e);
+      box-shadow: 0 14px 36px rgba(236, 214, 89, .24), inset 0 1px 0 rgba(255,255,255,.45);
+    }
+    .btn-gold:hover { box-shadow: 0 22px 52px rgba(236, 214, 89, .35), inset 0 1px 0 rgba(255,255,255,.5); }
+
+    .btn-dark {
+      color: var(--white);
+      background: rgba(255,255,255,.05);
+      border-color: rgba(236, 214, 89, .4);
+      backdrop-filter: blur(4px);
+    }
+    .btn-dark:hover { background: rgba(255,255,255,.12); border-color: rgba(236, 214, 89, .65); }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(236, 214, 89, .3);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      color: var(--white);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .25s ease, border-color .25s ease, transform .25s ease;
+    }
+    .menu-toggle:hover { background: rgba(255,255,255,.12); border-color: rgba(236,214,89,.55); transform: scale(1.05); }
+
+    .mobile-panel {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+      opacity: 0;
+      border-top: 1px solid rgba(236, 214, 89, .1);
+    }
+    .mobile-panel.open { max-height: 460px; opacity: 1; }
+    .mobile-panel-inner { display: grid; gap: 4px; padding: 14px 0 26px; }
+    .mobile-panel a {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(236, 214, 89, .08);
+      color: #f8f5ea;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color .25s ease, padding-left .25s ease;
+    }
+    .mobile-panel a:hover { color: var(--gold); padding-left: 10px; }
+
+    .page-hero {
+      position: relative;
+      min-height: 340px;
+      color: var(--white);
+      background:
+        linear-gradient(105deg, rgba(4, 15, 37, .97) 0%, rgba(4, 15, 37, .92) 42%, rgba(4, 15, 37, .55) 72%, rgba(4, 15, 37, .2) 100%),
+        url("assets/noticias2.png") center / cover no-repeat;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 60%, rgba(236, 214, 89, .08), transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 30%, rgba(15, 38, 70, .6), transparent 60%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.4), transparent);
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 0 72px;
+    }
+    .page-hero small {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .72rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .page-hero small::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+    h1 {
+      margin: 0;
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--white);
+      text-shadow: 0 4px 30px rgba(0,0,0,.3);
+    }
+    .page-hero-lead {
+      max-width: 620px;
+      margin-top: 18px;
+      color: #c0cbdb;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    section { padding: 96px 0; }
+
+    .blog {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .blog::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    .blog-featured {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 36px;
+      margin-bottom: 64px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 20px 56px rgba(4, 15, 37, .07);
+      transition: box-shadow .45s ease, transform .45s cubic-bezier(.22,1,.36,1);
+    }
+    .blog-featured:hover {
+      box-shadow: 0 32px 72px rgba(4, 15, 37, .12);
+      transform: translateY(-4px);
+    }
+    .blog-featured-image {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--navy), var(--night));
+    }
+    .blog-featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .blog-featured:hover .blog-featured-image img {
+      transform: scale(1.04);
+    }
+    .blog-featured-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 44px 40px;
+    }
+    .blog-category {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      background: linear-gradient(135deg, var(--gold), var(--old-gold));
+      color: var(--navy);
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 5px 12px;
+      border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(4,15,37,.25);
+      z-index: 2;
+    }
+    .blog-date {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .blog-date svg {
+      width: 14px;
+      height: 14px;
+      color: var(--old-gold);
+    }
+    .blog-featured-content h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      line-height: 1.25;
+      color: var(--navy);
+      margin: 0 0 14px;
+    }
+    .blog-featured-content p {
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin: 0 0 20px;
+    }
+    .blog-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--old-gold);
+      font-weight: 700;
+      font-size: .92rem;
+      transition: color .25s ease, gap .25s ease;
+    }
+    .blog-link:hover {
+      color: var(--gold);
+      gap: 10px;
+    }
+    .blog-link svg { width: 16px; height: 16px; }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+    .blog-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 10px 32px rgba(4, 15, 37, .04);
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, border-color .45s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 56px rgba(4, 15, 37, .08);
+      border-color: rgba(175, 143, 41, .35);
+    }
+    .blog-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--navy), var(--night));
+    }
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .blog-card:hover .blog-image img {
+      transform: scale(1.06);
+    }
+    .blog-content {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .blog-card h3 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      color: var(--navy);
+      margin: 0 0 10px;
+    }
+    .blog-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+      font-weight: 300;
+      flex-grow: 1;
+      margin: 0 0 16px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      border: none;
+      margin: 0;
+      position: relative;
+    }
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -2px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 5px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(.22,1,.36,1);
+    }
+    .section-divider.visible::after { width: 120px; }
+
+    .newsletter {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .newsletter::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.35), transparent);
+    }
+    .newsletter::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 25% 50%, rgba(236,214,89,.06), transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 40%, rgba(15,38,70,.5), transparent 60%);
+      pointer-events: none;
+    }
+    .newsletter-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .65fr);
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .newsletter small {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .newsletter small::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+    .newsletter h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.12;
+      margin: 0;
+    }
+    .newsletter p {
+      color: #b0bed4;
+      margin-top: 14px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .newsletter-form {
+      display: grid;
+      gap: 14px;
+    }
+    .form-group {
+      display: grid;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(236, 214, 89, .15);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: .94rem;
+      outline: none;
+      transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
+    }
+    .form-input::placeholder { color: #6b8099; }
+    .form-input:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,.1);
+      box-shadow: 0 0 0 3px rgba(236, 214, 89, .1);
+    }
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .78rem;
+      color: #8a9ab0;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+    .form-consent input {
+      margin-top: 2px;
+      accent-color: var(--gold);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .form-disclaimer {
+      font-size: .72rem;
+      color: #6b8099;
+      text-align: center;
+      margin: 4px 0 0;
+      opacity: .8;
+    }
+
+    .cta {
+      padding: 0;
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.45), transparent);
+    }
+    .cta-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 44px;
+      align-items: center;
+      padding: 70px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .cta small {
+      display: block;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-weight: 800;
+      margin-bottom: 14px;
+      font-size: .72rem;
+    }
+    .cta h2 {
+      max-width: 720px;
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2.1rem, 3.8vw, 3.6rem);
+      line-height: 1.08;
+      margin: 0;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    footer {
+      background: #020b1c;
+      color: #9aacbf;
+      border-top: 1px solid rgba(236, 214, 89, .22);
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 140px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1fr repeat(3, minmax(150px, .52fr));
+      gap: 36px;
+      padding: 48px 0;
+      align-items: center;
+    }
+    .footer-main .brand { min-width: 0; }
+    .footer-info strong { display: block; color: var(--gold); font-size: .8rem; margin-bottom: 6px; font-weight: 700; }
+    .footer-info span { color: #9aacbf; font-size: .88rem; line-height: 1.45; font-weight: 300; }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, .06); padding: 22px 0; color: #6b7d90; font-size: .8rem; font-weight: 300; }
+    .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+    .float-badge {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 60;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 40px rgba(18, 140, 126, .35);
+      transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+      animation: floatIn .9s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: 1.8s;
+    }
+    .float-badge:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 20px 54px rgba(18, 140, 126, .45);
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px) scale(.92); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 26px;
+      left: 26px;
+      z-index: 60;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--old-gold);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(4,15,37,.1);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity .35s ease, transform .35s ease, background .25s ease, border-color .25s ease;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      background: var(--cream);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .back-to-top svg { width: 18px; height: 18px; }
+
+    @media (max-width: 1060px) {
+      .nav-links, .site-header .btn { display: none; }
+      .menu-toggle, .mobile-panel { display: flex; }
+      .mobile-panel { display: grid; }
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-grid, .newsletter-shell, .cta-shell, .footer-main { grid-template-columns: 1fr; }
+      .blog-featured-content { padding: 32px 28px; }
+      .cta-actions { justify-content: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1200px); }
+      .nav { min-height: 72px; }
+      .brand { min-width: 0; gap: 10px; }
+      .brand img { width: 44px; height: 44px; }
+      .brand strong { font-size: 1.05rem; }
+      .brand span { font-size: .62rem; letter-spacing: .1em; }
+      .page-hero-content { padding: 60px 0 52px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .newsletter-shell { grid-template-columns: 1fr; gap: 28px; }
+      .cta-actions .btn { width: 100%; }
+      .float-badge { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
+      .back-to-top { bottom: 80px; left: 16px; }
+      section { padding: 72px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="container">
+      <nav class="nav" aria-label="Navegacion principal">
+        <a class="brand" href="index-option-c.html" aria-label="Inicio Griffin Asesores">
+          <img src="assets/logo-completo.png" alt="Griffin Asesores">
+          <span><strong>Griffin</strong><strong>Asesores</strong><span>Contabilidad · RRHH · Auditoría</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="index-option-c.html#quienes-somos">Quiénes somos</a>
+          <a href="index-option-c.html#servicios">Servicios</a>
+          <a href="index-option-c.html#sectores">Sectores</a>
+          <a href="index-option-c.html#faq">FAQ</a>
+          <a href="herramientas.html">Herramientas</a>
+          <a href="blog.html" class="active">Blog</a>
+          <a href="index-option-c.html#contacto">Contacto</a>
+        </div>
+        <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg>
+          Agendar diagnóstico
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-panel" aria-label="Abrir menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </nav>
+      <div class="mobile-panel" id="mobile-panel">
+        <div class="mobile-panel-inner">
+          <a href="index-option-c.html#quienes-somos">Quiénes somos</a>
+          <a href="index-option-c.html#servicios">Servicios</a>
+          <a href="index-option-c.html#sectores">Sectores</a>
+          <a href="index-option-c.html#faq">FAQ</a>
+          <a href="herramientas.html">Herramientas</a>
+          <a href="blog.html">Blog</a>
+          <a href="index-option-c.html#contacto">Contacto</a>
+          <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-content">
+        <small>Blog</small>
+        <h1>Recursos, guías y opiniones<br>para tu empresa.</h1>
+        <p class="page-hero-lead">Publicamos contenido práctico sobre contabilidad, cumplimiento laboral, auditoría y gestión para que tomes mejores decisiones.</p>
+      </div>
+    </section>
+
+    <section class="blog">
+      <div class="container">
+        <a href="#" class="blog-featured reveal">
+          <div class="blog-featured-image">
+            <span class="blog-category">Contabilidad</span>
+            <img src="assets/blog-checklist-dt.jpg" alt="ChecklistDirección del Trabajo" loading="lazy">
+          </div>
+          <div class="blog-featured-content">
+            <div class="blog-date">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              12 de mayo, 2026
+            </div>
+            <h2>5 errores que provocan multas de la Dirección del Trabajo</h2>
+            <p>Contratos desactualizados, cotizaciones impagas, reglamento interno inexistente… Revisa el checklist completo antes de que tu empresa reciba una fiscalización.</p>
+            <span class="blog-link">Leer artículo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </a>
+
+        <div class="blog-grid">
+          <article class="blog-card reveal reveal-delay-1">
+            <div class="blog-image">
+              <span class="blog-category">RRHH</span>
+              <img src="assets/blog-rrhh-previred.jpg" alt="Previred" loading="lazy">
+            </div>
+            <div class="blog-content">
+              <div class="blog-date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Próximamente
+              </div>
+              <h3>Previred paso a paso: qué declarar y cuándo</h3>
+              <p>Guía mensual de plazos y obligaciones previsionales para que ninguna cotización se te pase.</p>
+              <span class="blog-link">Próximamente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </article>
+
+          <article class="blog-card reveal reveal-delay-2">
+            <div class="blog-image">
+              <span class="blog-category">Auditoría</span>
+              <img src="assets/blog-auditoria.jpg" alt="Auditoría" loading="lazy">
+            </div>
+            <div class="blog-content">
+              <div class="blog-date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Próximamente
+              </div>
+              <h3>Cuándo tu pyme necesita una auditoría (y cuándo no)</h3>
+              <p>Guía clara para entender si el momento de tu empresa amerita una revisión independiente.</p>
+              <span class="blog-link">Próximamente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </article>
+
+          <article class="blog-card reveal reveal-delay-3">
+            <div class="blog-image">
+              <span class="blog-category">Cumplimiento</span>
+              <img src="assets/blog-cumplimiento.jpg" alt="Cumplimiento" loading="lazy">
+            </div>
+            <div class="blog-content">
+              <div class="blog-date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Próximamente
+              </div>
+              <h3>F29: errores comunes que el SII multa todos los meses</h3>
+              <p>Los errores de formularioario más frecuentes y cómo prevenirlos antes del plazo.</p>
+              <span class="blog-link">Próximamente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider reveal">
+
+    <section class="newsletter">
+      <div class="container newsletter-shell">
+        <div class="reveal">
+          <small>Suscríbete</small>
+          <h2>Recibe contenido útil directamente en tu correo.</h2>
+          <p>Solo enviamos recursos prácticos sobre contabilidad, RRHH y cumplimiento. Sin spam, sin promesas huecas. Puedes darte de baja cuando quieras.</p>
+        </div>
+        <form class="newsletter-form reveal reveal-delay-1" action="https://formsubmit.co/contacto@griffinasesores.cl" method="POST">
+          <input type="hidden" name="_subject" value="Suscripción Blog - Griffin">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="text" name="_honey" style="display:none">
+          <input type="hidden" name="_next" value="https://griffinasesores.cl/blog.html">
+          <input type="hidden" name="tipo" value="suscripción blog">
+          <div class="form-group">
+            <label for="nl-nombre">Nombre</label>
+            <input type="text" id="nl-nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="nl-email">Email</label>
+            <input type="email" id="nl-email" name="email" class="form-input" placeholder="nombre@empresa.cl" required>
+          </div>
+          <label class="form-consent">
+            <input type="checkbox" name="consentimiento" value="si" required>
+            <span>Acepto recibir el recurso y comunicaciones de Griffin Asesores. Puedo darme de baja cuando quiera (Ley 19.628).</span>
+          </label>
+          <button type="submit" class="btn btn-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            Suscribirme
+          </button>
+          <p class="form-disclaimer">Sin spam. Solo contenido útil para tu empresa.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="container cta-shell">
+        <div class="reveal">
+          <small>Hablemos de tu empresa</small>
+          <h2>Agenda tu diagnóstico gratuito y descubre cómo podemos ayudarte a crecer.</h2>
+        </div>
+        <div class="cta-actions reveal reveal-delay-1">
+          <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer">Agendar reunión</a>
+          <a class="btn btn-dark" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-main">
+      <a class="brand" href="index-option-c.html">
+        <img src="assets/logo-completo.png" alt="Griffin Asesores">
+        <span><strong>Griffin</strong><strong>Asesores</strong><span>Contabilidad · RRHH · Auditoría</span></span>
+      </a>
+      <div class="footer-info"><strong>Correo</strong><span>contacto@griffinasesores.cl</span></div>
+      <div class="footer-info"><strong>Ubicación</strong><span>Coquimbo, Chile</span></div>
+      <div class="footer-info"><strong>Atención online</strong><span>Consultoría segura y cercana en todo Chile.</span></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-row">
+        <span>&copy; 2026 Griffin Asesores. Todos los derechos reservados.</span>
+        <span>Confianza · Precisión · Crecimiento</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer" class="float-badge" aria-label="WhatsApp Griffin Asesores">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    Escríbenos por WhatsApp
+  </a>
+
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const panel = document.querySelector("#mobile-panel");
+    toggle.addEventListener("click", () => {
+      const open = panel.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    panel.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        panel.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const header = document.getElementById('site-header');
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset;
+      header.classList.toggle('scrolled', y > 40);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    }, { passive: true });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.pageYOffset > 600);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

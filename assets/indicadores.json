@@ -1,0 +1,43 @@
+{
+  "actualizado": "2026-05-18T17:46:49.035Z",
+  "fuente": "previred.com/indicadores-previsionales",
+  "periodo": "remuneraciones mayo 2026",
+  "uf": 40610.69,
+  "ufFecha": "31 de Mayo del 2026",
+  "utm": 70588,
+  "topeAfpUF": 90,
+  "topeCesantiaUF": 135.2,
+  "sis": 1.62,
+  "seguroSocial": 0.9,
+  "rentaMinima": 539000,
+  "afp": {
+    "Capital": {
+      "trabajador": 11.44,
+      "empleador": 0.1
+    },
+    "Cuprum": {
+      "trabajador": 11.44,
+      "empleador": 0.1
+    },
+    "Habitat": {
+      "trabajador": 11.27,
+      "empleador": 0.1
+    },
+    "PlanVital": {
+      "trabajador": 11.16,
+      "empleador": 0.1
+    },
+    "ProVida": {
+      "trabajador": 11.45,
+      "empleador": 0.1
+    },
+    "Modelo": {
+      "trabajador": 10.58,
+      "empleador": 0.1
+    },
+    "Uno": {
+      "trabajador": 10.46,
+      "empleador": 0.1
+    }
+  }
+}

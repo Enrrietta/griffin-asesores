@@ -1,0 +1,1546 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Herramientas — Griffin Asesores | Calculadora previsional</title>
+  <meta name="description" content="Calculadora rápida líquido a imponible: estima cotizaciones de AFP, salud y seguro de cesantía para pagar en PreviRed. Griffin Asesores.">
+  <link rel="icon" href="assets/logo-completo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #040f25;
+      --night: #0f2646;
+      --gold: #ecd659;
+      --old-gold: #af8f29;
+      --ivory: #f8f5ea;
+      --cream: #fffdf7;
+      --graphite: #1e1e1e;
+      --gray: #6b7280;
+      --muted: #667085;
+      --line: #e4ded0;
+      --white: #fff;
+      --shadow: 0 22px 70px rgba(4, 15, 37, .16);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--navy);
+      background: var(--ivory);
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    svg { display: block; }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 15, 37, .82);
+      backdrop-filter: saturate(1.5) blur(16px);
+      -webkit-backdrop-filter: saturate(1.5) blur(16px);
+      color: var(--white);
+      border-bottom: 1px solid rgba(236, 214, 89, .1);
+      transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(4, 15, 37, .96);
+      box-shadow: 0 10px 40px rgba(4, 15, 37, .3);
+      border-color: rgba(236, 214, 89, .18);
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      width: 0%;
+      z-index: 51;
+      transition: width .1s linear;
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+
+    .nav {
+      min-height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 230px;
+    }
+    .brand img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(236, 214, 89, .35), 0 12px 28px rgba(0,0,0,.3);
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+    }
+    .brand:hover img {
+      transform: scale(1.08) rotate(-5deg);
+      box-shadow: 0 0 0 2px rgba(236, 214, 89, .55), 0 18px 40px rgba(0,0,0,.4);
+    }
+    .brand strong {
+      display: block;
+      font-family: Cinzel, Georgia, serif;
+      color: var(--gold);
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: .04em;
+    }
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: #f3ead0;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      color: #f5f1e6;
+      font-size: .93rem;
+      font-weight: 600;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 10px 0;
+      transition: color .3s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      border-radius: 2px;
+      transition: width .4s cubic-bezier(.22,1,.36,1);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a.active::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 26px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      font-weight: 800;
+      font-size: .92rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease, background .3s ease;
+      position: relative;
+      overflow: hidden;
+      font-family: inherit;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform .7s ease;
+    }
+    .btn:hover::before { transform: translateX(100%); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-gold {
+      color: var(--navy);
+      background: linear-gradient(135deg, #fff1a7, var(--gold) 44%, #d6a93e);
+      box-shadow: 0 14px 36px rgba(236, 214, 89, .24), inset 0 1px 0 rgba(255,255,255,.45);
+    }
+    .btn-gold:hover { box-shadow: 0 22px 52px rgba(236, 214, 89, .35), inset 0 1px 0 rgba(255,255,255,.5); }
+
+    .btn-dark {
+      color: var(--white);
+      background: rgba(255,255,255,.05);
+      border-color: rgba(236, 214, 89, .4);
+      backdrop-filter: blur(4px);
+    }
+    .btn-dark:hover { background: rgba(255,255,255,.12); border-color: rgba(236, 214, 89, .65); }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(236, 214, 89, .3);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      color: var(--white);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .25s ease, border-color .25s ease, transform .25s ease;
+    }
+    .menu-toggle:hover { background: rgba(255,255,255,.12); border-color: rgba(236,214,89,.55); transform: scale(1.05); }
+
+    .mobile-panel {
+      display: none;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+      opacity: 0;
+      border-top: 1px solid rgba(236, 214, 89, .1);
+    }
+    .mobile-panel.open { max-height: 480px; opacity: 1; }
+    .mobile-panel-inner { display: grid; gap: 4px; padding: 14px 0 26px; }
+    .mobile-panel a {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(236, 214, 89, .08);
+      color: #f8f5ea;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color .25s ease, padding-left .25s ease;
+    }
+    .mobile-panel a:hover { color: var(--gold); padding-left: 10px; }
+
+    .page-hero {
+      position: relative;
+      min-height: 320px;
+      color: var(--white);
+      background:
+        linear-gradient(105deg, rgba(4, 15, 37, .97) 0%, rgba(4, 15, 37, .92) 42%, rgba(4, 15, 37, .6) 72%, rgba(4, 15, 37, .35) 100%),
+        var(--night);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 60%, rgba(236, 214, 89, .1), transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 30%, rgba(15, 38, 70, .6), transparent 60%);
+      pointer-events: none;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.4), transparent);
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 76px 0 68px;
+    }
+    .page-hero small {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .72rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .page-hero small::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+    h1 {
+      margin: 0;
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      color: var(--white);
+      text-shadow: 0 4px 30px rgba(0,0,0,.3);
+    }
+    .page-hero-lead {
+      max-width: 640px;
+      margin-top: 18px;
+      color: #c0cbdb;
+      font-size: 1.08rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    section { padding: 84px 0; }
+
+    .tools {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .tools::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    .calc-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .calc-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 56px rgba(4, 15, 37, .07);
+      padding: 34px 32px;
+    }
+    .calc-card h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: 1.35rem;
+      color: var(--navy);
+      margin: 0 0 4px;
+    }
+    .calc-card .calc-sub {
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 300;
+      margin: 0 0 24px;
+    }
+
+    .field { display: grid; gap: 7px; margin-bottom: 18px; }
+    .field label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--old-gold);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+    .field .hint {
+      font-size: .76rem;
+      color: var(--muted);
+      font-weight: 300;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .ctrl {
+      width: 100%;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--navy);
+      font-family: inherit;
+      font-size: .98rem;
+      outline: none;
+      transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .ctrl:focus {
+      border-color: var(--old-gold);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(236, 214, 89, .14);
+    }
+    select.ctrl { cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23af8f29' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .seg { display: flex; gap: 8px; }
+    .seg label {
+      flex: 1;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--navy);
+      font-weight: 600;
+      font-size: .9rem;
+      text-align: center;
+      padding: 11px 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--cream);
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .seg input { position: absolute; opacity: 0; pointer-events: none; }
+    .seg input:checked + span { }
+    .seg label:has(input:checked) {
+      border-color: var(--old-gold);
+      background: linear-gradient(135deg, #fff7d6, #f6ecc2);
+      color: var(--navy);
+      font-weight: 800;
+      box-shadow: 0 0 0 3px rgba(236, 214, 89, .14);
+    }
+
+    .calc-actions { display: flex; gap: 12px; margin-top: 8px; }
+    .calc-actions .btn { flex: 1; }
+    .btn-ghost {
+      background: var(--white);
+      border-color: var(--line);
+      color: var(--muted);
+      flex: 0 0 auto !important;
+    }
+    .btn-ghost:hover { border-color: var(--old-gold); color: var(--navy); }
+
+    /* Result panel */
+    .result-card {
+      background: var(--navy);
+      color: var(--white);
+      border: 1px solid rgba(236, 214, 89, .25);
+      border-radius: var(--radius);
+      box-shadow: 0 22px 60px rgba(4, 15, 37, .22);
+      padding: 34px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.5), transparent);
+    }
+    .result-card h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin: 0 0 24px;
+    }
+    .headline {
+      display: grid;
+      gap: 4px;
+      padding: 20px 22px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(236, 214, 89, .2);
+      border-radius: 12px;
+      margin-bottom: 22px;
+    }
+    .headline .label {
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .headline .value {
+      font-family: Cinzel, Georgia, serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .tope-flag {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: .8rem;
+      color: var(--gold);
+      background: rgba(236, 214, 89, .1);
+      border: 1px solid rgba(236, 214, 89, .25);
+      border-radius: 8px;
+      padding: 9px 12px;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .tope-flag svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px; }
+
+    .res-block { margin-bottom: 18px; }
+    .res-block .res-title {
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gold);
+      font-weight: 800;
+      margin: 0 0 8px;
+    }
+    .res-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 7px 0;
+      font-size: .92rem;
+      color: #c8d2e2;
+      border-bottom: 1px dashed rgba(255,255,255,.08);
+    }
+    .res-line:last-child { border-bottom: none; }
+    .res-line span:last-child { color: var(--white); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .res-line.total {
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(236, 214, 89, .3);
+      border-bottom: none;
+      font-weight: 800;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .res-line.total span:last-child { color: var(--gold); font-size: 1.15rem; }
+    .res-line.grand {
+      background: rgba(236, 214, 89, .1);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-top: 10px;
+      border: 1px solid rgba(236, 214, 89, .3);
+    }
+
+    .result-empty {
+      color: #8a9ab0;
+      font-size: .95rem;
+      font-weight: 300;
+      line-height: 1.7;
+      text-align: center;
+      padding: 40px 10px;
+    }
+    .result-empty svg { width: 46px; height: 46px; margin: 0 auto 14px; color: rgba(236,214,89,.4); }
+
+    .wa-result {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 20px;
+      width: 100%;
+      justify-content: center;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: .9rem;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .wa-result:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(18,140,126,.4); }
+    .wa-result svg { width: 18px; height: 18px; }
+
+    .calc-note {
+      margin-top: 26px;
+      padding: 18px 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--old-gold);
+      border-radius: 10px;
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .calc-note strong { color: var(--navy); }
+    .calc-note ul { margin: 8px 0 0; padding-left: 18px; }
+    .calc-note li { margin-bottom: 4px; }
+
+    .params {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+      overflow: hidden;
+    }
+    .params summary {
+      cursor: pointer;
+      padding: 13px 18px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--old-gold);
+      list-style: none;
+    }
+    .params summary::-webkit-details-marker { display: none; }
+    .params summary::before { content: '\25B8  '; }
+    .params[open] summary::before { content: '\25BE  '; }
+    .params-body { padding: 4px 18px 18px; }
+
+    .api-status {
+      font-size: .78rem;
+      line-height: 1.5;
+      color: var(--muted);
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 12px;
+      margin-bottom: 14px;
+    }
+    .api-status.ok { color: #1b7a3d; border-color: rgba(27,122,61,.3); background: #f0faf2; }
+    .api-status.err { color: #9a3a12; border-color: rgba(154,58,18,.3); background: #fdf3ec; }
+
+    /* Selector de herramientas */
+    .tool-tabs {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .tool-tab {
+      flex: 1 1 280px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      color: var(--navy);
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease, background .25s ease;
+    }
+    .tool-tab:hover { transform: translateY(-2px); border-color: rgba(175,143,41,.4); }
+    .tool-tab.active {
+      border-color: var(--old-gold);
+      background: linear-gradient(135deg, #fffae6, var(--cream));
+      box-shadow: 0 0 0 3px rgba(236,214,89,.16), 0 14px 36px rgba(4,15,37,.07);
+    }
+    .tool-tab .ico {
+      flex-shrink: 0;
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--navy), var(--night));
+      color: var(--gold);
+      transition: background .25s ease, color .25s ease;
+    }
+    .tool-tab.active .ico {
+      background: linear-gradient(135deg, var(--gold), var(--old-gold));
+      color: var(--navy);
+    }
+    .tool-tab .ico svg { width: 22px; height: 22px; }
+    .tool-tab .tt-title {
+      display: block;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: Cinzel, Georgia, serif;
+    }
+    .tool-tab .tt-desc {
+      display: block;
+      margin-top: 3px;
+      font-size: .8rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.4;
+    }
+    .tool-panel[hidden] { display: none; }
+
+    .link-inline {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--gold);
+      font-weight: 700;
+      font-family: inherit;
+      font-size: .9rem;
+      padding: 0;
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color .2s ease;
+    }
+    .link-inline:hover { color: var(--white); }
+    .link-inline svg { width: 16px; height: 16px; }
+
+    .cta {
+      padding: 0;
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.45), transparent);
+    }
+    .cta-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 44px;
+      align-items: center;
+      padding: 70px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .cta small {
+      display: block;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-weight: 800;
+      margin-bottom: 14px;
+      font-size: .72rem;
+    }
+    .cta h2 {
+      max-width: 720px;
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      line-height: 1.08;
+      margin: 0;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    footer {
+      background: #020b1c;
+      color: #9aacbf;
+      border-top: 1px solid rgba(236, 214, 89, .22);
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 140px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1fr repeat(3, minmax(150px, .52fr));
+      gap: 36px;
+      padding: 48px 0;
+      align-items: center;
+    }
+    .footer-main .brand { min-width: 0; }
+    .footer-info strong { display: block; color: var(--gold); font-size: .8rem; margin-bottom: 6px; font-weight: 700; }
+    .footer-info span { color: #9aacbf; font-size: .88rem; line-height: 1.45; font-weight: 300; }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, .06); padding: 22px 0; color: #6b7d90; font-size: .8rem; font-weight: 300; }
+    .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+    .float-badge {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 60;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 40px rgba(18, 140, 126, .35);
+      transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+      animation: floatIn .9s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: 1.8s;
+    }
+    .float-badge:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 20px 54px rgba(18, 140, 126, .45);
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px) scale(.92); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 26px;
+      left: 26px;
+      z-index: 60;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--old-gold);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(4,15,37,.1);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity .35s ease, transform .35s ease, background .25s ease, border-color .25s ease;
+    }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .back-to-top:hover { background: var(--cream); border-color: var(--gold); transform: translateY(-2px); }
+    .back-to-top svg { width: 18px; height: 18px; }
+
+    @media (max-width: 1060px) {
+      .nav-links, .site-header .btn { display: none; }
+      .menu-toggle, .mobile-panel { display: flex; }
+      .mobile-panel { display: grid; }
+      .calc-shell, .cta-shell, .footer-main { grid-template-columns: 1fr; }
+      .cta-actions { justify-content: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1200px); }
+      .nav { min-height: 72px; }
+      .brand { min-width: 0; gap: 10px; }
+      .brand img { width: 44px; height: 44px; }
+      .brand strong { font-size: 1.05rem; }
+      .brand span { font-size: .62rem; letter-spacing: .1em; }
+      .page-hero-content { padding: 56px 0 48px; }
+      .calc-card, .result-card { padding: 26px 22px; }
+      .field-row { grid-template-columns: 1fr; }
+      .cta-actions .btn { width: 100%; }
+      .float-badge { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
+      .back-to-top { bottom: 80px; left: 16px; }
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="progress-bar" id="progress-bar"></div>
+    <div class="container">
+      <nav class="nav" aria-label="Navegacion principal">
+        <a class="brand" href="index-option-c.html" aria-label="Inicio Griffin Asesores">
+          <img src="assets/logo-completo.png" alt="Griffin Asesores">
+          <span><strong>Griffin</strong><strong>Asesores</strong><span>Contabilidad · RRHH · Auditoría</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="index-option-c.html#quienes-somos">Quiénes somos</a>
+          <a href="index-option-c.html#servicios">Servicios</a>
+          <a href="index-option-c.html#sectores">Sectores</a>
+          <a href="index-option-c.html#faq">FAQ</a>
+          <a href="herramientas.html" class="active">Herramientas</a>
+          <a href="blog.html">Blog</a>
+          <a href="index-option-c.html#contacto">Contacto</a>
+        </div>
+        <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg>
+          Agendar diagnóstico
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-panel" aria-label="Abrir menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+      </nav>
+      <div class="mobile-panel" id="mobile-panel">
+        <div class="mobile-panel-inner">
+          <a href="index-option-c.html#quienes-somos">Quiénes somos</a>
+          <a href="index-option-c.html#servicios">Servicios</a>
+          <a href="index-option-c.html#sectores">Sectores</a>
+          <a href="index-option-c.html#faq">FAQ</a>
+          <a href="herramientas.html">Herramientas</a>
+          <a href="blog.html">Blog</a>
+          <a href="index-option-c.html#contacto">Contacto</a>
+          <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-content">
+        <small>Herramientas</small>
+        <h1>Herramientas prácticas<br>para tu empresa.</h1>
+        <p class="page-hero-lead">Calculadoras rápidas para estimar cotizaciones previsionales y pagos proporcionales. Elige la herramienta que necesites.</p>
+      </div>
+    </section>
+
+    <section class="tools">
+      <div class="container">
+
+        <div class="tool-tabs reveal">
+          <button type="button" class="tool-tab active" data-tool="imponible">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Líquido → Imponible</span>
+              <span class="tt-desc">Estima el imponible y las cotizaciones a pagar en PreviRed.</span>
+            </span>
+          </button>
+          <button type="button" class="tool-tab" data-tool="proporcional">
+            <span class="ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h3"/><path d="M8 18h3"/></svg>
+            </span>
+            <span>
+              <span class="tt-title">Sueldo proporcional</span>
+              <span class="tt-desc">Calcula el pago por días trabajados (resto sin goce de sueldo).</span>
+            </span>
+          </button>
+        </div>
+
+        <div class="tool-panel" id="tool-imponible">
+        <div class="calc-shell">
+
+          <div class="calc-card reveal">
+            <h2>Datos del trabajador</h2>
+            <p class="calc-sub">Ingresa el líquido acordado y los parámetros previsionales.</p>
+
+            <div class="field">
+              <label>Monto que vas a ingresar</label>
+              <div class="seg">
+                <label><input type="radio" name="tipoMonto" value="liquido" checked><span>Sueldo líquido</span></label>
+                <label><input type="radio" name="tipoMonto" value="imponible"><span>Sueldo imponible</span></label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="liquido" id="liquidoLabel">Sueldo líquido mensual acordado</label>
+              <input type="text" inputmode="numeric" id="liquido" class="ctrl" placeholder="$ 300.000" autocomplete="off">
+              <span class="hint" id="liquidoHint">Líquido pactado con el trabajador.</span>
+            </div>
+
+            <div class="field">
+              <label for="afp">AFP y comisión</label>
+              <div class="field-row">
+                <select id="afp" class="ctrl">
+                  <option value="Uno">AFP Uno</option>
+                  <option value="Modelo" selected>Modelo</option>
+                  <option value="PlanVital">PlanVital</option>
+                  <option value="Habitat">Habitat</option>
+                  <option value="Capital">Capital</option>
+                  <option value="Cuprum">Cuprum</option>
+                  <option value="ProVida">ProVida</option>
+                </select>
+                <input type="text" inputmode="decimal" id="afpCom" class="ctrl" value="0.58" title="Comisión AFP en %">
+              </div>
+              <span class="hint">Comisión de la AFP en % — cargo del trabajador, se suma al 10% obligatorio.</span>
+            </div>
+
+            <div class="field">
+              <label>Salud</label>
+              <div class="field-row">
+                <div class="seg">
+                  <label><input type="radio" name="salud" value="fonasa" checked><span>Fonasa 7%</span></label>
+                  <label><input type="radio" name="salud" value="isapre"><span>Isapre</span></label>
+                </div>
+                <input type="text" inputmode="decimal" id="saludPct" class="ctrl" value="7" disabled
+                       title="% del plan Isapre">
+              </div>
+              <span class="hint" id="saludHint">Fonasa descuenta el 7% del imponible.</span>
+            </div>
+
+            <div class="field">
+              <label>Tipo de contrato <span class="hint">— afecta el seguro de cesantía</span></label>
+              <div class="seg">
+                <label><input type="radio" name="contrato" value="indefinido" checked><span>Indefinido</span></label>
+                <label><input type="radio" name="contrato" value="plazo"><span>Plazo fijo / obra</span></label>
+              </div>
+            </div>
+
+            <details class="params">
+              <summary>Parámetros avanzados</summary>
+              <div class="params-body">
+                <div class="api-status" id="apiStatus">Cargando UF y UTM del día…</div>
+                <div class="field">
+                  <label for="afpEmpCargo">Cargo AFP del empleador</label>
+                  <input type="text" inputmode="decimal" id="afpEmpCargo" class="ctrl" value="0.1">
+                  <span class="hint">% de la cotización de AFP que paga el empleador (adicional a la comisión del trabajador).</span>
+                </div>
+                <div class="field">
+                  <label for="sisRate">Tasa SIS (invalidez y sobrevivencia)</label>
+                  <input type="text" inputmode="decimal" id="sisRate" class="ctrl" value="1.62">
+                  <span class="hint">% que aporta el empleador. Definida por licitación, se actualiza periódicamente.</span>
+                </div>
+                <div class="field">
+                  <label for="segSocial">Aporte Seguro Social (reforma previsional)</label>
+                  <input type="text" inputmode="decimal" id="segSocial" class="ctrl" value="0.90">
+                  <span class="hint">Nuevo aporte del empleador (Ley 21.735 — "Expectativa de Vida"). Aumenta gradualmente cada año.</span>
+                </div>
+                <div class="field">
+                  <label for="mutual">Tasa mutual / ISL (accidentes)</label>
+                  <input type="text" inputmode="decimal" id="mutual" class="ctrl" value="0.93">
+                  <span class="hint">% que aporta el empleador. Base 0,90% + tasa adicional según actividad.</span>
+                </div>
+                <div class="field">
+                  <label for="utm">Valor UTM del mes</label>
+                  <input type="text" inputmode="numeric" id="utm" class="ctrl" value="70.588">
+                  <span class="hint">Se actualiza solo desde PREVIRED. Afecta el impuesto único.</span>
+                </div>
+                <div class="field">
+                  <label for="uf">Valor UF del período</label>
+                  <input type="text" inputmode="numeric" id="uf" class="ctrl" value="40.611">
+                  <span class="hint">Se actualiza solo desde PREVIRED. Se usa para los topes imponibles.</span>
+                </div>
+                <div class="field">
+                  <label>Topes imponibles (en UF)</label>
+                  <div class="field-row">
+                    <input type="text" inputmode="decimal" id="topeUFprev" class="ctrl" value="90" title="Tope AFP / salud (UF)">
+                    <input type="text" inputmode="decimal" id="topeUFafc" class="ctrl" value="135.2" title="Tope seguro de cesantía (UF)">
+                  </div>
+                  <span class="hint">Izquierda: tope AFP, salud, SIS y mutual. Derecha: tope del seguro de cesantía. Se actualizan una vez al año.</span>
+                </div>
+              </div>
+            </details>
+
+            <div class="calc-actions">
+              <button type="button" class="btn btn-gold" id="calcBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/></svg>
+                Calcular
+              </button>
+              <button type="button" class="btn btn-ghost" id="resetBtn" aria-label="Limpiar">Limpiar</button>
+            </div>
+          </div>
+
+          <div class="calc-card result-card reveal reveal-delay-1" id="resultCard">
+            <h2>Resultado estimado</h2>
+            <div class="result-empty" id="resultEmpty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 7h6m-6 4h6m-6 4h4M5 3h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/></svg>
+              Ingresa el sueldo líquido y presiona <strong>Calcular</strong> para ver el desglose.
+            </div>
+            <div id="resultBody" style="display:none"></div>
+          </div>
+
+        </div>
+
+        <div class="calc-note reveal reveal-delay-2">
+          <strong>Importante:</strong> esta calculadora entrega una <strong>estimación referencial</strong> para orientar el pago. El monto definitivo depende de la AFP exacta, el plan de Isapre, topes imponibles y otros factores.
+          <ul>
+            <li>Asume jornada sin gratificación legal. No reemplaza la liquidación oficial.</li>
+            <li>Incluye el nuevo aporte del empleador de la reforma previsional (Ley 21.735), que aumenta gradualmente cada año — revisa la tasa en parámetros avanzados.</li>
+            <li>El impuesto único solo aplica sobre rentas altas (sobre ~13,5 UTM imponible).</li>
+            <li>UF, UTM, topes, comisiones de AFP, SIS y Seguro Social se actualizan solos desde PREVIRED (se leen una vez al día). Igual puedes editarlos a mano si lo necesitas.</li>
+            <li>Verifica el imponible mínimo proporcional según las horas trabajadas.</li>
+            <li>Ante cualquier duda, escríbenos y lo revisamos contigo.</li>
+          </ul>
+        </div>
+        </div><!-- /tool-imponible -->
+
+        <div class="tool-panel" id="tool-proporcional" hidden>
+          <div class="calc-shell">
+
+            <div class="calc-card reveal">
+              <h2>Sueldo proporcional</h2>
+              <p class="calc-sub">Calcula el pago por los días efectivamente trabajados en el mes.</p>
+
+              <div class="field">
+                <label>Tipo de monto mensual</label>
+                <div class="seg">
+                  <label><input type="radio" name="tipoProp" value="imponible" checked><span>Imponible</span></label>
+                  <label><input type="radio" name="tipoProp" value="liquido"><span>Líquido</span></label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="sueldoMes" id="sueldoMesLabel">Imponible mensual completo</label>
+                <input type="text" inputmode="numeric" id="sueldoMes" class="ctrl" placeholder="$ 581.353" autocomplete="off">
+                <span class="hint">El monto que correspondería por el mes completo.</span>
+              </div>
+
+              <div class="field">
+                <label for="diasTrab">Días trabajados en el mes</label>
+                <input type="text" inputmode="numeric" id="diasTrab" class="ctrl" placeholder="5" autocomplete="off">
+                <span class="hint">Días con remuneración. El resto se asume permiso sin goce de sueldo.</span>
+              </div>
+
+              <div class="field">
+                <label>Base de días del mes</label>
+                <div class="seg">
+                  <label><input type="radio" name="baseDias" value="30" checked><span>30 días (comercial)</span></label>
+                  <label><input type="radio" name="baseDias" value="real"><span>Días reales del mes</span></label>
+                </div>
+                <span class="hint" id="baseHint">Estándar de remuneraciones: el mes se considera de 30 días.</span>
+              </div>
+
+              <div class="field" id="realWrap" hidden>
+                <label for="diasMes">Días reales del mes</label>
+                <input type="text" inputmode="numeric" id="diasMes" class="ctrl" value="31">
+              </div>
+
+              <div class="calc-actions">
+                <button type="button" class="btn btn-gold" id="propBtn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  Calcular
+                </button>
+                <button type="button" class="btn btn-ghost" id="propReset" aria-label="Limpiar">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="calc-card result-card reveal reveal-delay-1">
+              <h2>Resultado estimado</h2>
+              <div class="result-empty" id="propEmpty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Ingresa el sueldo mensual y los días trabajados, luego presiona <strong>Calcular</strong>.
+              </div>
+              <div id="propBody" style="display:none"></div>
+            </div>
+
+          </div>
+
+          <div class="calc-note reveal reveal-delay-2">
+            <strong>Cómo se calcula:</strong> el sueldo mensual se divide por la base de días y se multiplica por los días trabajados. Es el criterio habitual para descontar ausencias o permisos sin goce de sueldo.
+            <ul>
+              <li>El estándar de remuneraciones usa un mes de 30 días, salvo que se pacte algo distinto.</li>
+              <li>Los días no trabajados se asumen como permiso sin goce de sueldo.</li>
+              <li>Si el monto ingresado es un líquido, puedes calcular sus cotizaciones con la herramienta "Líquido → Imponible".</li>
+            </ul>
+          </div>
+        </div><!-- /tool-proporcional -->
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="container cta-shell">
+        <div class="reveal">
+          <small>¿Necesitas ayuda con tus cotizaciones?</small>
+          <h2>Nosotros calculamos, declaramos y pagamos en PreviRed por ti.</h2>
+        </div>
+        <div class="cta-actions reveal reveal-delay-1">
+          <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20necesito%20ayuda%20con%20mis%20cotizaciones%20previsionales." target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+          <a class="btn btn-dark" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-main">
+      <a class="brand" href="index-option-c.html">
+        <img src="assets/logo-completo.png" alt="Griffin Asesores">
+        <span><strong>Griffin</strong><strong>Asesores</strong><span>Contabilidad · RRHH · Auditoría</span></span>
+      </a>
+      <div class="footer-info"><strong>Correo</strong><span>contacto@griffinasesores.cl</span></div>
+      <div class="footer-info"><strong>Ubicación</strong><span>Coquimbo, Chile</span></div>
+      <div class="footer-info"><strong>Atención online</strong><span>Consultoría segura y cercana en todo Chile.</span></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-row">
+        <span>&copy; 2026 Griffin Asesores. Todos los derechos reservados.</span>
+        <span>Confianza · Precisión · Crecimiento</span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer" class="float-badge" aria-label="WhatsApp Griffin Asesores">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    Escríbenos por WhatsApp
+  </a>
+
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script>
+    /* ---------- Menu, header, reveal ---------- */
+    const toggle = document.querySelector(".menu-toggle");
+    const panel = document.querySelector("#mobile-panel");
+    toggle.addEventListener("click", () => {
+      const open = panel.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    panel.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        panel.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const header = document.getElementById('site-header');
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset;
+      header.classList.toggle('scrolled', y > 40);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (docHeight > 0 ? (y / docHeight) * 100 : 0) + '%';
+    }, { passive: true });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.pageYOffset > 600);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ---------- Calculadora previsional ---------- */
+    const $ = id => document.getElementById(id);
+    const clp = n => '$ ' + Math.round(n).toLocaleString('es-CL');
+    const onlyNum = str => Number(String(str).replace(/[^\d]/g, '')) || 0;
+    const onlyDec = str => Number(String(str).replace(/[^\d.,]/g, '').replace(',', '.')) || 0;
+
+    /* Formatea el campo de líquido mientras se escribe */
+    $('liquido').addEventListener('input', e => {
+      const v = onlyNum(e.target.value);
+      e.target.value = v ? '$ ' + v.toLocaleString('es-CL') : '';
+    });
+
+    /* Habilita el % de Isapre */
+    document.querySelectorAll('input[name="salud"]').forEach(r => {
+      r.addEventListener('change', () => {
+        const isapre = document.querySelector('input[name="salud"]:checked').value === 'isapre';
+        $('saludPct').disabled = !isapre;
+        if (!isapre) $('saludPct').value = '7';
+        $('saludHint').textContent = isapre
+          ? 'Ingresa el % total del plan Isapre (mínimo 7%).'
+          : 'Fonasa descuenta el 7% del imponible.';
+      });
+    });
+
+    /* Impuesto Unico de Segunda Categoria (mensual, en UTM) */
+    function impuestoUnico(base, utm) {
+      const t = [
+        [13.5, 0,     0    ],
+        [30,   0.04,  0.54 ],
+        [50,   0.08,  1.74 ],
+        [70,   0.135, 4.49 ],
+        [90,   0.23,  11.14],
+        [120,  0.304, 17.80],
+        [310,  0.35,  23.32],
+        [Infinity, 0.40, 38.82]
+      ];
+      const utmBase = base / utm;
+      for (const [hasta, factor, rebaja] of t) {
+        if (utmBase <= hasta) return Math.max(0, base * factor - rebaja * utm);
+      }
+      return 0;
+    }
+
+    /* Dado un imponible, devuelve descuentos del trabajador y liquido */
+    function desglose(imp, p) {
+      const basePrev = Math.min(imp, p.topePrev);
+      const baseAfc = Math.min(imp, p.topeAfc);
+      const afp = basePrev * (10 + p.afpCom) / 100;
+      const afpEmpresa = basePrev * p.afpEmpleador / 100;
+      const salud = basePrev * p.saludPct / 100;
+      const afcEmp = baseAfc * p.afcEmpleado / 100;
+      const baseTrib = imp - afp - salud - afcEmp;
+      const impuesto = impuestoUnico(baseTrib, p.utm);
+      const liquido = imp - afp - salud - afcEmp - impuesto;
+      return { afp, afpEmpresa, salud, afcEmp, impuesto, liquido, basePrev, baseAfc };
+    }
+
+    function updateMontoLabel() {
+      const t = document.querySelector('input[name="tipoMonto"]:checked').value;
+      $('liquidoLabel').textContent = t === 'imponible'
+        ? 'Sueldo imponible mensual' : 'Sueldo líquido mensual acordado';
+      $('liquidoHint').textContent = t === 'imponible'
+        ? 'Imponible: las cotizaciones se calculan directamente sobre este monto.'
+        : 'Líquido pactado con el trabajador.';
+      $('liquido').placeholder = t === 'imponible' ? '$ 366.700' : '$ 300.000';
+    }
+    document.querySelectorAll('input[name="tipoMonto"]').forEach(r =>
+      r.addEventListener('change', updateMontoLabel));
+
+    function calcular() {
+      const tipoMonto = document.querySelector('input[name="tipoMonto"]:checked').value;
+      const monto = onlyNum($('liquido').value);
+      if (monto < 1000) {
+        alert('Ingresa un monto válido.');
+        return;
+      }
+      const contrato = document.querySelector('input[name="contrato"]:checked').value;
+      const uf = onlyNum($('uf').value) || 40391;
+      const p = {
+        afpCom: onlyDec($('afpCom').value) || 0.58,
+        afpEmpleador: onlyDec($('afpEmpCargo').value) || 0.1,
+        saludPct: Math.max(7, onlyDec($('saludPct').value) || 7),
+        afcEmpleado: contrato === 'indefinido' ? 0.6 : 0,
+        afcEmpleador: contrato === 'indefinido' ? 2.4 : 3.0,
+        sis: onlyDec($('sisRate').value) || 1.62,
+        segSocial: onlyDec($('segSocial').value) || 0.90,
+        mutual: onlyDec($('mutual').value) || 0.93,
+        utm: onlyNum($('utm').value) || 70588,
+        topePrev: (onlyDec($('topeUFprev').value) || 90) * uf,
+        topeAfc: (onlyDec($('topeUFafc').value) || 135.2) * uf
+      };
+
+      let imponible;
+      if (tipoMonto === 'imponible') {
+        imponible = monto;
+      } else {
+        /* Busqueda binaria del imponible que produce el liquido objetivo */
+        let lo = monto, hi = monto * 3.2;
+        for (let i = 0; i < 60; i++) {
+          const mid = (lo + hi) / 2;
+          if (desglose(mid, p).liquido < monto) lo = mid; else hi = mid;
+        }
+        imponible = (lo + hi) / 2;
+      }
+      const d = desglose(imponible, p);
+
+      const descTrabajador = d.afp + d.salud + d.afcEmp + d.impuesto;
+      const sis = d.basePrev * p.sis / 100;
+      const segSocial = d.basePrev * p.segSocial / 100;
+      const afcEmpleador = d.baseAfc * p.afcEmpleador / 100;
+      const mutual = d.basePrev * p.mutual / 100;
+      const aporteEmpleador = d.afpEmpresa + sis + segSocial + afcEmpleador + mutual;
+      const totalPreviRed = descTrabajador + aporteEmpleador;
+      const costoTotal = d.liquido + totalPreviRed;
+
+      renderResultado({ imponible, liquido: d.liquido, tipoMonto, d, descTrabajador,
+        sis, segSocial, afcEmpleador, mutual, aporteEmpleador, totalPreviRed, costoTotal, contrato });
+    }
+
+    function renderResultado(r) {
+      $('resultEmpty').style.display = 'none';
+      const body = $('resultBody');
+      body.style.display = 'block';
+
+      const impuestoLine = r.d.impuesto > 0
+        ? `<div class="res-line"><span>Impuesto único</span><span>${clp(r.d.impuesto)}</span></div>` : '';
+
+      const waMsg = encodeURIComponent(
+        `Hola Griffin Asesores, calculé un imponible estimado de ${clp(r.imponible)} ` +
+        `(líquido ${clp(r.liquido)}). Total a pagar en PreviRed ≈ ${clp(r.totalPreviRed)}. ` +
+        `¿Me ayudan a confirmarlo?`);
+
+      const topeMsg = (r.d.basePrev < r.imponible - 1 || r.d.baseAfc < r.imponible - 1)
+        ? `<div class="tope-flag">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+             <span>Topes imponibles aplicados: AFP, salud, SIS y mutual sobre ${clp(r.d.basePrev)}; seguro de cesantía sobre ${clp(r.d.baseAfc)}.</span>
+           </div>` : '';
+
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">Sueldo imponible</span>
+          <span class="value">${clp(r.imponible)}</span>
+        </div>
+        ${topeMsg}
+
+        <div class="res-block">
+          <p class="res-title">Descuentos del trabajador</p>
+          <div class="res-line"><span>AFP (10% + comisión)</span><span>${clp(r.d.afp)}</span></div>
+          <div class="res-line"><span>Salud</span><span>${clp(r.d.salud)}</span></div>
+          <div class="res-line"><span>Seguro cesantía (empleado)</span><span>${clp(r.d.afcEmp)}</span></div>
+          ${impuestoLine}
+          <div class="res-line total"><span>Total descontado</span><span>${clp(r.descTrabajador)}</span></div>
+          <div class="res-line"><span>Líquido a transferir</span><span>${clp(r.liquido)}</span></div>
+        </div>
+
+        <div class="res-block">
+          <p class="res-title">Aportes del empleador</p>
+          <div class="res-line"><span>AFP (cargo del empleador)</span><span>${clp(r.d.afpEmpresa)}</span></div>
+          <div class="res-line"><span>SIS (invalidez y sobrevivencia)</span><span>${clp(r.sis)}</span></div>
+          <div class="res-line"><span>Seguro cesantía empleador</span><span>${clp(r.afcEmpleador)}</span></div>
+          <div class="res-line"><span>Seguro Social (reforma previsional)</span><span>${clp(r.segSocial)}</span></div>
+          <div class="res-line"><span>Mutual / ISL</span><span>${clp(r.mutual)}</span></div>
+          <div class="res-line total"><span>Total aportes</span><span>${clp(r.aporteEmpleador)}</span></div>
+        </div>
+
+        <div class="res-line grand"><span>Total a pagar en PreviRed</span><span>${clp(r.totalPreviRed)}</span></div>
+        <div class="res-line" style="margin-top:8px"><span>Costo total empresa (líquido + PreviRed)</span><span>${clp(r.costoTotal)}</span></div>
+
+        <a class="wa-result" target="_blank" rel="noopener noreferrer"
+           href="https://wa.me/56933195234?text=${waMsg}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          Enviar este cálculo por WhatsApp
+        </a>
+      `;
+    }
+
+    /* Comisión total de cada AFP (% sobre el 10% obligatorio).
+       Valores de respaldo si el JSON de indicadores no carga. */
+    const COMISION_AFP_RESPALDO = {
+      Capital: 1.44, Cuprum: 1.44, Habitat: 1.27, PlanVital: 1.16,
+      ProVida: 1.45, Modelo: 0.58, Uno: 0.46
+    };
+    let comisionesAFP = { ...COMISION_AFP_RESPALDO };
+    const comisionAFP = nombre =>
+      comisionesAFP[nombre] != null ? comisionesAFP[nombre] : 0.58;
+
+    $('afp').addEventListener('change', e => {
+      $('afpCom').value = String(comisionAFP(e.target.value)).replace('.', ',');
+    });
+
+    $('calcBtn').addEventListener('click', calcular);
+    $('liquido').addEventListener('keydown', e => { if (e.key === 'Enter') calcular(); });
+    $('resetBtn').addEventListener('click', () => {
+      $('liquido').value = '';
+      $('resultBody').style.display = 'none';
+      $('resultEmpty').style.display = 'block';
+      $('liquido').focus();
+    });
+
+    /* ---------- Selector de herramientas ---------- */
+    const toolTabs = document.querySelectorAll('.tool-tab');
+    const toolPanels = document.querySelectorAll('.tool-panel');
+    function showTool(name) {
+      toolTabs.forEach(t => t.classList.toggle('active', t.dataset.tool === name));
+      toolPanels.forEach(p => {
+        const show = p.id === 'tool-' + name;
+        p.hidden = !show;
+        if (show) p.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      });
+    }
+    toolTabs.forEach(t => t.addEventListener('click', () => showTool(t.dataset.tool)));
+
+    /* ---------- Calculadora de sueldo proporcional ---------- */
+    $('sueldoMes').addEventListener('input', e => {
+      const v = onlyNum(e.target.value);
+      e.target.value = v ? '$ ' + v.toLocaleString('es-CL') : '';
+    });
+
+    document.querySelectorAll('input[name="baseDias"]').forEach(r => {
+      r.addEventListener('change', () => {
+        const real = document.querySelector('input[name="baseDias"]:checked').value === 'real';
+        $('realWrap').hidden = !real;
+        $('baseHint').textContent = real
+          ? 'Se usarán los días reales del mes calendario.'
+          : 'Estándar de remuneraciones: el mes se considera de 30 días.';
+      });
+    });
+
+    function updateSueldoMesLabel() {
+      const t = document.querySelector('input[name="tipoProp"]:checked').value;
+      $('sueldoMesLabel').textContent = t === 'imponible'
+        ? 'Imponible mensual completo' : 'Líquido mensual completo';
+    }
+    document.querySelectorAll('input[name="tipoProp"]').forEach(r =>
+      r.addEventListener('change', updateSueldoMesLabel));
+
+    function calcularProporcional() {
+      const sueldo = onlyNum($('sueldoMes').value);
+      const dias = onlyNum($('diasTrab').value);
+      const tipo = document.querySelector('input[name="tipoProp"]:checked').value;
+      const esReal = document.querySelector('input[name="baseDias"]:checked').value === 'real';
+      const base = esReal ? (onlyNum($('diasMes').value) || 30) : 30;
+      if (sueldo < 1000) { alert('Ingresa un sueldo mensual válido.'); return; }
+      if (dias < 1 || dias > base) {
+        alert('Los días trabajados deben estar entre 1 y ' + base + '.');
+        return;
+      }
+      const valorDia = sueldo / base;
+      const proporcional = valorDia * dias;
+      const diasNo = base - dias;
+      const descuento = sueldo - proporcional;
+      renderProporcional({ sueldo, dias, base, valorDia, proporcional, diasNo, descuento, tipo });
+    }
+
+    function renderProporcional(r) {
+      $('propEmpty').style.display = 'none';
+      const body = $('propBody');
+      body.style.display = 'block';
+      const esImp = r.tipo === 'imponible';
+      const titulo = esImp ? 'Imponible proporcional' : 'Líquido proporcional a pagar';
+      const labelMes = esImp ? 'Imponible mensual completo' : 'Líquido mensual completo';
+
+      body.innerHTML = `
+        <div class="headline">
+          <span class="label">${titulo}</span>
+          <span class="value">${clp(r.proporcional)}</span>
+        </div>
+        <div class="res-block">
+          <p class="res-title">Detalle del cálculo</p>
+          <div class="res-line"><span>${labelMes}</span><span>${clp(r.sueldo)}</span></div>
+          <div class="res-line"><span>Valor por día (base ${r.base})</span><span>${clp(r.valorDia)}</span></div>
+          <div class="res-line"><span>Días trabajados</span><span>${r.dias} día(s)</span></div>
+          <div class="res-line"><span>Días sin goce de sueldo</span><span>${r.diasNo} día(s)</span></div>
+          <div class="res-line"><span>Descuento por ausencia</span><span>${clp(r.descuento)}</span></div>
+        </div>
+        <div class="res-line grand"><span>${titulo}</span><span>${clp(r.proporcional)}</span></div>
+        <button type="button" class="link-inline" id="toImponible"
+                data-monto="${Math.round(r.proporcional)}" data-tipo="${r.tipo}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Calcular las cotizaciones de este monto
+        </button>
+      `;
+      $('toImponible').addEventListener('click', e => {
+        const monto = Number(e.currentTarget.dataset.monto) || 0;
+        const tipo = e.currentTarget.dataset.tipo || 'liquido';
+        document.querySelector('input[name="tipoMonto"][value="' + tipo + '"]').checked = true;
+        updateMontoLabel();
+        $('liquido').value = '$ ' + monto.toLocaleString('es-CL');
+        showTool('imponible');
+        calcular();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    $('propBtn').addEventListener('click', calcularProporcional);
+    $('diasTrab').addEventListener('keydown', e => { if (e.key === 'Enter') calcularProporcional(); });
+    $('propReset').addEventListener('click', () => {
+      $('sueldoMes').value = '';
+      $('diasTrab').value = '';
+      $('propBody').style.display = 'none';
+      $('propEmpty').style.display = 'block';
+      $('sueldoMes').focus();
+    });
+
+    /* ---------- Indicadores previsionales (assets/indicadores.json) ----------
+       Ese archivo lo genera a diario el scraper de PREVIRED vía GitHub Actions. */
+    (function cargarIndicadores() {
+      const status = $('apiStatus');
+      const dec = v => String(v).replace('.', ',');
+      fetch('assets/indicadores.json', { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status)))
+        .then(d => {
+          if (d.uf)  $('uf').value  = Math.round(d.uf).toLocaleString('es-CL');
+          if (d.utm) $('utm').value = Math.round(d.utm).toLocaleString('es-CL');
+          if (d.topeAfpUF)       $('topeUFprev').value = dec(d.topeAfpUF);
+          if (d.topeCesantiaUF)  $('topeUFafc').value  = dec(d.topeCesantiaUF);
+          if (d.sis != null)          $('sisRate').value  = dec(d.sis);
+          if (d.seguroSocial != null) $('segSocial').value = dec(d.seguroSocial);
+          if (d.afp) {
+            comisionesAFP = {};
+            let cargoEmpleador = null;
+            for (const [n, a] of Object.entries(d.afp)) {
+              comisionesAFP[n] = Math.round((a.trabajador - 10) * 100) / 100;
+              if (cargoEmpleador == null) cargoEmpleador = a.empleador;
+            }
+            $('afpCom').value = dec(comisionAFP($('afp').value));
+            if (cargoEmpleador != null) $('afpEmpCargo').value = dec(cargoEmpleador);
+          }
+          const fecha = new Date(d.actualizado).toLocaleDateString('es-CL');
+          status.textContent = 'Indicadores actualizados al ' + fecha +
+            (d.periodo ? ' (' + d.periodo + ')' : '') + ' · fuente: PREVIRED.';
+          status.className = 'api-status ok';
+        })
+        .catch(() => {
+          status.textContent = 'No se pudieron cargar los indicadores automáticos. ' +
+            'Se usan los últimos valores conocidos — verifícalos antes de calcular.';
+          status.className = 'api-status err';
+        });
+    })();
+  </script>
+</body>
+</html>
