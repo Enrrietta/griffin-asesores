@@ -256,8 +256,36 @@
     }
     .nav-dropdown-menu a::after { display: none !important; }
     .nav-dropdown-menu a:hover { background: rgba(236, 214, 89, .12); color: var(--gold); }
-    .mobile-panel a.mobile-sub { padding-left: 20px; font-size: .92rem; color: #c8d2e2; }
-    .mobile-panel a.mobile-sub::before { content: '— '; color: var(--old-gold); }
+
+    /* Mobile accordion */
+    .mobile-panel a.mobile-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .mobile-panel a.mobile-toggle svg {
+      width: 14px;
+      height: 14px;
+      transition: transform .3s ease;
+    }
+    .mobile-panel a.mobile-toggle.open svg { transform: rotate(180deg); }
+    .mobile-items {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.22,1,.36,1);
+    }
+    .mobile-items.open { max-height: 320px; }
+    .mobile-items a {
+      padding-left: 20px;
+      font-size: .92rem;
+      color: #c8d2e2;
+    }
+    .mobile-items a::before {
+      content: '— ';
+      color: var(--old-gold);
+      font-weight: 700;
+    }
 
     .menu-toggle {
       display: none;
@@ -296,11 +324,11 @@
 
     .page-hero {
       position: relative;
-      min-height: 320px;
+      min-height: 340px;
       color: var(--white);
       background:
-        linear-gradient(105deg, rgba(4, 15, 37, .97) 0%, rgba(4, 15, 37, .92) 42%, rgba(4, 15, 37, .6) 72%, rgba(4, 15, 37, .35) 100%),
-        var(--night);
+        linear-gradient(105deg, rgba(4, 15, 37, .97) 0%, rgba(4, 15, 37, .92) 42%, rgba(4, 15, 37, .55) 72%, rgba(4, 15, 37, .2) 100%),
+        url("assets/noticias2.png") center / cover no-repeat;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -911,7 +939,6 @@
               <a href="herramientas.html#conversor">Conversor UF / UTM</a>
             </div>
           </div>
-          <a href="blog.html">Blog</a>
           <a href="index-option-c.html#contacto">Contacto</a>
         </div>
         <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">
@@ -928,15 +955,16 @@
           <a href="index-option-c.html#servicios">Servicios</a>
           <a href="index-option-c.html#sectores">Sectores</a>
           <a href="index-option-c.html#faq">FAQ</a>
-          <a href="herramientas.html">Herramientas</a>
-          <a href="herramientas.html#imponible" class="mobile-sub">Líquido → Imponible</a>
-          <a href="herramientas.html#proporcional" class="mobile-sub">Sueldo proporcional</a>
-          <a href="herramientas.html#honorarios" class="mobile-sub">Boleta de honorarios</a>
-          <a href="herramientas.html#finiquito" class="mobile-sub">Finiquito</a>
-          <a href="herramientas.html#gratificacion" class="mobile-sub">Gratificación legal</a>
-          <a href="herramientas.html#independiente" class="mobile-sub">Cotizaciones del independiente</a>
-          <a href="herramientas.html#conversor" class="mobile-sub">Conversor UF / UTM</a>
-          <a href="blog.html">Blog</a>
+          <a class="mobile-toggle" href="javascript:void(0)">Herramientas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="mobile-items">
+            <a href="herramientas.html#imponible">Líquido → Imponible</a>
+            <a href="herramientas.html#proporcional">Sueldo proporcional</a>
+            <a href="herramientas.html#honorarios">Boleta de honorarios</a>
+            <a href="herramientas.html#finiquito">Finiquito</a>
+            <a href="herramientas.html#gratificacion">Gratificación legal</a>
+            <a href="herramientas.html#independiente">Cotizaciones del independiente</a>
+            <a href="herramientas.html#conversor">Conversor UF / UTM</a>
+          </div>
           <a href="index-option-c.html#contacto">Contacto</a>
           <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
         </div>
@@ -2200,6 +2228,15 @@
           status.className = 'api-status err';
         });
     })();
+    // Mobile Herramientas accordion
+    document.querySelectorAll('.mobile-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const items = toggle.nextElementSibling;
+        const isOpen = items.classList.contains('open');
+        items.classList.toggle('open', !isOpen);
+        toggle.classList.toggle('open', !isOpen);
+      });
+    });
   </script>
 </body>
 </html>
