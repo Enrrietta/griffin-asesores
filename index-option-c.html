@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Griffin Asesores | Opción C — Premium</title>
-  <meta name="description" content="Griffin Asesores: contabilidad, RRHH, auditoría y cumplimiento para pymes en Coquimbo y todo Chile.">
+  <title>Griffin Asesores | Contabilidad, RRHH y auditoría para pymes</title>
+  <meta name="description" content="Griffin Asesores ordena la contabilidad, RRHH, auditoría y gestión administrativa de pymes en Coquimbo y todo Chile. Agenda un diagnóstico inicial.">
   <link rel="icon" href="assets/logo-completo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -530,6 +530,37 @@
       flex-wrap: wrap;
       gap: 14px;
       margin-top: 40px;
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+      padding: 0;
+      list-style: none;
+    }
+    .hero-highlights li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(236, 214, 89, .22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .07);
+      color: #f8f0cf;
+      font-size: .82rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+    .hero-highlights li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(236,214,89,.55);
+      flex: 0 0 auto;
     }
 
     .trust-strip {
@@ -1598,6 +1629,7 @@
       h1 { font-size: clamp(2rem, 11vw, 2.8rem); }
       .hero-lead { font-size: 1rem; }
       .hero-actions .btn { width: 100%; }
+      .hero-highlights li { width: 100%; justify-content: center; }
       .trust-grid, .service-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
       .trust-item { border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 18px; }
       .trust-item:last-child { border-bottom: 0; }
@@ -1682,13 +1714,18 @@
       <div class="hero-line"></div>
       <div class="container">
         <div class="hero-content">
-          <div class="eyebrow reveal">Consultoría para pymes</div>
-          <h1 id="hero-title" class="reveal reveal-delay-1">Protegemos y ordenamos tu empresa para que tú te enfoques en <span class="accent">crecer.</span></h1>
-          <p class="hero-lead reveal reveal-delay-2">Asesoría contable y laboral seria, clara y cercana. Te ayudamos a mantener obligaciones al día, documentos ordenados e información útil para decidir con respaldo.</p>
+          <div class="eyebrow reveal">Contabilidad, RRHH y auditoría para pymes</div>
+          <h1 id="hero-title" class="reveal reveal-delay-1">Ordenamos tu empresa para que decidas con claridad y cumplas <span class="accent">sin sorpresas.</span></h1>
+          <p class="hero-lead reveal reveal-delay-2">Acompañamiento contable, laboral y administrativo con diagnóstico inicial, prioridades claras y seguimiento mensual. Trabajamos contigo para bajar riesgos, ordenar documentos y convertir los números en decisiones.</p>
           <div class="hero-actions reveal reveal-delay-3">
-            <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Solicitar diagnóstico</a>
-            <a class="btn btn-dark" href="#servicios">Ver servicios</a>
+            <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico por WhatsApp</a>
+            <a class="btn btn-dark" href="#servicios">Revisar servicios</a>
           </div>
+          <ul class="hero-highlights reveal reveal-delay-4" aria-label="Puntos clave">
+            <li>Diagnóstico inicial sin costo</li>
+            <li>Respuesta en 24-48 horas</li>
+            <li>Propuesta con alcance claro</li>
+          </ul>
         </div>
       </div>
       <a href="#quienes-somos" class="scroll-indicator" aria-label="Desplazarse hacia abajo">
@@ -1701,7 +1738,7 @@
       <div class="container trust-grid">
         <div class="trust-item reveal">
           <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div>
-          <div><strong>Atención 24-48 horas</strong><span>Respuestas claras y próximos pasos concretos.</span></div>
+          <div><strong>Respuesta 24-48 horas</strong><span>Te damos próximos pasos concretos desde el primer contacto.</span></div>
         </div>
         <div class="trust-item reveal reveal-delay-1">
           <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
@@ -1709,7 +1746,7 @@
         </div>
         <div class="trust-item reveal reveal-delay-2">
           <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 15 8l6 .9-4.5 4.4 1.1 6.2L12 16.5 6.4 19.5l1.1-6.2L3 8.9 9 8l3-6Z"></path></svg></div>
-          <div><strong>Diagnóstico inicial</strong><span>Entendemos tu realidad antes de proponer.</span></div>
+          <div><strong>Diagnóstico sin costo</strong><span>Revisamos tu realidad antes de cotizar.</span></div>
         </div>
         <div class="trust-item reveal reveal-delay-3">
           <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></div>
@@ -1724,8 +1761,8 @@
       <div class="container">
         <div class="section-title reveal">
           <small>Servicios</small>
-          <h2>Ordenamos las áreas que más exponen a tu empresa.</h2>
-          <p>Partimos con un diagnóstico y definimos un alcance realista. La idea no es venderte todo: es resolver primero lo que más riesgo o desorden genera.</p>
+          <h2>Servicios para bajar riesgo, recuperar orden y operar mejor.</h2>
+          <p>Partimos con un diagnóstico y definimos un alcance realista. No se trata de venderte todo: se trata de resolver primero lo que más exposición, atraso o desorden genera.</p>
         </div>
         <div class="service-grid">
           <article class="service-card reveal">
@@ -1777,8 +1814,8 @@
         <div class="reveal">
           <small>Cómo trabajamos</small>
           <h2>Tu empresa no es una plantilla. Nuestros servicios tampoco.</h2>
-          <p>Creemos que la subestimación de las necesidades administrativas genera multas, atrasos y decisiones tomadas a ciegas. Por eso partimos evaluando volumen, complejidad tributaria, equipo, documentos y nivel de orden actual.</p>
-          <p class="fit-quote">Pagas por la solución exacta que necesitas, ni más ni menos.</p>
+          <p>La mayoría de los problemas contables y laborales no aparecen de golpe: se acumulan por falta de rutinas, respaldos y responsables claros. Por eso evaluamos volumen, complejidad tributaria, equipo, documentos y nivel de orden actual.</p>
+          <p class="fit-quote">Primero ordenamos prioridades; después cotizamos el trabajo real.</p>
         </div>
         <div class="fit-steps" aria-label="Proceso de trabajo">
           <div class="fit-step reveal reveal-delay-1">
@@ -1842,65 +1879,45 @@
 
     <hr class="section-divider reveal">
 
-    <!-- Testimonials Section -->
+    <!-- Situations Section -->
     <section class="testimonials">
       <div class="container">
         <div class="section-title reveal">
-          <small>Testimonios</small>
-          <h2>Lo que dicen quienes ya confían en nosotros.</h2>
+          <small>Cuándo nos llaman</small>
+          <h2>Problemas concretos que ordenamos contigo.</h2>
+          <p>La asesoría funciona mejor cuando aterriza en situaciones reales: atrasos, fiscalizaciones, documentos dispersos o decisiones sin información confiable.</p>
         </div>
         <div class="testimonials-grid">
           <article class="testimonial-card reveal">
-            <span class="quote-mark">"</span>
-            <p>Ordenamos meses atrasados y ahora tengo claridad total. Me explican sin enredos, responden rápido, y por fin sé qué viene cada mes.</p>
+            <span class="quote-mark">01</span>
+            <p>Tu contabilidad se fue atrasando, hay respaldos dispersos y necesitas saber qué está pendiente antes de que aparezca una multa o una urgencia bancaria.</p>
             <div class="testimonial-author">
               <div class="author-avatar">C</div>
               <div class="author-info">
-                <strong>Carolina R.</strong>
-                <span>Retail · Coquimbo</span>
-                <div class="stars">
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
+                <strong>Regularización contable</strong>
+                <span>Diagnóstico, prioridades y plan de cierre</span>
               </div>
             </div>
           </article>
           <article class="testimonial-card reveal reveal-delay-1">
-            <span class="quote-mark">"</span>
-            <p>Pasé de hacer todo a última hora a tener un plan. El informe de 1 página es oro: simple, directo, y con pendientes claros.</p>
+            <span class="quote-mark">02</span>
+            <p>Pagas remuneraciones, Previred o contratos con estrés cada mes y quieres una rutina laboral trazable, ordenada y preparada para fiscalizaciones.</p>
             <div class="testimonial-author">
-              <div class="author-avatar">M</div>
+              <div class="author-avatar">R</div>
               <div class="author-info">
-                <strong>Matías S.</strong>
-                <span>Servicios · La Serena</span>
-                <div class="stars">
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
+                <strong>RRHH y remuneraciones</strong>
+                <span>Liquidaciones, contratos y respaldos</span>
               </div>
             </div>
           </article>
           <article class="testimonial-card reveal reveal-delay-2">
-            <span class="quote-mark">"</span>
-            <p>Con nómina y Previred era puro estrés. Ahora todo se cumple a tiempo, y si hay cambios me avisan. Profesional, cercano y ordenado.</p>
+            <span class="quote-mark">03</span>
+            <p>Tienes movimientos, compras, cobros y pagos, pero no una mirada simple de caja, márgenes o pendientes para decidir con calma.</p>
             <div class="testimonial-author">
-              <div class="author-avatar">F</div>
+              <div class="author-avatar">G</div>
               <div class="author-info">
-                <strong>Fernanda L.</strong>
-                <span>RRHH · Online</span>
-                <div class="stars">
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </div>
+                <strong>Gestión y backoffice</strong>
+                <span>Información útil para operar mejor</span>
               </div>
             </div>
           </article>
@@ -1935,15 +1952,15 @@
     <section class="resource">
       <div class="container resource-shell">
         <div class="reveal">
-          <small>Recurso gratuito</small>
-          <h2>Checklist: 5 errores que provocan multas de la Dirección del Trabajo.</h2>
-          <p>Descarga el PDF completo con checklist accionable. Revisa contratos, cotizaciones, reglamento interno, control de jornada y seguridad laboral antes de que se conviertan en una multa.</p>
+          <small>Mini diagnóstico</small>
+          <h2>Cuéntanos qué quieres ordenar primero.</h2>
+          <p>Déjanos tus datos y una breve descripción de tu situación. Te respondemos con próximos pasos concretos para contabilidad, RRHH, auditoría o gestión administrativa.</p>
           <form class="resource-form" action="https://formsubmit.co/contacto@griffinasesores.cl" method="POST">
-            <input type="hidden" name="_subject" value="Descarga Checklist DT - Griffin">
+            <input type="hidden" name="_subject" value="Mini diagnostico - Griffin">
             <input type="hidden" name="_captcha" value="false">
             <input type="text" name="_honey" style="display:none">
-            <input type="hidden" name="_next" value="https://griffinasesores.cl/assets/checklist-dt.pdf">
-            <input type="hidden" name="recurso" value="Checklist 5 errores DT">
+            <input type="hidden" name="_next" value="https://www.griffinasesores.cl/#contacto">
+            <input type="hidden" name="origen" value="Mini diagnostico web">
             <div class="form-group">
               <label for="rc-nombre">Nombre</label>
               <input type="text" id="rc-nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
@@ -1952,28 +1969,39 @@
               <label for="rc-email">Email</label>
               <input type="email" id="rc-email" name="email" class="form-input" placeholder="nombre@empresa.cl" required>
             </div>
+            <div class="form-group">
+              <label for="rc-area">Área a ordenar</label>
+              <select id="rc-area" name="area" class="form-input" required>
+                <option value="">Selecciona una opción</option>
+                <option>Contabilidad y tributario</option>
+                <option>Recursos humanos</option>
+                <option>Auditoría o revisión</option>
+                <option>Backoffice y gestión</option>
+                <option>Regularización de atrasos</option>
+              </select>
+            </div>
             <label class="form-consent">
               <input type="checkbox" name="consentimiento" value="si" required>
-              <span>Acepto recibir el recurso y comunicaciones de Griffin Asesores. Puedo darme de baja cuando quiera (Ley 19.628).</span>
+              <span>Acepto que Griffin Asesores me contacte para responder esta solicitud.</span>
             </label>
             <button type="submit" class="btn btn-gold">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              Descargar PDF gratis
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7Z"></path></svg>
+              Solicitar orientación
             </button>
-            <p class="form-disclaimer">Sin spam. Solo recibirás el checklist y contenido útil para tu empresa.</p>
+            <p class="form-disclaimer">Sin spam. Usaremos tus datos solo para responder esta solicitud.</p>
           </form>
         </div>
         <div class="resource-card reveal reveal-delay-1">
-          <strong>Qué revisa el checklist</strong>
+          <strong>Qué revisamos al inicio</strong>
           <ul>
-            <li>Contratos y anexos desactualizados</li>
-            <li>Turnos, asistencia y jornadas</li>
-            <li>Liquidaciones, cotizaciones y respaldos</li>
-            <li>Documentos clave ante fiscalización</li>
+            <li>Obligaciones y atrasos más urgentes</li>
+            <li>Volumen mensual de documentos</li>
+            <li>Riesgos laborales o tributarios visibles</li>
+            <li>Alcance recomendado para partir</li>
           </ul>
           <div class="resource-meta">
-            <span>PDF · 4 páginas</span>
-            <span>Checklist accionable</span>
+            <span>Respuesta 24-48 horas</span>
+            <span>Próximos pasos claros</span>
           </div>
         </div>
       </div>
@@ -1983,10 +2011,10 @@
       <div class="container cta-shell">
         <div class="reveal">
           <small>Hablemos de tu empresa</small>
-          <h2>Agenda tu diagnóstico gratuito y descubre cómo podemos ayudarte a crecer.</h2>
+          <h2>Agenda tu diagnóstico inicial y salgamos del desorden con un plan claro.</h2>
         </div>
         <div class="cta-actions reveal reveal-delay-1">
-          <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer">Agendar reunión</a>
+          <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
           <a class="btn btn-dark" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
         </div>
       </div>

@@ -3,64 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Griffin Asesores | Contabilidad y RRHH en Coquimbo</title>
-  <meta name="description" content="Contabilidad, RRHH, auditorias y gestion administrativa para empresas de la Region de Coquimbo y Chile.">
+  <title>Griffin Asesores | Contabilidad, RRHH y auditoría para pymes</title>
+  <meta name="description" content="Griffin Asesores ordena la contabilidad, RRHH, auditoría y gestión administrativa de pymes en Coquimbo y todo Chile. Agenda un diagnóstico inicial.">
   <link rel="icon" href="assets/logo-completo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #040f25;
-      --navy-2: #0f2646;
-      --ink: #132238;
-      --muted: #5e6b7a;
-      --line: #dce3ea;
-      --paper: #f8f5ea;
-      --white: #ffffff;
-      --gold: #af8f29;
-      --gold-2: #ecd659;
-      --green: #177245;
-      --shadow: 0 24px 70px rgba(11, 31, 58, .14);
-      --radius: 8px;
+      --night: #0f2646;
+      --gold: #ecd659;
+      --old-gold: #af8f29;
+      --ivory: #f8f5ea;
+      --cream: #fffdf7;
+      --graphite: #1e1e1e;
+      --gray: #6b7280;
+      --muted: #667085;
+      --line: #e4ded0;
+      --white: #fff;
+      --shadow: 0 22px 70px rgba(4, 15, 37, .16);
+      --radius: 14px;
     }
 
     * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 92px;
-    }
-
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: var(--paper);
+      color: var(--navy);
+      background: var(--ivory);
       letter-spacing: 0;
+      overflow-x: hidden;
     }
-
-    body.menu-open { overflow: hidden; }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    svg { display: block; }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(247, 245, 239, .94);
-      border-bottom: 1px solid rgba(7, 20, 38, .08);
-      backdrop-filter: blur(14px);
+    /* Grain texture overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
     }
 
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+
     .container {
-      width: min(1160px, calc(100% - 40px));
+      width: min(1200px, calc(100% - 40px));
       margin: 0 auto;
     }
 
+    /* Header glass */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 15, 37, .82);
+      backdrop-filter: saturate(1.5) blur(16px);
+      -webkit-backdrop-filter: saturate(1.5) blur(16px);
+      color: var(--white);
+      border-bottom: 1px solid rgba(236, 214, 89, .1);
+      transition: background .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    .site-header.scrolled {
+      background: rgba(4, 15, 37, .96);
+      box-shadow: 0 10px 40px rgba(4, 15, 37, .3);
+      border-color: rgba(236, 214, 89, .18);
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      width: 0%;
+      z-index: 51;
+      transition: width .1s linear;
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+
     .nav {
-      min-height: 76px;
+      min-height: 88px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -68,864 +113,1595 @@
     }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 12px;
-      min-width: 0;
+      gap: 14px;
+      min-width: 230px;
     }
 
     .brand img {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      box-shadow: 0 8px 22px rgba(7, 20, 38, .14);
+      box-shadow: 0 0 0 1px rgba(236, 214, 89, .35), 0 12px 28px rgba(0,0,0,.3);
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+    }
+    .brand:hover img {
+      transform: scale(1.08) rotate(-5deg);
+      box-shadow: 0 0 0 2px rgba(236, 214, 89, .55), 0 18px 40px rgba(0,0,0,.4);
     }
 
     .brand strong {
       display: block;
       font-family: Cinzel, Georgia, serif;
-      color: var(--navy);
-      font-size: 1rem;
-      line-height: 1.1;
-      white-space: nowrap;
+      color: var(--gold);
+      font-size: 1.35rem;
+      line-height: 1;
+      letter-spacing: .04em;
     }
 
     .brand span {
       display: block;
-      color: var(--muted);
-      font-size: .74rem;
-      margin-top: 3px;
+      margin-top: 4px;
+      color: #f3ead0;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
-      color: #3c4a5d;
-      font-size: .9rem;
+      gap: 32px;
+      color: #f5f1e6;
+      font-size: .93rem;
       font-weight: 600;
     }
 
     .nav-links a {
+      position: relative;
       padding: 10px 0;
-      border-bottom: 2px solid transparent;
-      transition: color .2s ease, border-color .2s ease;
+      transition: color .3s ease;
     }
-
-    .nav-links a:hover {
-      color: var(--navy);
-      border-color: var(--gold);
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      border-radius: 2px;
+      transition: width .4s cubic-bezier(.22,1,.36,1);
     }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .header-actions {
+    /* Menú desplegable de Herramientas */
+    .nav-links { align-self: stretch; }
+    .nav-dropdown { position: relative; display: flex; align-items: center; align-self: stretch; }
+    .nav-dropdown > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 13px; height: 13px; transition: transform .3s ease; }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      min-width: 240px;
+      background: rgba(4, 15, 37, .98);
+      border: 1px solid rgba(236, 214, 89, .2);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, .45);
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 60;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      padding: 11px 14px !important;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #f5f1e6;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a::after { display: none !important; }
+    .nav-dropdown-menu a:hover { background: rgba(236, 214, 89, .12); color: var(--gold); }
+
+    /* Mobile accordion */
+    .mobile-panel a.mobile-toggle {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .mobile-panel a.mobile-toggle svg {
+      width: 14px;
+      height: 14px;
+      transition: transform .3s ease;
+    }
+    .mobile-panel a.mobile-toggle.open svg { transform: rotate(180deg); }
+    .mobile-items {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s cubic-bezier(.22,1,.36,1);
+    }
+    .mobile-items.open { max-height: 320px; }
+    .mobile-items a {
+      padding-left: 20px;
+      font-size: .92rem;
+      color: #c8d2e2;
+    }
+    .mobile-items a::before {
+      content: '— ';
+      color: var(--old-gold);
+      font-weight: 700;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-height: 44px;
-      padding: 0 18px;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 26px;
       border-radius: var(--radius);
       border: 1px solid transparent;
-      font-weight: 700;
+      font-weight: 800;
       font-size: .92rem;
       line-height: 1;
       cursor: pointer;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
+      transition: transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s ease, border-color .3s ease, background .3s ease;
+      position: relative;
+      overflow: hidden;
     }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform .7s ease;
+    }
+    .btn:hover::before { transform: translateX(100%); }
+    .btn:hover { transform: translateY(-2px); }
 
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: var(--gold);
+    .btn-gold {
       color: var(--navy);
-      box-shadow: 0 12px 24px rgba(200, 151, 45, .24);
+      background: linear-gradient(135deg, #fff1a7, var(--gold) 44%, #d6a93e);
+      box-shadow: 0 14px 36px rgba(236, 214, 89, .24), inset 0 1px 0 rgba(255,255,255,.45);
     }
+    .btn-gold:hover { box-shadow: 0 22px 52px rgba(236, 214, 89, .35), inset 0 1px 0 rgba(255,255,255,.5); }
 
-    .btn-primary:hover { background: var(--gold-2); }
-
-    .btn-secondary {
+    .btn-dark {
       color: var(--white);
-      border-color: rgba(255, 255, 255, .24);
-      background: rgba(255, 255, 255, .06);
+      background: rgba(255,255,255,.05);
+      border-color: rgba(236, 214, 89, .4);
+      backdrop-filter: blur(4px);
     }
+    .btn-dark:hover { background: rgba(255,255,255,.12); border-color: rgba(236, 214, 89, .65); }
 
-    .btn-secondary:hover {
-      border-color: rgba(255, 255, 255, .52);
-      background: rgba(255, 255, 255, .1);
+    /* Menú desplegable de Herramientas */
+    .nav-links { align-self: stretch; }
+    .nav-dropdown { position: relative; display: flex; align-items: center; align-self: stretch; }
+    .nav-dropdown > a { display: inline-flex; align-items: center; gap: 5px; }
+    .nav-dropdown > a svg { width: 13px; height: 13px; transition: transform .3s ease; }
+    .nav-dropdown:hover > a svg { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      min-width: 240px;
+      background: rgba(4, 15, 37, .98);
+      border: 1px solid rgba(236, 214, 89, .2);
+      border-radius: 12px;
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      box-shadow: 0 24px 54px rgba(0, 0, 0, .45);
+      transition: opacity .25s ease, transform .25s ease;
+      z-index: 60;
     }
-
-    .btn-outline {
-      color: var(--navy);
-      border-color: rgba(7, 20, 38, .16);
-      background: transparent;
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
     }
+    .nav-dropdown-menu a {
+      padding: 11px 14px !important;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #f5f1e6;
+      white-space: nowrap;
+    }
+    .nav-dropdown-menu a::after { display: none !important; }
+    .nav-dropdown-menu a:hover { background: rgba(236, 214, 89, .12); color: var(--gold); }
+    .mobile-panel a.mobile-sub { padding-left: 20px; font-size: .92rem; color: #c8d2e2; }
+    .mobile-panel a.mobile-sub::before { content: '— '; color: var(--old-gold); }
 
     .menu-toggle {
       display: none;
       width: 44px;
       height: 44px;
-      border: 1px solid rgba(7, 20, 38, .14);
+      border: 1px solid rgba(236, 214, 89, .3);
       border-radius: var(--radius);
-      background: var(--white);
-      color: var(--navy);
+      background: rgba(255,255,255,.06);
+      color: var(--white);
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      transition: background .25s ease, border-color .25s ease, transform .25s ease;
     }
+    .menu-toggle:hover { background: rgba(255,255,255,.12); border-color: rgba(236,214,89,.55); transform: scale(1.05); }
 
-    .menu-toggle svg { width: 21px; height: 21px; }
-
-    .hero {
-      padding: 28px 0 56px;
-    }
-
-    .hero-shell {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, .86fr);
-      min-height: 620px;
+    .mobile-panel {
+      display: none;
+      max-height: 0;
       overflow: hidden;
-      border-radius: 10px;
-      background: var(--navy);
-      box-shadow: var(--shadow);
+      transition: max-height .4s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+      opacity: 0;
+      border-top: 1px solid rgba(236, 214, 89, .1);
     }
+    .mobile-panel.open { max-height: 460px; opacity: 1; }
+    .mobile-panel-inner { display: grid; gap: 4px; padding: 14px 0 26px; }
+    .mobile-panel a {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(236, 214, 89, .08);
+      color: #f8f5ea;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color .25s ease, padding-left .25s ease;
+    }
+    .mobile-panel a:hover { color: var(--gold); padding-left: 10px; }
 
-    .hero-copy {
+    /* Hero */
+    .hero {
       position: relative;
-      padding: clamp(38px, 5.4vw, 70px);
+      min-height: 720px;
       color: var(--white);
+      background: var(--navy);
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      isolation: isolate;
+      align-items: center;
     }
 
-    .hero-copy:before {
-      content: "";
+    .hero-bg {
+      position: absolute;
+      inset: -60px;
+      background:
+        linear-gradient(105deg, rgba(4, 15, 37, .97) 0%, rgba(4, 15, 37, .88) 38%, rgba(4, 15, 37, .28) 66%, rgba(4, 15, 37, .06) 100%),
+        url("assets/hero-griffin-office.png") center right / cover no-repeat;
+      will-change: transform;
+    }
+
+    .hero-mesh {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      opacity: .4;
       background:
-        linear-gradient(115deg, rgba(200, 151, 45, .16), transparent 42%),
-        radial-gradient(circle at 0 100%, rgba(255, 255, 255, .08), transparent 34%);
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(236, 214, 89, .16), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(15, 38, 70, .5), transparent 60%);
+      animation: meshMove 10s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes meshMove {
+      0% { transform: translate(0,0) scale(1); }
+      100% { transform: translate(-24px, 14px) scale(1.06); }
     }
 
-    .trust-line {
-      width: fit-content;
-      margin-bottom: 20px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--gold);
-      color: #d9e3ef;
-      font-size: .86rem;
+    .hero-line {
+      position: absolute;
+      inset: auto 0 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236, 214, 89, .9), transparent);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.5);
+      font-size: .68rem;
       font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      animation: bounceDown 2s ease-in-out infinite;
+      cursor: pointer;
+      transition: color .3s ease;
+    }
+    .scroll-indicator:hover { color: var(--gold); }
+    .scroll-indicator svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
     }
 
-    .brand-kicker {
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(740px, 100%);
+      padding: 110px 0 120px;
+    }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      color: var(--gold-2);
-      font-family: Cinzel, Georgia, serif;
-      font-size: clamp(1.22rem, 1.8vw, 1.65rem);
-      font-weight: 700;
-      margin-bottom: 14px;
+      gap: 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: .72rem;
+      font-weight: 800;
+      margin-bottom: 22px;
+      opacity: .95;
     }
-
-    .brand-kicker:before {
+    .eyebrow:before {
       content: "";
-      width: 10px;
-      height: 10px;
-      background: var(--gold-2);
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
       transform: rotate(45deg);
-      box-shadow: 0 0 0 5px rgba(236, 214, 89, .08);
+      box-shadow: 0 0 14px rgba(236,214,89,.55);
     }
 
-    h1, h2, h3 {
-      margin: 0;
-      color: inherit;
+    h1, h2, h3, p { margin: 0; }
+
+    /* Word reveal animation */
+    .word-reveal span {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: wordIn .7s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes wordIn {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      max-width: 690px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2.35rem, 3.5vw, 3.95rem);
-      line-height: 1.08;
-      font-weight: 700;
-      letter-spacing: 0;
+      max-width: 700px;
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2.4rem, 4.8vw, 4.8rem);
+      line-height: 1.06;
+      letter-spacing: .01em;
+      color: var(--white);
+      text-shadow: 0 6px 40px rgba(0,0,0,.3);
+    }
+    h1 .accent {
+      color: var(--gold);
+      position: relative;
+      display: inline-block;
+    }
+    h1 .accent::after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      bottom: 4px;
+      height: 8px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: .3;
+      border-radius: 4px;
+      z-index: -1;
     }
 
-    .hero-copy p {
-      max-width: 650px;
-      margin: 20px 0 0;
-      color: #d7dfeb;
-      font-size: clamp(.98rem, 1.25vw, 1.06rem);
-      line-height: 1.68;
+    .hero-lead {
+      max-width: 620px;
+      margin-top: 28px;
+      color: #d6e0ef;
+      font-size: 1.14rem;
+      line-height: 1.75;
+      font-weight: 300;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
+      gap: 14px;
+      margin-top: 40px;
     }
 
-    .hero-proof {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, .16);
-    }
-
-    .proof-item strong {
-      display: block;
-      color: var(--gold-2);
-      font-size: 1.06rem;
-      margin-bottom: 5px;
-    }
-
-    .value-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 26px;
-    }
-
-    .value-pill {
+    .hero-highlights {
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       gap: 10px;
-      padding: 12px;
-      border: 1px solid rgba(236, 214, 89, .2);
-      border-radius: var(--radius);
-      color: #f3ead0;
-      background: rgba(255, 255, 255, .045);
-      font-weight: 700;
-      font-size: .86rem;
+      margin-top: 26px;
+      padding: 0;
+      list-style: none;
     }
-
-    .value-pill svg {
-      width: 20px;
-      height: 20px;
-      color: var(--gold-2);
-      flex: 0 0 auto;
-    }
-
-    .proof-item span {
-      color: #c0cad7;
-      font-size: .78rem;
-      line-height: 1.45;
-    }
-
-    .hero-panel {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-      padding: 32px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(244, 240, 230, .98)),
-        var(--white);
-    }
-
-    .logo-stage {
-      display: flex;
+    .hero-highlights li {
+      display: inline-flex;
       align-items: center;
-      gap: 16px;
-      min-height: auto;
-      padding-bottom: 22px;
-      border-bottom: 1px solid rgba(7, 20, 38, .1);
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(236, 214, 89, .22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .07);
+      color: #f8f0cf;
+      font-size: .82rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
     }
-
-    .logo-stage img {
-      width: 74px;
-      height: 74px;
+    .hero-highlights li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px rgba(236,214,89,.55);
       flex: 0 0 auto;
-      filter: drop-shadow(0 12px 22px rgba(7, 20, 38, .14));
     }
 
-    .logo-stage h2 {
-      color: var(--navy);
-      font-family: Cinzel, Georgia, serif;
-      font-size: 1.25rem;
-      line-height: 1.15;
+    .trust-strip {
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 12px 48px rgba(4, 15, 37, .08);
+      position: relative;
+      z-index: 3;
     }
 
-    .assurance-panel {
-      padding: 26px;
-      border-radius: var(--radius);
-      background: var(--navy);
-      color: var(--white);
-      box-shadow: 0 20px 44px rgba(4, 15, 37, .16);
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
     }
 
-    .assurance-panel h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(1.6rem, 2.1vw, 2.2rem);
-      line-height: 1.12;
+    .trust-item {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 28px 26px;
+      border-right: 1px solid var(--line);
+      transition: background .35s ease;
+      position: relative;
+    }
+    .trust-item:hover { background: var(--cream); }
+    .trust-item:last-child { border-right: 0; }
+
+    .trust-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: var(--old-gold);
+      border: 1px solid rgba(175, 143, 41, .32);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fffdf7, #fff5e0);
+      box-shadow: 0 6px 18px rgba(175,143,41,.1);
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+    }
+    .trust-item:hover .trust-icon {
+      transform: scale(1.12) rotate(-8deg);
+      box-shadow: 0 10px 28px rgba(175,143,41,.2);
+    }
+    .trust-icon svg { width: 22px; height: 22px; }
+    .trust-item strong { display: block; font-size: .9rem; color: var(--navy); font-weight: 700; }
+    .trust-item span { display: block; margin-top: 4px; color: var(--muted); font-size: .76rem; line-height: 1.4; font-weight: 400; }
+
+    section { padding: 96px 0; }
+
+    .section-title {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 52px;
+    }
+    .section-title small {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--old-gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
       margin-bottom: 14px;
     }
-
-    .assurance-panel p {
-      margin: 0;
-      color: #d8e0ec;
-      line-height: 1.65;
-    }
-
-    .assurance-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .assurance-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(236, 214, 89, .18);
-    }
-
-    .assurance-item svg {
-      width: 21px;
-      height: 21px;
-      color: var(--gold-2);
-      flex: 0 0 auto;
-      margin-top: 2px;
-    }
-
-    .assurance-item strong {
+    .section-title small::before,
+    .section-title small::after {
+      content: '';
       display: block;
-      color: var(--white);
-      font-size: .94rem;
-      margin-bottom: 3px;
+      width: 28px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--old-gold));
     }
-
-    .assurance-item span {
-      display: block;
-      color: #bfccdb;
-      font-size: .84rem;
-      line-height: 1.45;
+    .section-title small::after {
+      background: linear-gradient(90deg, var(--old-gold), transparent);
     }
-
-    .logo-stage p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: .92rem;
-      line-height: 1.55;
-    }
-
-    .diagnostic-card {
-      margin-top: 0;
-      padding: 24px;
-      background: var(--white);
-      border: 1px solid rgba(7, 20, 38, .1);
-      border-radius: var(--radius);
-      box-shadow: 0 18px 36px rgba(7, 20, 38, .08);
-    }
-
-    .scope-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .scope-item {
-      padding: 14px;
-      border: 1px solid rgba(7, 20, 38, .1);
-      border-radius: var(--radius);
-      background: #fbfcfd;
-    }
-
-    .scope-item strong {
-      display: block;
-      color: var(--navy);
-      font-size: .88rem;
-      margin-bottom: 4px;
-    }
-
-    .scope-item span {
-      display: block;
-      color: var(--muted);
-      font-size: .78rem;
-      line-height: 1.4;
-    }
-
-    .diagnostic-card h2 {
-      font-size: 1.18rem;
-      color: var(--navy);
-      font-weight: 800;
-      font-family: Inter, sans-serif;
-    }
-
-    .diagnostic-card p {
-      margin: 10px 0 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: .95rem;
-    }
-
-    .check-row {
-      display: flex;
-      gap: 11px;
-      align-items: flex-start;
-      margin-top: 16px;
-      color: var(--ink);
-      font-size: .92rem;
-      line-height: 1.45;
-    }
-
-    .check-row svg {
-      width: 19px;
-      height: 19px;
-      flex: 0 0 auto;
-      color: var(--gold);
-      margin-top: 1px;
-    }
-
-    section {
-      padding: 74px 0;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(280px, .7fr);
-      gap: 32px;
-      align-items: end;
-      margin-bottom: 36px;
-    }
-
-    .section-head h2 {
+    .section-title h2 {
       font-family: Cinzel, Georgia, serif;
+      font-size: clamp(1.9rem, 3.4vw, 3rem);
+      line-height: 1.15;
       color: var(--navy);
-      font-size: clamp(2rem, 3.8vw, 3.4rem);
-      line-height: 1.08;
     }
-
-    .section-head p {
+    .section-title p {
+      margin-top: 18px;
       color: var(--muted);
-      line-height: 1.7;
-      margin: 0;
-      font-size: 1rem;
+      line-height: 1.75;
+      font-size: 1.05rem;
+      font-weight: 300;
     }
 
     .services {
-      background: var(--white);
-      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
       border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
     }
 
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--white);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
     }
 
     .service-card {
-      min-height: 330px;
-      padding: 32px;
-      border-right: 1px solid var(--line);
+      min-height: 320px;
+      padding: 38px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(4, 15, 37, .04);
+      transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease, border-color .5s ease;
+      position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 26px;
     }
-
-    .service-card:last-child { border-right: 0; }
-
-    .service-icon {
-      width: 44px;
-      height: 44px;
-      color: var(--gold);
-      margin-bottom: 26px;
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .6s cubic-bezier(.22,1,.36,1);
     }
+    .service-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(175, 143, 41, .4);
+      box-shadow: 0 28px 64px rgba(4, 15, 37, .1), 0 0 0 1px rgba(236,214,89,.08);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(236,214,89,.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .6s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-card svg {
+      width: 48px;
+      height: 48px;
+      margin: 0 0 26px;
+      color: var(--old-gold);
+      stroke-width: 1.6;
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .service-card:hover svg { transform: scale(1.1) rotate(-5deg); }
 
     .service-card h3 {
       color: var(--navy);
-      font-size: 1.25rem;
-      line-height: 1.2;
-      font-weight: 800;
+      font-family: Cinzel, Georgia, serif;
+      font-size: 1.18rem;
+      line-height: 1.25;
+      margin-bottom: 14px;
     }
-
     .service-card p {
       color: var(--muted);
+      font-size: .93rem;
       line-height: 1.65;
-      margin: 12px 0 0;
-      font-size: .96rem;
+      font-weight: 300;
+      flex-grow: 1;
     }
-
     .service-card ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
       display: grid;
-      gap: 9px;
-      color: #38475a;
-      font-size: .9rem;
-      line-height: 1.45;
+      gap: 10px;
+      list-style: none;
+      padding: 22px 0 0;
+      margin: 24px 0 0;
+      border-top: 1px solid var(--line);
+      color: var(--navy);
+      font-size: .88rem;
+      line-height: 1.4;
     }
-
     .service-card li {
       position: relative;
-      padding-left: 17px;
+      padding-left: 20px;
     }
-
     .service-card li:before {
       content: "";
       position: absolute;
       left: 0;
-      top: .62em;
-      width: 6px;
-      height: 6px;
+      top: .55em;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      background: var(--gold);
+      background: linear-gradient(135deg, var(--gold), var(--old-gold));
     }
 
-    .approach {
-      background: var(--paper);
-    }
-
-    .approach-layout {
-      display: grid;
-      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
-      gap: 56px;
-      align-items: start;
-    }
-
-    .approach-note {
-      position: sticky;
-      top: 112px;
-      padding: 34px;
+    .fit {
       background: var(--navy);
       color: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .fit::before {
+      content: '';
+      position: absolute;
+      top: -20%; left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(236,214,89,.07), transparent 60%);
+      pointer-events: none;
+    }
+    .fit::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; right: -15%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(15, 38, 70, .6), transparent 60%);
+      pointer-events: none;
     }
 
-    .approach-note h2 {
-      font-family: Cinzel, Georgia, serif;
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1.1;
-    }
-
-    .approach-note p {
-      color: #d5dde8;
-      line-height: 1.7;
-      margin: 18px 0 0;
-    }
-
-    .process-list {
+    .fit-shell {
       display: grid;
-      gap: 18px;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .65fr);
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
-    .process-item {
+    .fit small,
+    .resource small,
+    .faq small {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .fit small::before,
+    .resource small::before,
+    .faq small::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      box-shadow: 0 0 12px rgba(236,214,89,.4);
+    }
+
+    .fit h2,
+    .resource h2,
+    .faq h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2rem, 3.4vw, 3.2rem);
+      line-height: 1.12;
+    }
+    .fit p {
+      color: #c0cbdb;
+      line-height: 1.82;
+      margin-top: 22px;
+      max-width: 720px;
+      font-weight: 300;
+    }
+    .fit-quote {
+      padding-left: 22px;
+      border-left: 2px solid var(--gold);
+      color: #fff7cf;
+      font-weight: 700;
+      margin-top: 28px;
+      font-size: 1.06rem;
+      position: relative;
+    }
+    .fit-quote::before {
+      content: '"';
+      position: absolute;
+      left: -8px;
+      top: -22px;
+      font-family: Georgia, serif;
+      font-size: 4rem;
+      color: rgba(236,214,89,.14);
+      line-height: 1;
+    }
+
+    .fit-steps {
+      display: grid;
+      gap: 16px;
+    }
+    .fit-step {
       display: grid;
       grid-template-columns: 68px 1fr;
       gap: 20px;
-      padding: 26px 0;
-      border-bottom: 1px solid rgba(7, 20, 38, .12);
+      align-items: start;
+      padding: 24px;
+      border: 1px solid rgba(236, 214, 89, .12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .035);
+      backdrop-filter: blur(10px);
+      transition: background .4s ease, border-color .4s ease, transform .4s ease;
     }
-
-    .process-item:first-child { padding-top: 0; }
-
-    .process-number {
-      width: 54px;
-      height: 54px;
+    .fit-step:hover {
+      background: rgba(255, 255, 255, .06);
+      border-color: rgba(236, 214, 89, .25);
+      transform: translateX(6px);
+    }
+    .fit-step-icon {
+      width: 56px;
+      height: 56px;
       display: grid;
       place-items: center;
       border-radius: 50%;
-      background: var(--white);
-      border: 1px solid var(--line);
       color: var(--gold);
-      font-weight: 800;
-      box-shadow: 0 10px 22px rgba(7, 20, 38, .08);
+      background: linear-gradient(135deg, rgba(255,250,240,.1), rgba(255,245,224,.06));
+      border: 1px solid rgba(175, 143, 41, .28);
+      box-shadow: 0 10px 28px rgba(4, 15, 37, .12);
+      position: relative;
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+    }
+    .fit-step:hover .fit-step-icon {
+      transform: scale(1.1);
+      box-shadow: 0 14px 36px rgba(175,143,41,.15);
+    }
+    .fit-step-icon b {
+      position: absolute;
+      left: -8px;
+      top: 2px;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--old-gold));
+      color: var(--white);
+      font-size: .74rem;
+      box-shadow: 0 4px 12px rgba(175,143,41,.3);
+    }
+    .fit-step-icon svg { width: 28px; height: 28px; }
+    .fit-step strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: 6px;
+      font-size: 1.04rem;
+    }
+    .fit-step span {
+      color: #9fb0c8;
+      font-size: .9rem;
+      line-height: 1.52;
+      font-weight: 300;
     }
 
-    .process-item h3 {
-      color: var(--navy);
-      font-size: 1.12rem;
-      font-weight: 800;
-      margin-bottom: 8px;
+    .sectors {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+      border-bottom: 1px solid var(--line);
     }
 
-    .process-item p {
+    .sector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .sector-card {
+      min-height: 190px;
+      padding: 34px;
+      color: var(--white);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(4, 15, 37, .96), rgba(4, 15, 37, .84)),
+        var(--night);
+      box-shadow: 0 20px 48px rgba(4, 15, 37, .14);
+      position: relative;
+      overflow: hidden;
+      transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s ease;
+      border: 1px solid rgba(236, 214, 89, .07);
+      display: flex;
+      flex-direction: column;
+    }
+    .sector-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: .7;
+    }
+    .sector-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 32px 72px rgba(4, 15, 37, .22);
+    }
+    .sector-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .sector-card svg {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border: 1px solid rgba(236, 214, 89, .45);
+      border-radius: 50%;
+      color: var(--gold);
+      background: rgba(236,214,89,.05);
+      transition: transform .45s cubic-bezier(.22,1,.36,1);
+    }
+    .sector-card:hover svg { transform: rotate(10deg) scale(1.1); }
+    .sector-card p { color: #b8c8df; line-height: 1.62; font-size: .9rem; font-weight: 300; }
+
+    .proof {
+      background: var(--ivory);
+      padding-top: 90px;
+      position: relative;
+    }
+    .proof::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 20px 56px rgba(4, 15, 37, .07);
+    }
+
+    .proof-card {
+      padding: 44px 38px;
+      background: transparent;
+      border: 0;
+      border-right: 1px solid var(--line);
+      box-shadow: none;
+      transition: background .4s ease;
+      position: relative;
+    }
+    .proof-card:last-child { border-right: 0; }
+    .proof-card:hover { background: var(--cream); }
+    .proof-card p {
+      margin: 0;
       color: var(--muted);
       line-height: 1.68;
-      margin: 0;
+      font-size: .94rem;
+      font-weight: 300;
     }
-
-    .industries {
-      padding-top: 0;
-    }
-
-    .industry-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border-top: 1px solid rgba(7, 20, 38, .14);
-      border-bottom: 1px solid rgba(7, 20, 38, .14);
-    }
-
-    .industry {
-      padding: 26px 24px;
-      border-right: 1px solid rgba(7, 20, 38, .14);
-    }
-
-    .industry:last-child { border-right: 0; }
-
-    .industry h3 {
+    .proof-card strong {
+      display: block;
       color: var(--navy);
-      font-size: 1rem;
-      font-weight: 800;
-      margin-bottom: 8px;
+      font-size: 1.12rem;
+      margin-bottom: 14px;
+      font-weight: 700;
     }
-
-    .industry p {
-      color: var(--muted);
-      line-height: 1.55;
-      margin: 0;
-      font-size: .9rem;
-    }
-
-    .contact {
-      padding: 0 0 78px;
-    }
-
-    .contact-shell {
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(340px, .7fr);
-      gap: 0;
-      overflow: hidden;
-      border-radius: 10px;
-      background: var(--navy);
-      box-shadow: var(--shadow);
-    }
-
-    .contact-copy {
-      padding: clamp(38px, 5vw, 62px);
-      color: var(--white);
-    }
-
-    .contact-copy h2 {
+    .proof-number {
+      position: absolute;
+      top: 20px; right: 26px;
       font-family: Cinzel, Georgia, serif;
-      font-size: clamp(2rem, 3.8vw, 3.8rem);
-      line-height: 1.06;
+      font-size: 2.6rem;
+      color: rgba(175, 143, 41, .07);
+      line-height: 1;
+      font-weight: 700;
     }
 
-    .contact-copy p {
-      margin: 18px 0 0;
-      color: #d7dfeb;
-      line-height: 1.72;
-      max-width: 620px;
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
-
-    .contact-methods {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
     }
-
-    .contact-form {
-      padding: 34px;
+    .testimonial-card {
       background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 38px;
+      position: relative;
+      box-shadow: 0 10px 32px rgba(4,15,37,.04);
+      transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 56px rgba(4,15,37,.08);
+    }
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--old-gold));
+      opacity: .6;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .quote-mark {
+      font-family: Georgia, serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(175,143,41,.1);
+      position: absolute;
+      top: 18px; left: 24px;
+    }
+    .testimonial-card p {
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--night));
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-family: Cinzel, serif;
+      font-weight: 700;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .author-info strong { display: block; color: var(--navy); font-size: .92rem; }
+    .author-info span { color: var(--muted); font-size: .78rem; }
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-top: 6px;
+    }
+    .stars svg { width: 13px; height: 13px; color: var(--gold); fill: currentColor; }
+
+    .faq {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .form-grid {
+    .faq-shell {
+      display: grid;
+      grid-template-columns: minmax(0, .65fr) minmax(0, 1fr);
+      gap: 64px;
+      align-items: start;
+    }
+    .faq p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 18px;
+      font-weight: 300;
+    }
+
+    .faq-list {
       display: grid;
       gap: 14px;
     }
 
-    label {
-      display: grid;
-      gap: 7px;
-      color: #334257;
-      font-size: .86rem;
-      font-weight: 700;
-    }
-
-    input, textarea, select {
-      width: 100%;
+    .faq-item {
+      background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 13px 14px;
-      color: var(--ink);
-      background: #fbfcfd;
-      font: inherit;
-      font-size: .95rem;
-      outline: none;
-      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 10px 32px rgba(4, 15, 37, .04);
+      overflow: hidden;
+      transition: box-shadow .4s ease, border-color .4s ease;
+    }
+    .faq-item:hover { box-shadow: 0 16px 42px rgba(4, 15, 37, .07); }
+    .faq-item.open { border-color: rgba(175, 143, 41, .3); }
+
+    .faq-question {
+      cursor: pointer;
+      list-style: none;
+      padding: 24px 26px;
+      color: var(--navy);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      transition: color .25s ease;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+    }
+    .faq-question:hover { color: var(--old-gold); }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--old-gold);
+      transition: transform .4s cubic-bezier(.22,1,.36,1), background .3s ease;
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: rgba(175,143,41,.07);
+    }
+    .faq-item.open .faq-question::after {
+      transform: rotate(45deg);
+      background: rgba(175,143,41,.14);
     }
 
-    textarea {
-      min-height: 116px;
-      resize: vertical;
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .45s cubic-bezier(.22,1,.36,1), opacity .35s ease;
+      opacity: 0;
+    }
+    .faq-item.open .faq-answer {
+      opacity: 1;
+    }
+    .faq-answer-inner {
+      padding: 0 26px 26px;
+      color: var(--muted);
+      font-size: .94rem;
+      line-height: 1.68;
+      font-weight: 300;
     }
 
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--gold);
+    .resource {
+      background: var(--ivory);
+      position: relative;
+      overflow: hidden;
+    }
+    .resource::after {
+      content: '';
+      position: absolute;
+      bottom: -40%; right: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(236,214,89,.05), transparent 70%);
+      pointer-events: none;
+    }
+
+    .resource-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .7fr);
+      gap: 48px;
+      align-items: center;
+      padding: 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       background: var(--white);
-      box-shadow: 0 0 0 4px rgba(200, 151, 45, .14);
+      box-shadow: 0 24px 64px rgba(4, 15, 37, .09);
+      position: relative;
+      z-index: 1;
+    }
+    .resource h2 { color: var(--navy); }
+    .resource p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: 18px;
+      font-weight: 300;
     }
 
-    .form-note {
+    .resource-card {
+      padding: 36px;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, var(--navy), #06122e);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(236,214,89,.1);
+    }
+    .resource-card::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -30%;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(236,214,89,.07), transparent 60%);
+      pointer-events: none;
+    }
+    .resource-card strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 16px;
+      font-size: 1.06rem;
+      position: relative;
+      z-index: 1;
+    }
+    .resource-card ul {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #b0bed4;
+      font-size: .9rem;
+      line-height: 1.48;
+      position: relative;
+      z-index: 1;
+    }
+    .resource-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .resource-card li::before {
+      content: "";
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23ecd659' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .resource-meta {
+      display: flex;
+      gap: 14px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(236,214,89,.12);
+      position: relative;
+      z-index: 1;
+    }
+    .resource-meta span {
+      font-size: .76rem;
+      color: #9fb0c8;
+      background: rgba(255,255,255,.05);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(236,214,89,.1);
+    }
+
+    /* Resource form */
+    .resource-form {
+      margin-top: 28px;
+      display: grid;
+      gap: 14px;
+    }
+    .form-group {
+      display: grid;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .form-input {
+      width: 100%;
+      background: rgba(248, 245, 234, .6);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--navy);
+      font-family: inherit;
+      font-size: .94rem;
+      outline: none;
+      transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
+    }
+    .form-input:focus {
+      border-color: var(--old-gold);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(175, 143, 41, .08);
+    }
+    .form-input::placeholder { color: #9ca3af; }
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .78rem;
       color: var(--muted);
       line-height: 1.5;
-      font-size: .8rem;
-      margin: 2px 0 0;
+      cursor: pointer;
+    }
+    .form-consent input {
+      margin-top: 2px;
+      accent-color: var(--old-gold);
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .form-disclaimer {
+      font-size: .72rem;
+      color: var(--muted);
+      text-align: center;
+      margin: 4px 0 0;
+      opacity: .8;
+    }
+
+    /* Rules as cards */
+    .rules {
+      background: #020b1c;
+      border-top: 1px solid rgba(236, 214, 89, .12);
+      color: #8a9ab0;
+      padding: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .rules::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 220px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.35), transparent);
+    }
+    .rules h2 {
+      color: var(--gold);
+      text-align: center;
+      font-size: .74rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      font-weight: 800;
+    }
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .rule-card {
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(236,214,89,.08);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: background .35s ease, border-color .35s ease, transform .35s ease;
+    }
+    .rule-card:hover {
+      background: rgba(255,255,255,.045);
+      border-color: rgba(236,214,89,.18);
+      transform: translateY(-3px);
+    }
+    .rule-card svg {
+      width: 22px; height: 22px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      opacity: .8;
+    }
+    .rule-card p {
+      font-size: .84rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .cta {
+      padding: 0;
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(236,214,89,.45), transparent);
+    }
+    .cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 50%, rgba(236,214,89,.05), transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 30%, rgba(15,38,70,.5), transparent 60%);
+      pointer-events: none;
+      animation: ctaShift 12s ease-in-out infinite alternate;
+    }
+    @keyframes ctaShift {
+      0% { transform: translate(0,0) scale(1); }
+      100% { transform: translate(-30px, 20px) scale(1.08); }
+    }
+
+    .cta-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 44px;
+      align-items: center;
+      padding: 70px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .cta small {
+      display: block;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-weight: 800;
+      margin-bottom: 14px;
+      font-size: .72rem;
+    }
+    .cta h2 {
+      max-width: 720px;
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(2.1rem, 3.8vw, 3.6rem);
+      line-height: 1.08;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
     }
 
     footer {
-      padding: 30px 0;
-      border-top: 1px solid rgba(7, 20, 38, .12);
-      color: var(--muted);
+      background: #020b1c;
+      color: #9aacbf;
+      border-top: 1px solid rgba(236, 214, 89, .22);
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 140px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1fr repeat(3, minmax(150px, .52fr));
+      gap: 36px;
+      padding: 48px 0;
+      align-items: center;
+    }
+    .footer-main .brand { min-width: 0; }
+    .footer-info strong { display: block; color: var(--gold); font-size: .8rem; margin-bottom: 6px; font-weight: 700; }
+    .footer-info span { color: #9aacbf; font-size: .88rem; line-height: 1.45; font-weight: 300; }
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, .06); padding: 22px 0; color: #6b7d90; font-size: .8rem; font-weight: 300; }
+    .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+    /* Floating badges */
+    .float-badge {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 60;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-weight: 800;
       font-size: .9rem;
-    }
-
-    .footer-row {
       display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 14px 40px rgba(18, 140, 126, .35);
+      transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+      animation: floatIn .9s cubic-bezier(.22,1,.36,1) both;
+      animation-delay: 1.8s;
+    }
+    .float-badge:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 20px 54px rgba(18, 140, 126, .45);
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px) scale(.92); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    .mobile-panel {
-      display: none;
+    .back-to-top {
+      position: fixed;
+      bottom: 26px;
+      left: 26px;
+      z-index: 60;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--line);
+      color: var(--old-gold);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(4,15,37,.1);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity .35s ease, transform .35s ease, background .25s ease, border-color .25s ease;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      background: var(--cream);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .back-to-top svg { width: 18px; height: 18px; }
+
+    /* Section dividers */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      border: none;
+      margin: 0;
+      position: relative;
+    }
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: -2px;
+      transform: translateX(-50%);
+      width: 0;
+      height: 5px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(.22,1,.36,1);
+    }
+    .section-divider.visible::after {
+      width: 120px;
     }
 
-    @media (max-width: 980px) {
-      .nav-links, .header-actions .btn-primary { display: none; }
-      .menu-toggle { display: inline-flex; }
-
-      .mobile-panel {
-        display: grid;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height .24s ease;
-        border-top: 1px solid rgba(7, 20, 38, .08);
+    @media (max-width: 1060px) {
+      .nav-links, .site-header .btn { display: none; }
+      .menu-toggle, .mobile-panel { display: flex; }
+      .mobile-panel { display: grid; }
+      .hero-bg {
+        background:
+          linear-gradient(90deg, rgba(4, 15, 37, .98) 0%, rgba(4, 15, 37, .95) 52%, rgba(4, 15, 37, .72) 100%),
+          url("assets/hero-griffin-office.png") center right / cover no-repeat;
       }
-
-      .mobile-panel.open { max-height: 420px; }
-
-      .mobile-panel-inner {
-        display: grid;
-        gap: 4px;
-        padding: 12px 0 20px;
-      }
-
-      .mobile-panel a {
-        padding: 13px 0;
-        color: var(--navy);
-        font-weight: 700;
-        border-bottom: 1px solid rgba(7, 20, 38, .08);
-      }
-
-      .hero-shell,
-      .approach-layout,
-      .contact-shell,
-      .section-head {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-shell { min-height: auto; }
-      .hero-panel { padding: 26px; }
-      .logo-stage { min-height: 260px; }
-      .logo-stage {
-        min-height: auto;
-        align-items: flex-start;
-      }
-      .approach-note { position: static; }
+      .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .trust-item:nth-child(2) { border-right: 0; }
+      .trust-item:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
       .service-grid { grid-template-columns: 1fr; }
-      .service-card { border-right: 0; border-bottom: 1px solid var(--line); min-height: auto; }
-      .service-card:last-child { border-bottom: 0; }
-      .industry-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .industry:nth-child(2) { border-right: 0; }
-      .industry:nth-child(-n + 2) { border-bottom: 1px solid rgba(7, 20, 38, .14); }
+      .fit-shell, .sector-grid, .proof-grid, .blog-grid, .faq-shell, .resource-shell, .cta-shell, .footer-main, .rules-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .proof-card { border-right: 0; border-bottom: 1px solid var(--line); }
+      .proof-card:last-child { border-bottom: 0; }
+      .cta-actions { justify-content: flex-start; }
+      .resource-shell { padding: 36px; }
     }
 
     @media (max-width: 640px) {
-      .container { width: min(100% - 28px, 1160px); }
-      .nav { min-height: 68px; }
-      .brand img { width: 42px; height: 42px; }
-      .brand strong { font-size: .9rem; }
-      .brand span { display: none; }
-      .hero { padding: 24px 0 50px; }
-      .hero-copy { padding: 34px 24px; }
-      .value-row { grid-template-columns: 1fr; }
+      .container { width: min(100% - 28px, 1200px); }
+      .nav { min-height: 72px; }
+      .brand { min-width: 0; gap: 10px; }
+      .brand img { width: 44px; height: 44px; }
+      .brand strong { font-size: 1.05rem; }
+      .brand span { font-size: .62rem; letter-spacing: .1em; }
+      .hero { min-height: auto; }
+      .hero-content { padding: 72px 0 80px; }
+      h1 { font-size: clamp(2rem, 11vw, 2.8rem); }
+      .hero-lead { font-size: 1rem; }
       .hero-actions .btn { width: 100%; }
-      .hero-proof { grid-template-columns: 1fr; margin-top: 34px; }
-      .hero-panel { padding: 18px; }
-      .logo-stage {
-        gap: 12px;
-      }
-      .logo-stage img {
-        width: 58px;
-        height: 58px;
-      }
-      .scope-list { grid-template-columns: 1fr; }
-      .diagnostic-card { padding: 22px; }
-      section { padding: 54px 0; }
-      .service-card { padding: 26px; }
-      .process-item { grid-template-columns: 1fr; gap: 12px; }
-      .industry-strip { grid-template-columns: 1fr; }
-      .industry,
-      .industry:nth-child(2) {
-        border-right: 0;
-        border-bottom: 1px solid rgba(7, 20, 38, .14);
-      }
-      .industry:last-child { border-bottom: 0; }
-      .contact { padding-bottom: 56px; }
-      .contact-form { padding: 24px; }
-      .contact-methods .btn { width: 100%; }
+      .hero-highlights li { width: 100%; justify-content: center; }
+      .trust-grid, .service-grid, .testimonials-grid, .blog-grid { grid-template-columns: 1fr; }
+      .trust-item { border-right: 0; border-bottom: 1px solid var(--line); padding: 22px 18px; }
+      .trust-item:last-child { border-bottom: 0; }
+      .service-card { min-height: 0; padding: 28px; }
+      .resource-shell { padding: 26px; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .cta-actions .btn { width: 100%; }
+      .float-badge { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
+      .back-to-top { bottom: 80px; left: 16px; }
+      section { padding: 72px 0; }
+      .proof-card { padding: 32px 26px; }
+      .proof-number { font-size: 2.2rem; top: 14px; right: 20px; }
+      .testimonial-card { padding: 30px 24px; }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="site-header">
+    <div class="progress-bar" id="progress-bar"></div>
     <div class="container">
       <nav class="nav" aria-label="Navegacion principal">
         <a class="brand" href="#inicio" aria-label="Inicio Griffin Asesores">
-          <img src="assets/logo-completo.png" alt="Logo de Griffin Asesores">
-          <span>
-            <strong>Griffin Asesores</strong>
-            <span>Confianza, precision y crecimiento</span>
-          </span>
+          <img src="assets/logo-completo.png" alt="Griffin Asesores">
+<span><strong>Griffin</strong><strong>Asesores</strong><span>Contabilidad · RRHH · Auditoría</span></span>
         </a>
-
-        <div class="nav-links" aria-label="Secciones">
+        <div class="nav-links">
           <a href="#quienes-somos">Quiénes somos</a>
           <a href="#servicios">Servicios</a>
-          <a href="#enfoque">Enfoque</a>
+          <a href="#sectores">Sectores</a>
+          <a href="#faq">FAQ</a>
+          <div class="nav-dropdown">
+            <a href="herramientas.html">Herramientas
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+            <div class="nav-dropdown-menu">
+              <a href="herramientas.html#imponible">Líquido → Imponible</a>
+              <a href="herramientas.html#proporcional">Sueldo proporcional</a>
+              <a href="herramientas.html#honorarios">Boleta de honorarios</a>
+              <a href="herramientas.html#finiquito">Finiquito</a>
+              <a href="herramientas.html#gratificacion">Gratificación legal</a>
+              <a href="herramientas.html#independiente">Cotizaciones del independiente</a>
+              <a href="herramientas.html#conversor">Conversor UF / UTM</a>
+            </div>
+          </div>
           <a href="#contacto">Contacto</a>
         </div>
-
-        <div class="header-actions">
-          <a class="btn btn-primary" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
-          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-panel" aria-label="Abrir menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <path d="M4 7h16M4 12h16M4 17h16"></path>
-            </svg>
-          </button>
-        </div>
+        <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg>
+          Agendar diagnóstico
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-panel" aria-label="Abrir menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
       </nav>
-
       <div class="mobile-panel" id="mobile-panel">
         <div class="mobile-panel-inner">
           <a href="#quienes-somos">Quiénes somos</a>
           <a href="#servicios">Servicios</a>
-          <a href="#enfoque">Enfoque</a>
+          <a href="#sectores">Sectores</a>
+          <a href="#faq">FAQ</a>
+          <a class="mobile-toggle" href="javascript:void(0)">Herramientas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></a>
+          <div class="mobile-items">
+            <a href="herramientas.html#imponible">Líquido → Imponible</a>
+            <a href="herramientas.html#proporcional">Sueldo proporcional</a>
+            <a href="herramientas.html#honorarios">Boleta de honorarios</a>
+            <a href="herramientas.html#finiquito">Finiquito</a>
+            <a href="herramientas.html#gratificacion">Gratificación legal</a>
+            <a href="herramientas.html#independiente">Cotizaciones del independiente</a>
+            <a href="herramientas.html#conversor">Conversor UF / UTM</a>
+          </div>
           <a href="#contacto">Contacto</a>
-          <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
+          <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
         </div>
       </div>
     </div>
@@ -933,300 +1709,469 @@
 
   <main id="inicio">
     <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" id="hero-bg"></div>
+      <div class="hero-mesh"></div>
+      <div class="hero-line"></div>
       <div class="container">
-        <div class="hero-shell">
-          <div class="hero-copy">
-            <div class="brand-kicker">Griffin Asesores</div>
-            <div class="trust-line">Contabilidad, RRHH y cumplimiento para pymes en Chile</div>
-            <h1 id="hero-title">Asesoría contable y laboral seria, clara y cercana.</h1>
-            <p>
-              Acompañamos a empresas de la Región de Coquimbo y de todo Chile con contabilidad mensual, liquidaciones, Previred, auditorías y control administrativo. Trabajamos con orden, trazabilidad y comunicación directa para que tomes decisiones con respaldo.
-            </p>
-            <div class="value-row" aria-label="Valores de Griffin Asesores">
-              <div class="value-pill">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg>
-                Seguridad
-              </div>
-              <div class="value-pill">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a3 3 0 0 0 4-4l-2-2"></path><path d="m13 7-2-2a3 3 0 0 0-4 4l2 2"></path><path d="m8 16 8-8"></path></svg>
-                Confianza
-              </div>
-              <div class="value-pill">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                Claridad
-              </div>
-            </div>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
-              <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
-            </div>
-            <div class="hero-proof" aria-label="Puntos de confianza">
-              <div class="proof-item">
-                <strong>SII y DT</strong>
-                <span>Seguimiento tributario y laboral sin esperar a la fiscalización.</span>
-              </div>
-              <div class="proof-item">
-                <strong>Mensual</strong>
-                <span>Gestión continua, con entregables y fechas claras.</span>
-              </div>
-              <div class="proof-item">
-                <strong>A medida</strong>
-                <span>Alcance y honorarios según la realidad de tu empresa.</span>
-              </div>
-            </div>
+        <div class="hero-content">
+          <div class="eyebrow reveal">Contabilidad, RRHH y auditoría para pymes</div>
+          <h1 id="hero-title" class="reveal reveal-delay-1">Ordenamos tu empresa para que decidas con claridad y cumplas <span class="accent">sin sorpresas.</span></h1>
+          <p class="hero-lead reveal reveal-delay-2">Acompañamiento contable, laboral y administrativo con diagnóstico inicial, prioridades claras y seguimiento mensual. Trabajamos contigo para bajar riesgos, ordenar documentos y convertir los números en decisiones.</p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico por WhatsApp</a>
+            <a class="btn btn-dark" href="#servicios">Revisar servicios</a>
           </div>
-
-          <aside class="hero-panel" aria-label="Diagnostico Griffin">
-            <div class="logo-stage">
-              <img src="assets/logo-completo.png" alt="Emblema Griffin Asesores">
-              <div>
-                <h2>Confianza, precisión y crecimiento.</h2>
-                <p>Una identidad sobria para una asesoría que combina rigor técnico y trato humano.</p>
-              </div>
-            </div>
-            <div class="assurance-panel">
-              <h2>Tu empresa en regla, con información entendible cada mes.</h2>
-              <p>Centralizamos obligaciones contables, laborales y administrativas para que el cumplimiento no dependa de urgencias de último minuto.</p>
-              <div class="assurance-list">
-                <div class="assurance-item">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                  <div><strong>Proceso claro</strong><span>Fechas, responsables y entregables definidos desde el diagnóstico.</span></div>
-                </div>
-                <div class="assurance-item">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg>
-                  <div><strong>Respaldo documental</strong><span>Ordenamos contratos, libros, declaraciones, cotizaciones y reportes.</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="diagnostic-card">
-              <h2>Diagnóstico inicial</h2>
-              <p>Revisamos tu situación contable, laboral y administrativa para detectar riesgos, atrasos y oportunidades de orden.</p>
-              <div class="scope-list" aria-label="Alcance del diagnostico">
-                <div class="scope-item">
-                  <strong>Tributario</strong>
-                  <span>F29, libros, respaldos y vencimientos.</span>
-                </div>
-                <div class="scope-item">
-                  <strong>Laboral</strong>
-                  <span>Contratos, liquidaciones y Previred.</span>
-                </div>
-                <div class="scope-item">
-                  <strong>Finanzas</strong>
-                  <span>Flujo, reportes y control interno.</span>
-                </div>
-                <div class="scope-item">
-                  <strong>Plan mensual</strong>
-                  <span>Entregables, fechas y responsables.</span>
-                </div>
-              </div>
-              <div class="check-row">
-                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-                <span>Recibes una propuesta clara: qué hacemos, qué queda fuera y cómo se mide el avance.</span>
-              </div>
-            </div>
-          </aside>
+          <ul class="hero-highlights reveal reveal-delay-4" aria-label="Puntos clave">
+            <li>Diagnóstico inicial sin costo</li>
+            <li>Respuesta en 24-48 horas</li>
+            <li>Propuesta con alcance claro</li>
+          </ul>
         </div>
       </div>
+      <a href="#quienes-somos" class="scroll-indicator" aria-label="Desplazarse hacia abajo">
+        <span>Descubrir</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </a>
     </section>
+
+    <div class="trust-strip" id="quienes-somos">
+      <div class="container trust-grid">
+        <div class="trust-item reveal">
+          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div>
+          <div><strong>Respuesta 24-48 horas</strong><span>Te damos próximos pasos concretos desde el primer contacto.</span></div>
+        </div>
+        <div class="trust-item reveal reveal-delay-1">
+          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+          <div><strong>Coquimbo + online</strong><span>Cercanía local, cobertura nacional.</span></div>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 15 8l6 .9-4.5 4.4 1.1 6.2L12 16.5 6.4 19.5l1.1-6.2L3 8.9 9 8l3-6Z"></path></svg></div>
+          <div><strong>Diagnóstico sin costo</strong><span>Revisamos tu realidad antes de cotizar.</span></div>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></div>
+          <div><strong>Confidencialidad y orden</strong><span>Tu información siempre protegida.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider reveal">
 
     <section class="services" id="servicios">
       <div class="container">
-        <div class="section-head">
-          <h2>Servicios pensados para operar mejor, no para llenar una plantilla.</h2>
-          <p>La promesa central es simple: que tengas tus obligaciones en regla, tus números ordenados y una administración que no dependa de apagar incendios a fin de mes.</p>
+        <div class="section-title reveal">
+          <small>Servicios</small>
+          <h2>Servicios para bajar riesgo, recuperar orden y operar mejor.</h2>
+          <p>Partimos con un diagnóstico y definimos un alcance realista. No se trata de venderte todo: se trata de resolver primero lo que más exposición, atraso o desorden genera.</p>
         </div>
-
         <div class="service-grid">
-          <article class="service-card">
-            <div>
-              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 3h10a2 2 0 0 1 2 2v16l-3-2-3 2-3-2-3 2V5a2 2 0 0 1 2-2Z"></path><path d="M9 8h6M9 12h6M9 16h4"></path>
-              </svg>
-              <h3>Orden tributario y contable</h3>
-              <p>Declaraciones, registros, conciliaciones y control mensual para mantener tu relación con el SII bajo control.</p>
-            </div>
+          <article class="service-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"></path><path d="M8 7h8M8 11h8M8 15h4"></path></svg>
+            <h3>Contabilidad y cumplimiento tributario</h3>
+            <p>Gestión mensual para que tus declaraciones, respaldos y registros estén ordenados antes de que aparezca una urgencia.</p>
             <ul>
-              <li>F29, libros y cierres mensuales</li>
+              <li>F29, libros y conciliaciones</li>
               <li>Regularización de atrasos</li>
-              <li>Reportes para toma de decisiones</li>
+              <li>Reportes simples para decidir</li>
             </ul>
           </article>
-
-          <article class="service-card">
-            <div>
-              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-              <h3>Recursos humanos y laboral</h3>
-              <p>Liquidaciones, contratos, Previred y respaldo documental para reducir errores y exposición ante la Dirección del Trabajo.</p>
-            </div>
+          <article class="service-card reveal reveal-delay-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg>
+            <h3>Recursos humanos y respaldo laboral</h3>
+            <p>Remuneraciones, contratos y documentación laboral con foco en trazabilidad, cumplimiento y prevención de errores.</p>
             <ul>
-              <li>Liquidaciones y cotizaciones</li>
+              <li>Liquidaciones y Previred</li>
               <li>Contratos, anexos y finiquitos</li>
               <li>Preparación ante fiscalizaciones</li>
             </ul>
           </article>
-
-          <article class="service-card">
-            <div>
-              <svg class="service-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-4 4"></path><path d="M19 9h-4"></path><path d="M19 9v4"></path>
-              </svg>
-              <h3>Auditoría y gestión financiera</h3>
-              <p>Una segunda mirada sobre procesos, saldos, documentos y flujos para detectar desorden antes de que cueste caro.</p>
-            </div>
+          <article class="service-card reveal reveal-delay-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path><path d="M9 10h.01M13 10h.01M9 14h6"></path></svg>
+            <h3>Auditoría y revisión independiente</h3>
+            <p>Segunda mirada profesional sobre tus estados financieros, procesos y cumplimiento. Ideal para due diligence, inversionistas o tranquilidad.</p>
             <ul>
-              <li>Revisión independiente</li>
-              <li>Tesorería y backoffice</li>
-              <li>Procesos digitales y control interno</li>
+              <li>Auditoría contable y tributaria</li>
+              <li>Revisión de cumplimiento laboral</li>
+              <li>Due diligence y balances</li>
+            </ul>
+          </article>
+          <article class="service-card reveal reveal-delay-3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1A2 2 0 1 1 4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1A2 2 0 1 1 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.6 1h.1a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
+            <h3>Backoffice y gestión operativa</h3>
+            <p>Ordenamos procesos administrativos, tesorería e información financiera para que tomes decisiones con respaldo real.</p>
+            <ul>
+              <li>Tesorería y flujo de caja</li>
+              <li>Backoffice administrativo</li>
+              <li>Informes de gestión mensuales</li>
             </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="approach" id="enfoque">
-      <div class="container">
-        <div class="approach-layout">
-          <div class="approach-note">
-            <h2>Un método simple, con responsabilidades claras.</h2>
-            <p>El objetivo no es llenarte de reuniones. Es ordenar la información, definir un calendario de trabajo y dejar trazabilidad de lo que se entrega cada mes.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contacto">Solicitar contacto</a>
-            </div>
+    <section class="fit">
+      <div class="container fit-shell">
+        <div class="reveal">
+          <small>Cómo trabajamos</small>
+          <h2>Tu empresa no es una plantilla. Nuestros servicios tampoco.</h2>
+          <p>La mayoría de los problemas contables y laborales no aparecen de golpe: se acumulan por falta de rutinas, respaldos y responsables claros. Por eso evaluamos volumen, complejidad tributaria, equipo, documentos y nivel de orden actual.</p>
+          <p class="fit-quote">Primero ordenamos prioridades; después cotizamos el trabajo real.</p>
+        </div>
+        <div class="fit-steps" aria-label="Proceso de trabajo">
+          <div class="fit-step reveal reveal-delay-1">
+            <div class="fit-step-icon"><b>1</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l2 2 4-4"></path><path d="M8 3h8l2 3v15H6V6l2-3Z"></path><path d="M9 17h6"></path></svg></div>
+            <div><strong>Diagnóstico sin costo</strong><span>Revisamos tu realidad contable, laboral y tributaria antes de cotizar.</span></div>
           </div>
-
-          <div class="process-list" id="quienes-somos">
-            <article class="process-item">
-              <div class="process-number">01</div>
-              <div>
-                <h3>Diagnóstico operativo</h3>
-                <p>Levantamos tu realidad contable, tributaria, laboral y administrativa. Si hay atrasos, riesgos o información incompleta, queda identificado desde el inicio.</p>
-              </div>
-            </article>
-            <article class="process-item">
-              <div class="process-number">02</div>
-              <div>
-                <h3>Propuesta a medida</h3>
-                <p>Definimos alcance, responsables, entregables, calendario y honorarios. Sin paquetes rígidos que no calzan con tu tamaño o etapa.</p>
-              </div>
-            </article>
-            <article class="process-item">
-              <div class="process-number">03</div>
-              <div>
-                <h3>Gestión mensual y seguimiento</h3>
-                <p>Ejecutamos el trabajo recurrente, avisamos vencimientos, ordenamos respaldos y mantenemos reportes útiles para que puedas decidir con datos.</p>
-              </div>
-            </article>
+          <div class="fit-step reveal reveal-delay-2">
+            <div class="fit-step-icon"><b>2</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"></path><path d="m8 8 2 2-2 2M14 8h2M14 12h2M8 16h8"></path></svg></div>
+            <div><strong>Propuesta con precio cerrado</strong><span>Definimos entregables, responsables y prioridades según tu etapa.</span></div>
+          </div>
+          <div class="fit-step reveal reveal-delay-3">
+            <div class="fit-step-icon"><b>3</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></div>
+            <div><strong>Ejecución con acompañamiento</strong><span>Implementamos rutinas para que el cumplimiento no dependa de urgencias.</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="industries" aria-labelledby="industries-title">
+    <hr class="section-divider reveal">
+
+    <section class="sectors" id="sectores">
       <div class="container">
-        <div class="section-head">
-          <h2 id="industries-title">Sectores que atendemos con criterio local.</h2>
-          <p>Trabajamos con empresas que necesitan control y cumplimiento sin perder agilidad en su operación diaria.</p>
+        <div class="section-title reveal">
+          <small>Experiencia por sectores</small>
+          <h2>Entendemos tu industria, hablamos tu idioma.</h2>
         </div>
-        <div class="industry-strip">
-          <article class="industry">
-            <h3>Comercio y alimentos</h3>
-            <p>Turnos, ventas mensuales, proveedores y obligaciones recurrentes.</p>
+        <div class="sector-grid">
+          <article class="sector-card reveal"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V9l7-5 7 5v12"></path><path d="M9 21v-7h6v7"></path></svg>Industria y minería</h3><p>Entendemos tus ciclos, costos y exigencias de cumplimiento.</p></article>
+          <article class="sector-card reveal reveal-delay-1"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>Comercio y alimentos</h3><p>Control de márgenes, inventarios y cumplimiento sanitario y tributario.</p></article>
+          <article class="sector-card reveal reveal-delay-2"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>Tecnología y servicios</h3><p>Escalabilidad, procesos ágiles y finanzas que impulsan tu crecimiento.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="container">
+        <div class="section-title reveal">
+          <small>Lo que buscamos que sientas</small>
+          <h2>Seguridad, confianza y claridad desde el primer contacto.</h2>
+          <p>Queremos que entiendas qué está pasando en tu empresa, qué falta ordenar y cuál es el siguiente paso razonable.</p>
+        </div>
+        <div class="proof-grid">
+          <article class="proof-card reveal">
+            <span class="proof-number">01</span>
+            <strong>Diagnóstico honesto</strong>
+            <p>Antes de proponer, revisamos tu situación real: obligaciones, documentos, atrasos, riesgos y capacidad operativa.</p>
           </article>
-          <article class="industry">
-            <h3>Servicios profesionales</h3>
-            <p>Facturación, gastos, honorarios y planificación tributaria ordenada.</p>
+          <article class="proof-card reveal reveal-delay-1">
+            <span class="proof-number">02</span>
+            <strong>Comunicación simple</strong>
+            <p>Traducimos lo contable y laboral a decisiones concretas, sin tecnicismos innecesarios ni promesas infladas.</p>
           </article>
-          <article class="industry">
-            <h3>Industria y minería</h3>
-            <p>Documentación laboral, jornadas, contratistas y respaldo ante revisiones.</p>
-          </article>
-          <article class="industry">
-            <h3>Emprendimientos en crecimiento</h3>
-            <p>Formalización, inicio de actividades y estructura administrativa base.</p>
+          <article class="proof-card reveal reveal-delay-2">
+            <span class="proof-number">03</span>
+            <strong>Acompañamiento mensual</strong>
+            <p>Ordenamos el trabajo recurrente con fechas, responsables y entregables para que no dependas de la memoria.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="contact" id="contacto">
-      <div class="container">
-        <div class="contact-shell">
-          <div class="contact-copy">
-            <h2>Partamos revisando dónde está el desorden.</h2>
-            <p>Cuéntanos qué necesitas resolver: contabilidad mensual, RRHH, regularización, auditoría o backoffice. Te responderemos con el siguiente paso más razonable para tu caso.</p>
-            <div class="contact-methods">
-              <a class="btn btn-primary" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20un%20diagn%C3%B3stico%20inicial." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp</a>
-              <a class="btn btn-secondary" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
-            </div>
-          </div>
+    <hr class="section-divider reveal">
 
-          <form class="contact-form" action="https://formsubmit.co/contacto@griffinasesores.cl" method="POST">
-            <input type="hidden" name="_subject" value="Solicitud de contacto - Griffin Asesores">
+    <!-- Situations Section -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-title reveal">
+          <small>Cuándo nos llaman</small>
+          <h2>Problemas concretos que ordenamos contigo.</h2>
+          <p>La asesoría funciona mejor cuando aterriza en situaciones reales: atrasos, fiscalizaciones, documentos dispersos o decisiones sin información confiable.</p>
+        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial-card reveal">
+            <span class="quote-mark">01</span>
+            <p>Tu contabilidad se fue atrasando, hay respaldos dispersos y necesitas saber qué está pendiente antes de que aparezca una multa o una urgencia bancaria.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">C</div>
+              <div class="author-info">
+                <strong>Regularización contable</strong>
+                <span>Diagnóstico, prioridades y plan de cierre</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal reveal-delay-1">
+            <span class="quote-mark">02</span>
+            <p>Pagas remuneraciones, Previred o contratos con estrés cada mes y quieres una rutina laboral trazable, ordenada y preparada para fiscalizaciones.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">R</div>
+              <div class="author-info">
+                <strong>RRHH y remuneraciones</strong>
+                <span>Liquidaciones, contratos y respaldos</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal reveal-delay-2">
+            <span class="quote-mark">03</span>
+            <p>Tienes movimientos, compras, cobros y pagos, pero no una mirada simple de caja, márgenes o pendientes para decidir con calma.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">G</div>
+              <div class="author-info">
+                <strong>Gestión y backoffice</strong>
+                <span>Información útil para operar mejor</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="container faq-shell">
+        <div class="reveal">
+          <small>Preguntas frecuentes</small>
+          <h2>Resolvemos tus dudas antes de agendar.</h2>
+          <p>Lo que más nos preguntan empresas que están evaluando externalizar su contabilidad, RRHH o administración.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item reveal reveal-delay-1">
+            <button class="faq-question" aria-expanded="false">¿Cuánto demora el diagnóstico inicial?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">La reunión inicial dura cerca de 10 minutos. Luego revisamos el alcance y, en 3 a 5 días hábiles, te entregamos una propuesta ajustada a tu empresa.</div></div>
+          </div>
+          <div class="faq-item reveal reveal-delay-2">
+            <button class="faq-question" aria-expanded="false">¿Por qué no publican precios fijos?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Porque una empresa con pocos movimientos no necesita lo mismo que una operación con personal, atrasos, fiscalizaciones o alta carga documental. Cotizamos según volumen, complejidad y alcance.</div></div>
+          </div>
+          <div class="faq-item reveal reveal-delay-3">
+            <button class="faq-question" aria-expanded="false">¿También ayudan si tengo impuestos o contabilidad atrasada?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Sí. Evaluamos el atraso y proponemos un plan de regularización como proyecto aparte, con plazo, prioridades y honorarios claros.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resource">
+      <div class="container resource-shell">
+        <div class="reveal">
+          <small>Mini diagnóstico</small>
+          <h2>Cuéntanos qué quieres ordenar primero.</h2>
+          <p>Déjanos tus datos y una breve descripción de tu situación. Te respondemos con próximos pasos concretos para contabilidad, RRHH, auditoría o gestión administrativa.</p>
+          <form class="resource-form" action="https://formsubmit.co/contacto@griffinasesores.cl" method="POST">
+            <input type="hidden" name="_subject" value="Mini diagnostico - Griffin">
             <input type="hidden" name="_captcha" value="false">
-            <div class="form-grid">
-              <label>
-                Nombre
-                <input name="nombre" autocomplete="name" required>
-              </label>
-              <label>
-                Empresa
-                <input name="empresa" autocomplete="organization">
-              </label>
-              <label>
-                Email
-                <input type="email" name="email" autocomplete="email" required>
-              </label>
-              <label>
-                Servicio
-                <select name="servicio" required>
-                  <option value="">Selecciona una opción</option>
-                  <option>Contabilidad y tributario</option>
-                  <option>Recursos humanos</option>
-                  <option>Auditoría o revisión</option>
-                  <option>Backoffice integral</option>
-                  <option>Regularización puntual</option>
-                </select>
-              </label>
-              <label>
-                ¿Qué necesitas ordenar?
-                <textarea name="mensaje" required></textarea>
-              </label>
-              <button class="btn btn-primary" type="submit">Enviar solicitud</button>
-              <p class="form-note">Usaremos tus datos solo para responder esta solicitud y coordinar el diagnóstico.</p>
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_next" value="https://www.griffinasesores.cl/#contacto">
+            <input type="hidden" name="origen" value="Mini diagnostico web">
+            <div class="form-group">
+              <label for="rc-nombre">Nombre</label>
+              <input type="text" id="rc-nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
             </div>
+            <div class="form-group">
+              <label for="rc-email">Email</label>
+              <input type="email" id="rc-email" name="email" class="form-input" placeholder="nombre@empresa.cl" required>
+            </div>
+            <div class="form-group">
+              <label for="rc-area">Área a ordenar</label>
+              <select id="rc-area" name="area" class="form-input" required>
+                <option value="">Selecciona una opción</option>
+                <option>Contabilidad y tributario</option>
+                <option>Recursos humanos</option>
+                <option>Auditoría o revisión</option>
+                <option>Backoffice y gestión</option>
+                <option>Regularización de atrasos</option>
+              </select>
+            </div>
+            <label class="form-consent">
+              <input type="checkbox" name="consentimiento" value="si" required>
+              <span>Acepto que Griffin Asesores me contacte para responder esta solicitud.</span>
+            </label>
+            <button type="submit" class="btn btn-gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7Z"></path></svg>
+              Solicitar orientación
+            </button>
+            <p class="form-disclaimer">Sin spam. Usaremos tus datos solo para responder esta solicitud.</p>
           </form>
+        </div>
+        <div class="resource-card reveal reveal-delay-1">
+          <strong>Qué revisamos al inicio</strong>
+          <ul>
+            <li>Obligaciones y atrasos más urgentes</li>
+            <li>Volumen mensual de documentos</li>
+            <li>Riesgos laborales o tributarios visibles</li>
+            <li>Alcance recomendado para partir</li>
+          </ul>
+          <div class="resource-meta">
+            <span>Respuesta 24-48 horas</span>
+            <span>Próximos pasos claros</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contacto">
+      <div class="container cta-shell">
+        <div class="reveal">
+          <small>Hablemos de tu empresa</small>
+          <h2>Agenda tu diagnóstico inicial y salgamos del desorden con un plan claro.</h2>
+        </div>
+        <div class="cta-actions reveal reveal-delay-1">
+          <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
+          <a class="btn btn-dark" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="rules" aria-labelledby="rules-title">
+      <div class="container">
+        <h2 id="rules-title">Reglas comerciales</h2>
+        <div class="rules-grid">
+          <div class="rule-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg>
+            <p>Los honorarios se definen tras el diagnóstico inicial, según volumen, complejidad y alcance.</p>
+          </div>
+          <div class="rule-card reveal reveal-delay-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <p>Pagos mensuales se realizan por adelantado.</p>
+          </div>
+          <div class="rule-card reveal reveal-delay-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <p>Meses atrasados y rectificatorias se cotizan como proyectos aparte.</p>
+          </div>
+          <div class="rule-card reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <p>El servicio comienza con información y accesos mínimos entregados por la empresa.</p>
+          </div>
+          <div class="rule-card reveal reveal-delay-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <p>Los plazos dependen de la calidad y oportunidad de la documentación recibida.</p>
+          </div>
+          <div class="rule-card reveal reveal-delay-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+            <p>La confidencialidad de la información es parte central del trabajo.</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-row">
-      <span>© 2026 Griffin Asesores. Región de Coquimbo, Chile.</span>
-      <span>Contabilidad · RRHH · Auditorías · Backoffice</span>
+    <div class="container footer-main">
+      <a class="brand" href="#inicio">
+        <img src="assets/logo-completo.png" alt="Griffin Asesores">
+        <span><strong>Griffin</strong><strong>Asesores</strong><span>Contabilidad · RRHH · Auditoría</span></span>
+      </a>
+      <div class="footer-info"><strong>Correo</strong><span>contacto@griffinasesores.cl</span></div>
+      <div class="footer-info"><strong>Ubicación</strong><span>Coquimbo, Chile</span></div>
+      <div class="footer-info"><strong>Atención online</strong><span>Consultoría segura y cercana en todo Chile.</span></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-row">
+        <span>© 2026 Griffin Asesores. Todos los derechos reservados.</span>
+        <span>Confianza · Precisión · Crecimiento</span>
+      </div>
     </div>
   </footer>
 
+  <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer" class="float-badge" aria-label="WhatsApp Griffin Asesores">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    Escríbenos por WhatsApp
+  </a>
+
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
   <script>
+    // Mobile menu
     const toggle = document.querySelector(".menu-toggle");
     const panel = document.querySelector("#mobile-panel");
-    const links = panel.querySelectorAll("a");
-
     toggle.addEventListener("click", () => {
-      const isOpen = panel.classList.toggle("open");
-      document.body.classList.toggle("menu-open", isOpen);
-      toggle.setAttribute("aria-expanded", String(isOpen));
+      const open = panel.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
     });
-
-    links.forEach((link) => {
+    panel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         panel.classList.remove("open");
-        document.body.classList.remove("menu-open");
         toggle.setAttribute("aria-expanded", "false");
       });
     });
+
+    // Header scroll effect + progress bar
+    const header = document.getElementById('site-header');
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset;
+      header.classList.toggle('scrolled', y > 40);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (y / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    }, { passive: true });
+
+    // Parallax hero
+    const heroBg = document.getElementById('hero-bg');
+    window.addEventListener('scroll', () => {
+      const y = window.pageYOffset * 0.35;
+      heroBg.style.transform = `translateY(${y}px) scale(1.05)`;
+    }, { passive: true });
+
+    // Word reveal for H1
+    const h1 = document.getElementById('hero-title');
+    const words = h1.innerHTML.split(' ');
+    h1.innerHTML = words.map((w, i) => {
+      if (w.includes('<')) return w;
+      return `<span style="animation-delay: ${.4 + i * .06}s">${w}</span>`;
+    }).join(' ');
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.pageYOffset > 600);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+          openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          openItem.querySelector('.faq-answer').style.maxHeight = null;
+        });
+        // Open clicked if was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Mobile Herramientas accordion
+    document.querySelectorAll('.mobile-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const items = toggle.nextElementSibling;
+        const isOpen = items.classList.contains('open');
+        items.classList.toggle('open', !isOpen);
+        toggle.classList.toggle('open', !isOpen);
+      });
+    });
+
   </script>
 </body>
 </html>
