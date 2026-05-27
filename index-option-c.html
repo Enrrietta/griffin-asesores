@@ -983,6 +983,56 @@
     .sector-card:hover svg { transform: rotate(10deg) scale(1.1); }
     .sector-card p { color: #b8c8df; line-height: 1.62; font-size: .9rem; font-weight: 300; }
 
+    .sector-focus {
+      margin-top: 28px;
+      padding: 34px;
+      border: 1px solid rgba(175, 143, 41, .24);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 18px 50px rgba(4, 15, 37, .06);
+      display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(260px, .28fr);
+      gap: 28px;
+      align-items: center;
+    }
+    .sector-focus small {
+      display: inline-flex;
+      color: var(--old-gold);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .sector-focus h3 {
+      font-family: Cinzel, Georgia, serif;
+      color: var(--navy);
+      font-size: clamp(1.45rem, 2.3vw, 2rem);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .sector-focus p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+    .sector-focus-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      color: var(--navy);
+      font-size: .88rem;
+      font-weight: 700;
+    }
+    .sector-focus-list li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #f8f5ea;
+      border: 1px solid var(--line);
+    }
+
     .proof {
       background: var(--ivory);
       padding-top: 90px;
@@ -1218,6 +1268,53 @@
       width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(236,214,89,.05), transparent 70%);
       pointer-events: none;
+    }
+
+    .checklist-banner {
+      background: var(--cream);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 72px 0;
+    }
+    .checklist-shell {
+      display: grid;
+      grid-template-columns: minmax(0, .68fr) minmax(260px, .32fr);
+      gap: 32px;
+      align-items: center;
+      padding: 34px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(4,15,37,.98), rgba(15,38,70,.94)),
+        var(--navy);
+      color: var(--white);
+      border: 1px solid rgba(236,214,89,.18);
+      box-shadow: 0 24px 64px rgba(4,15,37,.16);
+    }
+    .checklist-shell small {
+      display: inline-flex;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .checklist-shell h2 {
+      font-family: Cinzel, Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.55rem);
+      line-height: 1.12;
+      margin-bottom: 14px;
+    }
+    .checklist-shell p {
+      color: #c8d4e6;
+      line-height: 1.7;
+      max-width: 760px;
+    }
+    .checklist-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
     }
 
     .resource-shell {
@@ -1609,11 +1706,12 @@
       .trust-item:nth-child(2) { border-right: 0; }
       .trust-item:nth-child(-n + 2) { border-bottom: 1px solid var(--line); }
       .service-grid { grid-template-columns: 1fr; }
-      .fit-shell, .sector-grid, .proof-grid, .blog-grid, .faq-shell, .resource-shell, .cta-shell, .footer-main, .rules-grid { grid-template-columns: 1fr; }
+      .fit-shell, .sector-grid, .proof-grid, .blog-grid, .faq-shell, .resource-shell, .cta-shell, .footer-main, .rules-grid, .sector-focus, .checklist-shell { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .proof-card { border-right: 0; border-bottom: 1px solid var(--line); }
       .proof-card:last-child { border-bottom: 0; }
       .cta-actions { justify-content: flex-start; }
+      .checklist-actions { justify-content: flex-start; }
       .resource-shell { padding: 36px; }
     }
 
@@ -1635,6 +1733,7 @@
       .trust-item:last-child { border-bottom: 0; }
       .service-card { min-height: 0; padding: 28px; }
       .resource-shell { padding: 26px; }
+      .sector-focus, .checklist-shell { padding: 26px; }
       .rules-grid { grid-template-columns: 1fr; }
       .cta-actions .btn { width: 100%; }
       .float-badge { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
@@ -1716,13 +1815,13 @@
         <div class="hero-content">
           <div class="eyebrow reveal">Contabilidad, RRHH y auditoría para pymes</div>
           <h1 id="hero-title" class="reveal reveal-delay-1">Ordenamos tu empresa para que decidas con claridad y cumplas <span class="accent">sin sorpresas.</span></h1>
-          <p class="hero-lead reveal reveal-delay-2">Acompañamiento contable, laboral y administrativo con diagnóstico inicial, prioridades claras y seguimiento mensual. Trabajamos contigo para bajar riesgos, ordenar documentos y convertir los números en decisiones.</p>
+          <p class="hero-lead reveal reveal-delay-2">Acompañamiento contable, laboral y administrativo con una reunión inicial de 20 minutos, prioridades claras y seguimiento mensual. También apoyamos a negocios pequeños que necesitan ordenar su contabilidad, pagos y obligaciones sin contratar personal administrativo interno.</p>
           <div class="hero-actions reveal reveal-delay-3">
-            <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico por WhatsApp</a>
+            <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n%20inicial%20de%2020%20minutos." target="_blank" rel="noopener noreferrer">Agendar reunión de 20 minutos</a>
             <a class="btn btn-dark" href="#servicios">Revisar servicios</a>
           </div>
           <ul class="hero-highlights reveal reveal-delay-4" aria-label="Puntos clave">
-            <li>Diagnóstico inicial sin costo</li>
+            <li>Reunión inicial de 20 minutos</li>
             <li>Respuesta en 24-48 horas</li>
             <li>Propuesta con alcance claro</li>
           </ul>
@@ -1750,7 +1849,7 @@
         </div>
         <div class="trust-item reveal reveal-delay-3">
           <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></div>
-          <div><strong>Confidencialidad y orden</strong><span>Tu información siempre protegida.</span></div>
+          <div><strong>Confidencialidad y orden</strong><span>Protocolos internos de acceso restringido y resguardo documental.</span></div>
         </div>
       </div>
     </div>
@@ -1762,7 +1861,7 @@
         <div class="section-title reveal">
           <small>Servicios</small>
           <h2>Servicios para bajar riesgo, recuperar orden y operar mejor.</h2>
-          <p>Partimos con un diagnóstico y definimos un alcance realista. No se trata de venderte todo: se trata de resolver primero lo que más exposición, atraso o desorden genera.</p>
+          <p>Partimos con una reunión inicial de 20 minutos y definimos un alcance realista. No se trata de venderte todo: se trata de resolver primero lo que más exposición, atraso o desorden genera.</p>
         </div>
         <div class="service-grid">
           <article class="service-card reveal">
@@ -1844,8 +1943,21 @@
         </div>
         <div class="sector-grid">
           <article class="sector-card reveal"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V9l7-5 7 5v12"></path><path d="M9 21v-7h6v7"></path></svg>Industria y minería</h3><p>Entendemos tus ciclos, costos y exigencias de cumplimiento.</p></article>
-          <article class="sector-card reveal reveal-delay-1"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>Comercio y alimentos</h3><p>Control de márgenes, inventarios y cumplimiento sanitario y tributario.</p></article>
+          <article class="sector-card reveal reveal-delay-1"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>Comercio local</h3><p>Ventas, compras, proveedores, pagos y cumplimiento mensual sin sobredimensionar el servicio.</p></article>
           <article class="sector-card reveal reveal-delay-2"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>Tecnología y servicios</h3><p>Escalabilidad, procesos ágiles y finanzas que impulsan tu crecimiento.</p></article>
+        </div>
+        <div class="sector-focus reveal">
+          <div>
+            <small>Foco pyme operativa</small>
+            <h3>Comercios, distribuidoras y negocios con proveedores.</h3>
+            <p>Para comercios, distribuidoras, verdulerías, florerías, tiendas de mascotas, mariscos y negocios con movimiento diario, ayudamos a ordenar ventas, compras, F29, pagos, remuneraciones y flujo mensual.</p>
+          </div>
+          <ul class="sector-focus-list" aria-label="Áreas que ordenamos en comercios">
+            <li>Ventas y compras mensuales</li>
+            <li>Pagos a proveedores</li>
+            <li>F29 y obligaciones</li>
+            <li>Remuneraciones y caja</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -1935,7 +2047,7 @@
         <div class="faq-list">
           <div class="faq-item reveal reveal-delay-1">
             <button class="faq-question" aria-expanded="false">¿Cuánto demora el diagnóstico inicial?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">La reunión inicial dura cerca de 10 minutos. Luego revisamos el alcance y, en 3 a 5 días hábiles, te entregamos una propuesta ajustada a tu empresa.</div></div>
+            <div class="faq-answer"><div class="faq-answer-inner">La reunión inicial dura cerca de 20 minutos. Luego revisamos el alcance y, en 3 a 5 días hábiles, te entregamos una propuesta ajustada a tu empresa.</div></div>
           </div>
           <div class="faq-item reveal reveal-delay-2">
             <button class="faq-question" aria-expanded="false">¿Por qué no publican precios fijos?</button>
@@ -1945,6 +2057,20 @@
             <button class="faq-question" aria-expanded="false">¿También ayudan si tengo impuestos o contabilidad atrasada?</button>
             <div class="faq-answer"><div class="faq-answer-inner">Sí. Evaluamos el atraso y proponemos un plan de regularización como proyecto aparte, con plazo, prioridades y honorarios claros.</div></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="checklist-banner" id="checklist-laboral">
+      <div class="container checklist-shell">
+        <div>
+          <small>Recurso gratuito</small>
+          <h2>Checklist laboral para evitar multas.</h2>
+          <p>Solicita gratis el checklist de errores frecuentes ante la Dirección del Trabajo. Es útil para revisar contratos, jornadas, liquidaciones, cotizaciones y documentos clave antes de una fiscalización.</p>
+        </div>
+        <div class="checklist-actions">
+          <a class="btn btn-gold" href="mailto:contacto@griffinasesores.cl?subject=Solicitar%20checklist%20laboral%20gratuito&body=Hola%20Griffin%20Asesores%2C%20quiero%20recibir%20el%20checklist%20laboral%20gratuito.">Solicitar checklist gratis</a>
+          <a class="btn btn-dark" href="blog.html">Ver artículos</a>
         </div>
       </div>
     </section>
@@ -2011,7 +2137,7 @@
       <div class="container cta-shell">
         <div class="reveal">
           <small>Hablemos de tu empresa</small>
-          <h2>Agenda tu diagnóstico inicial y salgamos del desorden con un plan claro.</h2>
+          <h2>Agenda tu reunión inicial de 20 minutos y salgamos del desorden con un plan claro.</h2>
         </div>
         <div class="cta-actions reveal reveal-delay-1">
           <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
