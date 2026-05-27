@@ -2113,14 +2113,6 @@
       heroBg.style.transform = `translateY(${y}px) scale(1.05)`;
     }, { passive: true });
 
-    // Word reveal for H1
-    const h1 = document.getElementById('hero-title');
-    const words = h1.innerHTML.split(' ');
-    h1.innerHTML = words.map((w, i) => {
-      if (w.includes('<')) return w;
-      return `<span style="animation-delay: ${.4 + i * .06}s">${w}</span>`;
-    }).join(' ');
-
     // Scroll reveal
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
