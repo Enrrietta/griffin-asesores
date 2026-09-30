@@ -82,11 +82,19 @@ async function main() {
 
   /* SIS */
   const tSIS = tablaCon(tablas, '(SIS)');
-  const sis = pct(extraer(tSIS, /([\d.,]+)\s*%/, 'SIS')[1]);
+  const sis = pct(extraer(tSIS, /\(SIS\)[^\d%]*([\d.,]+)\s*%/, 'SIS')[1]);
 
   /* Seguro Social (reforma previsional) */
   const tSS = tablaCon(tablas, 'SEGURO SOCIAL');
-  const seguroSocial = pct(extraer(tSS, /([\d.,]+)\s*%/, 'Seguro Social')[1]);
+  // PREVIRED ahora reúne Seguro Social y SIS en una misma tabla.
+  // El SIS se calcula por separado: sumar solo los otros componentes.
+  const componentesSS = [...tSS.matchAll(/(?:Rentabilidad Protegida|Expectativa de Vida)\s+([\d.,]+)\s*%/gi)];
+  if (componentesSS.length && componentesSS.length !== 2) {
+    throw new Error('No se pudieron leer todos los componentes del Seguro Social');
+  }
+  const seguroSocial = componentesSS.length
+    ? Math.round(componentesSS.reduce((total, m) => total + pct(m[1]), 0) * 100) / 100
+    : pct(extraer(tSS, /^SEGURO SOCIAL\s+([\d.,]+)\s*%/i, 'Seguro Social')[1]);
 
   /* Renta minima imponible */
   const tRM = tablaCon(tablas, 'RENTAS M');
