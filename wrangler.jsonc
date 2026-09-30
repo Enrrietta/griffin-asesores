@@ -1,0 +1,12 @@
+{
+  // Configuración del despliegue de griffinasesores.cl en Cloudflare.
+  // El Worker "griffin" sirve solo archivos estáticos desde ./dist, que el
+  // flujo de GitHub Actions arma con las páginas y la carpeta assets.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "griffin",
+  "account_id": "93925e7a4b75d109ae755398989ab320",
+  "compatibility_date": "2026-04-20",
+  "assets": {
+    "directory": "./dist"
+  }
+}

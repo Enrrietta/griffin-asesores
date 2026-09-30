@@ -1,0 +1,79 @@
+name: Desplegar sitio en Cloudflare
+
+# Publica griffinasesores.cl en Cloudflare.
+#  - Se ejecuta solo cuando alguien sube cambios al sitio en main.
+#  - El flujo de indicadores lo llama despues de guardar datos nuevos
+#    (los commits del bot no disparan otros flujos por si solos).
+#  - Tambien se puede lanzar a mano desde la pestana Actions.
+# Requiere el secreto CLOUDFLARE_API_TOKEN en Settings > Secrets and variables > Actions.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'cuadra.html'
+      - 'herramientas.html'
+      - 'blog.html'
+      - 'assets/**'
+      - 'wrangler.jsonc'
+      - '.github/workflows/desplegar.yml'
+  workflow_dispatch: {}
+  workflow_call:
+    secrets:
+      CLOUDFLARE_API_TOKEN:
+        required: false
+
+# Un despliegue a la vez; si llega otro, espera al que esta en curso.
+concurrency:
+  group: desplegar-cloudflare
+  cancel-in-progress: false
+
+jobs:
+  desplegar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - name: Comprobar el token de Cloudflare
+        id: token
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::Falta el secreto CLOUDFLARE_API_TOKEN. No se despliega."
+            echo "listo=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "listo=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Descargar el repositorio (ultimo main)
+        if: steps.token.outputs.listo == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Armar la carpeta dist con el sitio
+        if: steps.token.outputs.listo == 'true'
+        run: |
+          mkdir dist
+          cp index.html cuadra.html herramientas.html blog.html dist/
+          cp -r assets dist/assets
+          find dist -type f | sort
+
+      - name: Desplegar en Cloudflare
+        if: steps.token.outputs.listo == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: deploy
+
+      - name: Comprobar que el sitio responde
+        if: steps.token.outputs.listo == 'true'
+        run: |
+          sleep 10
+          for ruta in "" "cuadra.html" "herramientas.html" "assets/indicadores.json"; do
+            codigo=$(curl -sL -o /dev/null -w '%{http_code}' "https://www.griffinasesores.cl/$ruta")
+            echo "/$ruta -> $codigo"
+            [ "$codigo" = "200" ] || { echo "::error::/$ruta respondio $codigo"; exit 1; }
+          done

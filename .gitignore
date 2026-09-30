@@ -8,3 +8,7 @@ desktop.ini
 
 # Dependencias (por si se agregan en el futuro)
 node_modules/
+
+# Carpeta generada por el despliegue en Cloudflare
+dist/
+.wrangler/
