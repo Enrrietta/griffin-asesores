@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Griffin Asesores | Contabilidad con tecnología para pymes</title>
-  <meta name="description" content="Griffin Asesores ordena la contabilidad, RRHH y gestión de pymes en Coquimbo y todo Chile, con tecnología propia como Cuadra, el asistente contable en Telegram.">
-  <link rel="preload" as="image" href="assets/hero/hero-inicio.webp">
+  <title>Cuadra | Tu asistente contable en Telegram | Griffin Asesores</title>
+  <meta name="description" content="Cuadra es el asistente contable en Telegram de Griffin Asesores: sube tu cartola y tus compras y recibe conciliación y asientos propuestos. Piloto 2026.">
   <link rel="icon" href="/assets/logo/favicon/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/logo/favicon/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/assets/logo/favicon/apple-touch-icon.png">
@@ -13,16 +12,16 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CL">
   <meta property="og:site_name" content="Griffin Asesores">
-  <meta property="og:title" content="Griffin Asesores | Contabilidad con tecnología para pymes">
-  <meta property="og:description" content="Griffin Asesores ordena la contabilidad, RRHH y gestión de pymes en Coquimbo y todo Chile, con tecnología propia como Cuadra, el asistente contable en Telegram.">
-  <meta property="og:url" content="https://www.griffinasesores.cl/">
+  <meta property="og:title" content="Cuadra | Tu asistente contable en Telegram | Griffin Asesores">
+  <meta property="og:description" content="Cuadra es el asistente contable en Telegram de Griffin Asesores: sube tu cartola y tus compras y recibe conciliación y asientos propuestos. Piloto 2026.">
+  <meta property="og:url" content="https://www.griffinasesores.cl/cuadra.html">
   <meta property="og:image" content="https://www.griffinasesores.cl/assets/logo/png/og-image-1200x630.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #14171C;
@@ -1808,9 +1807,6 @@
       letter-spacing: .1em;
       text-transform: uppercase;
     }
-    .tech-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-    .tech-head .tech-mark { width: 44px; height: 44px; flex-shrink: 0; }
-    .tech-head h3 { margin: 0; }
     .tech-card h3 { color: var(--white); font-family: Cinzel, Georgia, serif; font-size: 1.5rem; margin-bottom: 12px; }
     .tech-card p { color: var(--ice-4); font-weight: 300; line-height: 1.7; flex-grow: 1; }
     .tech-link { margin-top: 24px; color: var(--gold); font-weight: 600; }
@@ -1866,6 +1862,89 @@
       .testimonial-card { padding: 30px 24px; }
     }
 
+    .cuadra-hero { padding: 0; }
+    .cuadra-logo { display: block; height: 56px; width: auto; margin-bottom: 28px; }
+    .cuadra-hero .hero-content { max-width: none; }
+    .cuadra-hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: center; }
+    .cuadra-hero .eyebrow { color: var(--cuadra); }
+    .cuadra-hero h1 .accent { color: var(--cuadra); }
+    .demo-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+      border: 1px dashed rgba(var(--gold-rgb), .5);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.04);
+      color: var(--ice-4);
+      font-size: 1rem;
+      text-align: center;
+      padding: 24px;
+    }
+    .demo-slot img { max-width: 100%; border-radius: var(--radius); display: block; }
+
+    .cuadra-section { padding: 96px 0; }
+    .cuadra-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; counter-reset: paso; }
+    .cuadra-step {
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: 0 10px 30px rgba(var(--navy-rgb), .04);
+    }
+    .cuadra-step b {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      font-family: Cinzel, Georgia, serif;
+    }
+    .cuadra-step h3 { color: var(--navy); font-family: Cinzel, Georgia, serif; font-size: 1.15rem; margin-bottom: 10px; }
+    .cuadra-step p { color: var(--muted); font-weight: 300; line-height: 1.65; }
+
+    .cuadra-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .cuadra-item {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .cuadra-item strong { display: block; color: var(--navy); font-family: Cinzel, Georgia, serif; font-size: 1.05rem; margin-bottom: 8px; }
+    .cuadra-item p { color: var(--muted); font-weight: 300; line-height: 1.65; }
+    .cuadra-dark { background: var(--navy); color: var(--white); }
+    .cuadra-dark .section-title h2 { color: var(--white); }
+    .cuadra-dark .section-title small { color: var(--gold); }
+    .cuadra-dark .cuadra-item { background: rgba(255,255,255,.04); border-color: rgba(var(--gold-rgb), .22); }
+    .cuadra-dark .cuadra-item strong { color: var(--gold); }
+    .cuadra-dark .cuadra-item p { color: var(--ice-4); }
+
+    .cuadra-security {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--old-gold);
+      border-radius: var(--radius);
+      background: var(--white);
+    }
+    .cuadra-security strong { display: block; color: var(--navy); font-family: Cinzel, Georgia, serif; font-size: 1.3rem; margin-bottom: 12px; }
+    .cuadra-security p { color: var(--muted); line-height: 1.75; font-weight: 300; }
+    .cuadra-note { margin-top: 18px; font-size: .85rem; color: var(--muted); }
+
+    @media (max-width: 1060px) {
+      .cuadra-hero-grid, .cuadra-steps, .cuadra-list { grid-template-columns: 1fr; }
+      .cuadra-hero .demo-slot { width: 100%; max-width: 420px; margin: 0 auto; }
+      .demo-slot { min-height: 260px; }
+      .cuadra-section { padding: 72px 0; }
+    }
+    @media (max-width: 640px) {
+      .cuadra-security { padding: 28px 22px; }
+    }
+
     /* Contraste: etiquetas doradas sobre fondo claro y botón de WhatsApp */
     .resource small, .faq small { color: var(--old-gold); }
     .resource small::before, .faq small::before { background: var(--old-gold); }
@@ -1886,103 +1965,48 @@
     .tech-card.tech-cuadra h3, .tech-card.tech-cuadra .tech-link { color: var(--cuadra); }
     .tech-card.tech-cuadra:hover { border-color: var(--cuadra); }
 
-    /* Portada de inicio (hero-inicio.webp): más suave y más corta */
-    .hero {
-      position: relative;
-      isolation: isolate;
+    /* Portada de Cuadra (hero-cuadra.svg) */
+    .cuadra-hero {
       background-color: #14171C;
-      background-image: none;
-      min-height: clamp(560px, 78vh, 760px);
-      align-items: center;
-      padding: 0;
+      background-image: url("assets/hero/hero-cuadra.svg");
+      background-size: cover;
+      background-position: right center;
+      background-repeat: no-repeat;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: url("assets/hero/hero-inicio.webp") right center / cover no-repeat;
-      filter: saturate(.75) brightness(.62);
+    .cuadra-hero .hero-bg, .cuadra-hero .hero-mesh { display: none; }
+    .cuadra-hero .eyebrow:before { background: var(--cuadra); box-shadow: 0 0 14px rgba(79, 209, 165, .55); }
+    .cuadra-hero .btn-gold { background: var(--cuadra); color: var(--grafito-900); box-shadow: 0 10px 28px rgba(79, 209, 165, .2); }
+    .cuadra-hero .container { width: min(100% - 64px, 1500px); }
+    .cuadra-hero-grid { grid-template-columns: minmax(0, 1fr) auto; }
+    .cuadra-hero .demo-slot { width: clamp(300px, 24vw, 420px); margin-left: auto; }
+    @media (max-width: 1060px) {
+      .cuadra-hero .cuadra-hero-grid { grid-template-columns: 1fr; }
+      .cuadra-hero .demo-slot { margin: 0 auto; width: 100%; max-width: 420px; }
     }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(90deg, rgba(20,23,28,.55) 0%, rgba(20,23,28,0) 60%);
-    }
-    .hero-bg, .hero-mesh { display: none; }
-    .hero-content { width: min(860px, 100%); padding: 72px 0 84px; }
-    h1 { max-width: 860px; font-size: clamp(2rem, 3.6vw, 3.25rem); }
-    h1 .accent::after { display: none; }
-    .btn-gold { background: var(--oro); }
+    .cuadra-hero h1 .accent::after { display: none; }
     @media (max-width: 768px) {
-      .hero { min-height: auto; }
-      .hero::before {
-        background: url("assets/hero/hero-inicio.webp") 78% bottom / auto 400px no-repeat;
+      .cuadra-hero { background-image: none; }
+      .cuadra-hero .hero-content { padding-bottom: 0; }
+      .cuadra-hero h1 { font-size: clamp(1.6rem, 7.6vw, 2.4rem); }
+      .cuadra-hero .cuadra-hero-grid { gap: 0; }
+      .cuadra-hero .demo-wrap { position: relative; isolation: isolate; margin: 0 -14px; padding: 250px 14px 56px; }
+      .cuadra-hero .demo-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: url("assets/hero/hero-cuadra.svg") 70% top / auto 560px no-repeat;
       }
-      .hero::after {
-        background: linear-gradient(180deg, #14171C calc(100% - 400px), rgba(20,23,28,0) calc(100% - 270px));
+      .cuadra-hero .demo-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(180deg, #14171C 0%, rgba(20,23,28,0) 110px);
       }
-      .hero-content { padding-bottom: 420px; }
-      h1 { font-size: clamp(1.4rem, 6.2vw, 2.3rem); letter-spacing: 0; }
+      .cuadra-hero .demo-slot { margin: 0 auto; width: 100%; max-width: 420px; min-height: 240px; }
     }
 
-    /* Quiénes somos */
-    .about { background: var(--cream); padding: 96px 0; border-bottom: 1px solid var(--line); }
-    .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: center; }
-    .about-photo { margin: 0; }
-    .about-photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      border-radius: 24px;
-      border: 1px solid var(--line);
-    }
-    .about-photo figcaption { margin-top: 16px; display: grid; gap: 2px; }
-    .about-photo figcaption strong { font-family: Manrope, Inter, sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); }
-    .about-photo figcaption span { color: var(--gray); font-size: .9rem; }
-    .about-text small {
-      display: block;
-      margin-bottom: 14px;
-      color: var(--old-gold);
-      font-size: .74rem;
-      font-weight: 800;
-      letter-spacing: .22em;
-    }
-    .about-text h2 {
-      font-family: Cinzel, Georgia, serif;
-      font-size: clamp(1.7rem, 3vw, 2.5rem);
-      line-height: 1.15;
-      color: var(--navy);
-      margin-bottom: 22px;
-    }
-    .about-text p { color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 16px; }
-    .about-text .about-note {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 26px 0 0;
-      font-size: .9rem;
-      color: var(--gray);
-    }
-    .about-note img { width: 28px; height: 28px; flex-shrink: 0; }
-    .about-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
-    .about-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
-    .about-card h3 { font-family: Manrope, Inter, sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
-    .about-card p { color: var(--muted); font-size: .92rem; line-height: 1.6; font-weight: 300; }
-    @media (max-width: 1060px) {
-      .about { padding: 72px 0; }
-      .about-grid { gap: 40px; }
-    }
-    @media (max-width: 820px) {
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .about-cards { grid-template-columns: 1fr; }
-      .about-photo img { aspect-ratio: 4 / 3; object-position: center 25%; max-height: 420px; }
-    }
-    @media (max-width: 768px) { h1 { font-size: clamp(1.75rem, 7.6vw, 2.1rem); text-wrap: balance; } }
 
     /* ===== Ajustes móvil (768 px o menos) ===== */
     @media (max-width: 768px) {
@@ -2002,15 +2026,15 @@
     <div class="progress-bar" id="progress-bar"></div>
     <div class="container">
       <nav class="nav" aria-label="Navegacion principal">
-        <a class="brand" href="#inicio" aria-label="Inicio Griffin Asesores">
+        <a class="brand" href="index.html" aria-label="Inicio Griffin Asesores">
           <img class="brand-logo" src="assets/logo/svg/logo-horizontal-sin-tagline-oscuro.svg" alt="Griffin Asesores" width="150" height="44">
         </a>
         <div class="nav-links">
-          <a href="#quienes-somos">Quiénes somos</a>
-          <a href="#servicios">Servicios</a>
-          <a href="cuadra.html">Cuadra</a>
-          <a href="#sectores">Sectores</a>
-          <a href="#faq">FAQ</a>
+          <a href="index.html#quienes-somos">Quiénes somos</a>
+          <a href="index.html#servicios">Servicios</a>
+          <a href="cuadra.html" aria-current="page">Cuadra</a>
+          <a href="index.html#sectores">Sectores</a>
+          <a href="index.html#faq">FAQ</a>
           <div class="nav-dropdown">
             <a href="herramientas.html">Herramientas
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
@@ -2025,7 +2049,7 @@
               <a href="herramientas.html#conversor">Conversor UF / UTM</a>
             </div>
           </div>
-          <a href="#contacto">Contacto</a>
+          <a href="index.html#contacto">Contacto</a>
         </div>
         <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg>
@@ -2037,11 +2061,11 @@
       </nav>
       <div class="mobile-panel" id="mobile-panel">
         <div class="mobile-panel-inner">
-          <a href="#quienes-somos">Quiénes somos</a>
-          <a href="#servicios">Servicios</a>
-          <a href="cuadra.html">Cuadra</a>
-          <a href="#sectores">Sectores</a>
-          <a href="#faq">FAQ</a>
+          <a href="index.html#quienes-somos">Quiénes somos</a>
+          <a href="index.html#servicios">Servicios</a>
+          <a href="cuadra.html" aria-current="page">Cuadra</a>
+          <a href="index.html#sectores">Sectores</a>
+          <a href="index.html#faq">FAQ</a>
           <a class="mobile-toggle" href="javascript:void(0)">Herramientas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></a>
           <div class="mobile-items">
             <a href="herramientas.html#imponible">Líquido → Imponible</a>
@@ -2052,7 +2076,7 @@
             <a href="herramientas.html#independiente">Cotizaciones del independiente</a>
             <a href="herramientas.html#conversor">Conversor UF / UTM</a>
           </div>
-          <a href="#contacto">Contacto</a>
+          <a href="index.html#contacto">Contacto</a>
           <a href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">Agendar diagnóstico</a>
         </div>
       </div>
@@ -2060,287 +2084,82 @@
   </header>
 
   <main id="inicio">
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero cuadra-hero" aria-labelledby="hero-title">
       <div class="hero-bg" id="hero-bg"></div>
       <div class="hero-mesh"></div>
       <div class="hero-line"></div>
       <div class="container">
-        <div class="hero-content">
-          <div class="eyebrow reveal">Contabilidad con tecnología para pymes</div>
-          <h1 id="hero-title" class="reveal reveal-delay-1">Ordenamos tu empresa para que decidas con claridad y <span class="accent">cumplas sin sorpresas.</span></h1>
-          <p class="hero-lead reveal reveal-delay-2">Acompañamiento contable, laboral y administrativo con una reunión inicial de 20 minutos, prioridades claras y seguimiento mensual.</p>
-          <div class="hero-actions reveal reveal-delay-3">
-            <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n%20inicial%20de%2020%20minutos." target="_blank" rel="noopener noreferrer">Agendar reunión de 20 minutos</a>
-            <a class="btn btn-dark" href="#servicios">Revisar servicios</a>
-          </div>
-          <p class="hero-cuadra reveal reveal-delay-3">Nuevo: <strong>Cuadra</strong>, tu asistente contable en Telegram. <a href="cuadra.html">Conoce el piloto <span aria-hidden="true">→</span></a></p>
-        </div>
-      </div>
-    </section>
-
-    <div class="trust-strip" id="por-que-griffin">
-      <div class="container trust-grid">
-        <div class="trust-item reveal">
-          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div>
-          <div><strong>Respuesta 24-48 horas</strong><span>Te damos próximos pasos concretos desde el primer contacto.</span></div>
-        </div>
-        <div class="trust-item reveal reveal-delay-1">
-          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
-          <div><strong>Coquimbo + online</strong><span>Cercanía local, cobertura nacional.</span></div>
-        </div>
-        <div class="trust-item reveal reveal-delay-2">
-          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 15 8l6 .9-4.5 4.4 1.1 6.2L12 16.5 6.4 19.5l1.1-6.2L3 8.9 9 8l3-6Z"></path></svg></div>
-          <div><strong>Diagnóstico sin costo</strong><span>Revisamos tu realidad antes de cotizar.</span></div>
-        </div>
-        <div class="trust-item reveal reveal-delay-3">
-          <div class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></div>
-          <div><strong>Confidencialidad y orden</strong><span>Protocolos internos de acceso restringido y resguardo documental.</span></div>
-        </div>
-      </div>
-    </div>
-
-    <section class="about" id="quienes-somos">
-      <div class="container">
-        <div class="about-grid">
-          <figure class="about-photo reveal">
-            <picture>
-              <source srcset="assets/img/equipo-katerine.webp" type="image/webp">
-              <img src="assets/img/equipo-katerine.jpg" alt="Katerine Rozas, fundadora de Griffin Asesores." width="1122" height="1402" loading="lazy">
-            </picture>
-            <figcaption><strong>Katerine Rozas</strong><span>Fundadora</span></figcaption>
-          </figure>
-          <div class="about-text reveal reveal-delay-1">
-            <small>QUIÉNES SOMOS</small>
-            <h2>Una firma nueva, con criterio contable y tecnología propia.</h2>
-            <p>Griffin Asesores nació en Coquimbo en enero de 2026 para que las pymes ordenen su contabilidad, sus remuneraciones y sus obligaciones sin depender de la urgencia.</p>
-            <p>La lidera Katerine Rozas, ingeniera de ejecución en administración y estudiante de Contador Auditor, con experiencia en la contabilidad y los recursos humanos de una empresa de 70 personas. Cuenta con el respaldo de una contadora con más de 30 años de trayectoria.</p>
-            <p>Combinamos asesoría con tecnología propia: un ERP conectado al SII, calculadoras gratuitas y Cuadra, nuestro asistente contable en Telegram (en piloto).</p>
-            <p class="about-note"><img src="assets/logo/favicon/favicon.svg" alt="" width="28" height="28"><em>El grifo, mitad águila y mitad león, simboliza vigilancia y fortaleza: lo que esperamos de quien cuida tus números.</em></p>
-          </div>
-        </div>
-        <div class="about-cards">
-          <article class="about-card reveal"><h3>Desde 2026</h3><p>Empresa formalizada, con base en Coquimbo y atención online en todo Chile.</p></article>
-          <article class="about-card reveal reveal-delay-1"><h3>Tres áreas</h3><p>Contabilidad y tributaria, RRHH y remuneraciones, tecnología y automatización.</p></article>
-          <article class="about-card reveal reveal-delay-2"><h3>Tecnología propia</h3><p>ERP conectado al SII, calculadoras gratuitas y Cuadra (piloto).</p></article>
-        </div>
-      </div>
-    </section>
-
-    <hr class="section-divider reveal">
-
-    <section class="services" id="servicios">
-      <div class="container">
-        <div class="section-title reveal">
-          <small>Servicios</small>
-          <h2>Servicios para bajar riesgo, recuperar orden y operar mejor.</h2>
-          <p>Partimos con una reunión inicial de 20 minutos y definimos un alcance realista. No se trata de venderte todo: se trata de resolver primero lo que más exposición, atraso o desorden genera.</p>
-        </div>
-        <div class="service-grid">
-          <article class="service-card reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"></path><path d="M8 7h8M8 11h8M8 15h4"></path></svg>
-            <h3>Contabilidad y cumplimiento tributario</h3>
-            <p>Gestión mensual para que tus declaraciones, respaldos y registros estén ordenados antes de que aparezca una urgencia.</p>
-            <ul>
-              <li>F29, libros y conciliaciones</li>
-              <li>Regularización de atrasos</li>
-              <li>Reportes simples para decidir</li>
-            </ul>
-          </article>
-          <article class="service-card reveal reveal-delay-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg>
-            <h3>Recursos humanos y respaldo laboral</h3>
-            <p>Remuneraciones, contratos y documentación laboral con foco en trazabilidad, cumplimiento y prevención de errores.</p>
-            <ul>
-              <li>Liquidaciones y Previred</li>
-              <li>Contratos, anexos y finiquitos</li>
-              <li>Preparación ante fiscalizaciones</li>
-            </ul>
-          </article>
-          <article class="service-card reveal reveal-delay-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path><path d="M9 10h.01M13 10h.01M9 14h6"></path></svg>
-            <h3>Revisión contable y de cumplimiento</h3>
-            <p>Una segunda mirada profesional sobre tus estados financieros, procesos y cumplimiento, con el respaldo de una contadora con más de 30 años de experiencia.</p>
-            <ul>
-              <li>Revisión contable y tributaria</li>
-              <li>Revisión de cumplimiento laboral</li>
-              <li>Apoyo en balances y antecedentes para inversionistas o bancos</li>
-            </ul>
-          </article>
-          <article class="service-card reveal reveal-delay-3">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1A2 2 0 1 1 4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1A2 2 0 1 1 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3h.1a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1A2 2 0 1 1 19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.6 1h.1a2 2 0 1 1 0 4H21a1.7 1.7 0 0 0-1.6 1Z"></path></svg>
-            <h3>Backoffice y gestión operativa</h3>
-            <p>Ordenamos procesos administrativos, tesorería e información financiera para que tomes decisiones con respaldo real.</p>
-            <ul>
-              <li>Tesorería y flujo de caja</li>
-              <li>Backoffice administrativo</li>
-              <li>Informes de gestión mensuales</li>
-            </ul>
-          </article>
-          <article class="service-card service-wide reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4M9 9l-2 2 2 2M15 9l2 2-2 2"></path></svg>
-            <div class="service-wide-body">
-              <h3>Tecnología y automatización para pymes</h3>
-              <p>Diseñamos soluciones a medida para ordenar tu operación: automatización de procesos contables y administrativos, planillas y tableros de gestión, e integraciones con la información del SII.</p>
-              <ul>
-                <li>Automatización de tareas repetitivas</li>
-                <li>Tableros e informes de gestión</li>
-                <li>Asesoría para elegir y usar herramientas digitales</li>
-              </ul>
-              <a class="btn btn-gold" href="#mini-diagnostico" data-area="Tecnología y automatización">Cuéntanos qué quieres automatizar</a>
+        <div class="cuadra-hero-grid">
+          <div class="hero-content">
+            <img class="cuadra-logo reveal" src="assets/logo/cuadra/svg/cuadra-logo-horizontal-oscuro.svg" alt="Cuadra" width="200" height="56">
+            <div class="eyebrow reveal">Piloto 2026</div>
+            <h1 id="hero-title" class="reveal reveal-delay-1">Tu contabilidad, <span class="accent">en una conversación.</span></h1>
+            <p class="hero-lead reveal reveal-delay-2">Sube tu cartola y tus compras a Telegram. En minutos sabes en qué gastas, qué está sin respaldo y tienes tus asientos listos.</p>
+            <div class="hero-actions reveal reveal-delay-3">
+              <a class="btn btn-gold" href="#lista-de-espera">Quiero probar Cuadra</a>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="tech" id="tecnologia">
-      <div class="container">
-        <div class="section-title reveal">
-          <small>Nuestra tecnología</small>
-          <h2>Tecnología propia al servicio de tu contabilidad.</h2>
-        </div>
-        <div class="tech-grid">
-          <a class="tech-card tech-cuadra reveal" href="cuadra.html">
-            <span class="tech-tag">En piloto</span>
-            <div class="tech-head"><img class="tech-mark" src="assets/logo/cuadra/svg/cuadra-marca-oscuro.svg" alt="" width="44" height="44"><h3>Cuadra</h3></div>
-            <p>Sube tu cartola y tus compras por Telegram y recibe tu conciliación y tus asientos en minutos. En piloto.</p>
-            <span class="tech-link">Conocer Cuadra <span aria-hidden="true">→</span></span>
-          </a>
-          <a class="tech-card reveal reveal-delay-1" href="herramientas.html">
-            <span class="tech-tag">Gratis</span>
-            <h3>Calculadoras gratuitas</h3>
-            <p>Líquido a imponible, finiquito, gratificación, boleta de honorarios, cotizaciones del independiente y conversor UF / UTM.</p>
-            <span class="tech-link">Usar calculadoras <span aria-hidden="true">→</span></span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="fit">
-      <div class="container fit-shell">
-        <div class="reveal">
-          <small>Cómo trabajamos</small>
-          <h2>Tu empresa no es una plantilla. Nuestros servicios tampoco.</h2>
-          <p>La mayoría de los problemas contables y laborales no aparecen de golpe: se acumulan por falta de rutinas, respaldos y responsables claros. Por eso evaluamos volumen, complejidad tributaria, equipo, documentos y nivel de orden actual.</p>
-          <p class="fit-quote">Primero ordenamos prioridades; después cotizamos el trabajo real.</p>
-        </div>
-        <div class="fit-steps" aria-label="Proceso de trabajo">
-          <div class="fit-step reveal reveal-delay-1">
-            <div class="fit-step-icon"><b>1</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l2 2 4-4"></path><path d="M8 3h8l2 3v15H6V6l2-3Z"></path><path d="M9 17h6"></path></svg></div>
-            <div><strong>Diagnóstico sin costo</strong><span>Revisamos tu realidad contable, laboral y tributaria antes de cotizar.</span></div>
           </div>
-          <div class="fit-step reveal reveal-delay-2">
-            <div class="fit-step-icon"><b>2</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"></path><path d="m8 8 2 2-2 2M14 8h2M14 12h2M8 16h8"></path></svg></div>
-            <div><strong>Propuesta con precio cerrado</strong><span>Definimos entregables, responsables y prioridades según tu etapa.</span></div>
-          </div>
-          <div class="fit-step reveal reveal-delay-3">
-            <div class="fit-step-icon"><b>3</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></div>
-            <div><strong>Ejecución con acompañamiento</strong><span>Implementamos rutinas para que el cumplimiento no dependa de urgencias.</span></div>
+          <div class="demo-wrap reveal reveal-delay-2">
+            <!-- Reemplazar por <img src="assets/cuadra-demo.gif" alt="Cuadra funcionando en Telegram con datos ficticios"> cuando exista el archivo -->
+            <div class="demo-slot" role="img" aria-label="Demostración de Cuadra próximamente">Demostración próximamente</div>
           </div>
         </div>
       </div>
     </section>
 
-    <hr class="section-divider reveal">
-
-    <section class="sectors" id="sectores">
+    <section class="cuadra-section" id="como-funciona" style="background: var(--ivory);">
       <div class="container">
         <div class="section-title reveal">
-          <small>Experiencia por sectores</small>
-          <h2>Entendemos tu industria, hablamos tu idioma.</h2>
+          <small>Cómo funciona</small>
+          <h2>Tres pasos, sin sistemas nuevos.</h2>
         </div>
-        <div class="sector-grid">
-          <article class="sector-card reveal"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 2-1.6L23 6H6"></path></svg>Comercio local</h3><p>Ventas, compras, proveedores, pagos y cumplimiento mensual sin sobredimensionar el servicio.</p></article>
-          <article class="sector-card reveal reveal-delay-1"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4"></path></svg>Tecnología y servicios</h3><p>Escalabilidad, procesos ágiles y finanzas que impulsan tu crecimiento.</p></article>
-          <article class="sector-card reveal reveal-delay-2"><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>Emprendimientos que parten</h3><p>Inicio de actividades, primeras contrataciones y orden contable desde el día uno, para crecer sin arrastrar atrasos.</p></article>
-        </div>
-        <div class="sector-focus reveal">
-          <div>
-            <small>Foco pyme operativa</small>
-            <h3>Comercios, distribuidoras y negocios con proveedores.</h3>
-            <p>Para comercios, distribuidoras, verdulerías, florerías, tiendas de mascotas, mariscos y negocios con movimiento diario, ayudamos a ordenar ventas, compras, F29, pagos, remuneraciones y flujo mensual.</p>
-          </div>
-          <ul class="sector-focus-list" aria-label="Áreas que ordenamos en comercios">
-            <li>Ventas y compras mensuales</li>
-            <li>Pagos a proveedores</li>
-            <li>F29 y obligaciones</li>
-            <li>Remuneraciones y caja</li>
-          </ul>
+        <div class="cuadra-steps">
+          <div class="cuadra-step reveal"><b>1</b><h3>Sube tu cartola.</h3><p>Descárgala de tu banco en Excel y envíala al chat.</p></div>
+          <div class="cuadra-step reveal reveal-delay-1"><b>2</b><h3>Suma tus compras.</h3><p>Agrega el Registro de Compras que descargas del SII.</p></div>
+          <div class="cuadra-step reveal reveal-delay-2"><b>3</b><h3>Recibe tu Excel.</h3><p>Cuadra concilia, clasifica y propone los asientos. Tú revisas y confirmas.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="proof">
+    <section class="cuadra-section" id="que-recibes" style="background: var(--cream);">
       <div class="container">
         <div class="section-title reveal">
-          <small>Lo que buscamos que sientas</small>
-          <h2>Seguridad, confianza y claridad desde el primer contacto.</h2>
-          <p>Queremos que entiendas qué está pasando en tu empresa, qué falta ordenar y cuál es el siguiente paso razonable.</p>
+          <small>Qué recibes</small>
+          <h2>Información ordenada, lista para revisar.</h2>
         </div>
-        <div class="proof-grid">
-          <article class="proof-card reveal">
-            <span class="proof-number">01</span>
-            <strong>Diagnóstico honesto</strong>
-            <p>Antes de proponer, revisamos tu situación real: obligaciones, documentos, atrasos, riesgos y capacidad operativa.</p>
-          </article>
-          <article class="proof-card reveal reveal-delay-1">
-            <span class="proof-number">02</span>
-            <strong>Comunicación simple</strong>
-            <p>Traducimos lo contable y laboral a decisiones concretas, sin tecnicismos innecesarios ni promesas infladas.</p>
-          </article>
-          <article class="proof-card reveal reveal-delay-2">
-            <span class="proof-number">03</span>
-            <strong>Acompañamiento mensual</strong>
-            <p>Ordenamos el trabajo recurrente con fechas, responsables y entregables para que no dependas de la memoria.</p>
-          </article>
+        <div class="cuadra-list">
+          <div class="cuadra-item reveal"><strong>Análisis de gastos</strong><p>Por categoría.</p></div>
+          <div class="cuadra-item reveal reveal-delay-1"><strong>Conciliación provisoria</strong><p>Qué pagos no tienen factura y qué facturas siguen impagas.</p></div>
+          <div class="cuadra-item reveal"><strong>Asientos contables propuestos</strong><p>Con libro diario, libro mayor y balance de comprobación.</p></div>
+          <div class="cuadra-item reveal reveal-delay-1"><strong>Reglas que aprenden de tu empresa</strong><p>Le dices una vez dónde va cada proveedor y lo recuerda.</p></div>
         </div>
       </div>
     </section>
 
-    <hr class="section-divider reveal">
-
-    <!-- Situations Section -->
-    <section class="testimonials">
+    <section class="cuadra-section cuadra-dark" id="por-que-cuadra">
       <div class="container">
         <div class="section-title reveal">
-          <small>Cuándo nos llaman</small>
-          <h2>Problemas concretos que ordenamos contigo.</h2>
-          <p>La asesoría funciona mejor cuando aterriza en situaciones reales: atrasos, fiscalizaciones, documentos dispersos o decisiones sin información confiable.</p>
+          <small>Por qué Cuadra</small>
+          <h2>Simple para ti, útil para tu contador.</h2>
         </div>
-        <div class="testimonials-grid">
-          <article class="testimonial-card reveal">
-            <span class="quote-mark">01</span>
-            <p>Tu contabilidad se fue atrasando, hay respaldos dispersos y necesitas saber qué está pendiente antes de que aparezca una multa o una urgencia bancaria.</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">C</div>
-              <div class="author-info">
-                <strong>Regularización contable</strong>
-                <span>Diagnóstico, prioridades y plan de cierre</span>
-              </div>
-            </div>
-          </article>
-          <article class="testimonial-card reveal reveal-delay-1">
-            <span class="quote-mark">02</span>
-            <p>Pagas remuneraciones, Previred o contratos con estrés cada mes y quieres una rutina laboral trazable, ordenada y preparada para fiscalizaciones.</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">R</div>
-              <div class="author-info">
-                <strong>RRHH y remuneraciones</strong>
-                <span>Liquidaciones, contratos y respaldos</span>
-              </div>
-            </div>
-          </article>
-          <article class="testimonial-card reveal reveal-delay-2">
-            <span class="quote-mark">03</span>
-            <p>Tienes movimientos, compras, cobros y pagos, pero no una mirada simple de caja, márgenes o pendientes para decidir con calma.</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">G</div>
-              <div class="author-info">
-                <strong>Gestión y backoffice</strong>
-                <span>Información útil para operar mejor</span>
-              </div>
-            </div>
-          </article>
+        <div class="cuadra-list">
+          <div class="cuadra-item reveal"><strong>Sin sistemas nuevos.</strong><p>Todo ocurre en un chat que ya sabes usar.</p></div>
+          <div class="cuadra-item reveal reveal-delay-1"><strong>Sin conectar tu cuenta bancaria.</strong><p>Solo subes archivos, cuando tú quieres.</p></div>
+          <div class="cuadra-item reveal"><strong>Funciona con o sin ERP.</strong><p>Entrega un Excel que cualquier contador puede usar.</p></div>
+          <div class="cuadra-item reveal reveal-delay-1"><strong>Hecho por contadoras.</strong><p>Detrás hay criterio contable y tributario chileno, no solo tecnología.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cuadra-section" id="seguridad" style="background: var(--ivory);">
+      <div class="container">
+        <div class="section-title reveal">
+          <small>Seguridad de tus datos</small>
+          <h2>Tú tienes la última palabra.</h2>
+        </div>
+        <div class="cuadra-security reveal">
+          <strong>Cuadra propone, tú decides.</strong>
+          <p>Nada queda contabilizado sin tu confirmación. Los archivos que subes se procesan y se eliminan; solo guardamos tus reglas y preferencias. Trabajamos conforme a la Ley 19.628 de protección de datos personales y nos preparamos para la Ley 21.719.</p>
         </div>
       </div>
     </section>
@@ -2349,148 +2168,96 @@
       <div class="container faq-shell">
         <div class="reveal">
           <small>Preguntas frecuentes</small>
-          <h2>Resolvemos tus dudas antes de agendar.</h2>
-          <p>Lo que más nos preguntan empresas que están evaluando externalizar su contabilidad, RRHH o administración.</p>
+          <h2>Lo que más nos preguntan sobre Cuadra.</h2>
         </div>
         <div class="faq-list">
           <div class="faq-item reveal reveal-delay-1">
-            <button class="faq-question" aria-expanded="false">¿Cuánto demora el diagnóstico inicial?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">La reunión inicial dura cerca de 20 minutos. Luego revisamos el alcance y, en 3 a 5 días hábiles, te entregamos una propuesta ajustada a tu empresa.</div></div>
+            <button class="faq-question" aria-expanded="false">¿Qué bancos acepta?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Hoy, cartolas de Banco de Chile e Itaú en Excel. Estamos sumando más bancos durante el piloto.</div></div>
           </div>
           <div class="faq-item reveal reveal-delay-2">
-            <button class="faq-question" aria-expanded="false">¿Por qué no publican precios fijos?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Porque una empresa con pocos movimientos no necesita lo mismo que una operación con personal, atrasos, fiscalizaciones o alta carga documental. Cotizamos según volumen, complejidad y alcance.</div></div>
+            <button class="faq-question" aria-expanded="false">¿Necesito ser cliente de Griffin?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">No. Cuadra funciona por sí solo y te entrega un Excel que puedes compartir con tu contador.</div></div>
           </div>
           <div class="faq-item reveal reveal-delay-3">
-            <button class="faq-question" aria-expanded="false">¿También ayudan si tengo impuestos o contabilidad atrasada?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Sí. Evaluamos el atraso y proponemos un plan de regularización como proyecto aparte, con plazo, prioridades y honorarios claros.</div></div>
+            <button class="faq-question" aria-expanded="false">¿Reemplaza a mi contador?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">No. Le ahorra el trabajo repetitivo y le entrega la información ordenada. Los resultados son provisorios y siempre se revisan.</div></div>
           </div>
-          <div class="faq-item reveal reveal-delay-3">
-            <button class="faq-question" aria-expanded="false">¿Qué tipo de soluciones tecnológicas desarrollan?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Trabajamos con lo que tu empresa necesita ordenar: automatizar tareas repetitivas, armar tableros e informes de gestión y conectar información que hoy está en planillas o en el SII. Partimos con un diagnóstico y te proponemos un alcance concreto antes de cotizar.</div></div>
+          <div class="faq-item reveal reveal-delay-1">
+            <button class="faq-question" aria-expanded="false">¿Mis datos están seguros?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Los archivos se eliminan después de procesarlos. Ten presente que los chats con bots en Telegram no tienen cifrado de extremo a extremo; por eso no guardamos tus archivos.</div></div>
+          </div>
+          <div class="faq-item reveal reveal-delay-2">
+            <button class="faq-question" aria-expanded="false">¿Cuánto cuesta?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Durante el piloto, nada. Después se ofrecerá por suscripción mensual.</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="checklist-banner" id="checklist-laboral">
-      <div class="container checklist-shell">
-        <div>
-          <small>Recurso gratuito</small>
-          <h2>Checklist laboral para evitar multas.</h2>
-          <p>Solicita gratis el checklist de errores frecuentes ante la Dirección del Trabajo. Es útil para revisar contratos, jornadas, liquidaciones, cotizaciones y documentos clave antes de una fiscalización.</p>
-        </div>
-        <div class="checklist-actions">
-          <a class="btn btn-gold" href="mailto:contacto@griffinasesores.cl?subject=Solicitar%20checklist%20laboral%20gratuito&body=Hola%20Griffin%20Asesores%2C%20quiero%20recibir%20el%20checklist%20laboral%20gratuito.">Solicitar checklist gratis</a>
-          <a class="btn btn-dark" href="blog.html">Ver artículos</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="resource" id="mini-diagnostico">
+    <section class="resource" id="lista-de-espera">
       <div class="container resource-shell">
         <div class="reveal">
-          <small>Mini diagnóstico</small>
-          <h2>Cuéntanos qué quieres ordenar primero.</h2>
-          <p>Déjanos tus datos y una breve descripción de tu situación. Te respondemos con próximos pasos concretos para contabilidad, RRHH, tecnología o gestión administrativa.</p>
+          <small>Lista de espera</small>
+          <h2>Quiero probar Cuadra.</h2>
+          <p>Cuadra está en piloto. Déjanos tus datos y te contactaremos cuando haya un cupo disponible.</p>
           <form class="resource-form" action="https://formsubmit.co/contacto@griffinasesores.cl" method="POST">
-            <input type="hidden" name="_subject" value="Mini diagnostico - Griffin">
+            <input type="hidden" name="_subject" value="Lista de espera Cuadra - Griffin">
             <input type="hidden" name="_captcha" value="false">
             <input type="text" name="_honey" style="display:none">
-            <input type="hidden" name="_next" value="https://www.griffinasesores.cl/#contacto">
-            <input type="hidden" name="origen" value="Mini diagnostico web">
+            <input type="hidden" name="_next" value="https://www.griffinasesores.cl/cuadra.html#lista-de-espera">
+            <input type="hidden" name="origen" value="Lista de espera Cuadra">
             <div class="form-group">
-              <label for="rc-nombre">Nombre</label>
-              <input type="text" id="rc-nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+              <label for="cu-nombre">Nombre</label>
+              <input type="text" id="cu-nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
             </div>
             <div class="form-group">
-              <label for="rc-email">Email</label>
-              <input type="email" id="rc-email" name="email" class="form-input" placeholder="nombre@empresa.cl" required>
+              <label for="cu-email">Email</label>
+              <input type="email" id="cu-email" name="email" class="form-input" placeholder="nombre@empresa.cl" required>
             </div>
             <div class="form-group">
-              <label for="rc-area">Área a ordenar</label>
-              <select id="rc-area" name="area" class="form-input" required>
+              <label for="cu-empresa">Empresa</label>
+              <input type="text" id="cu-empresa" name="empresa" class="form-input" placeholder="Nombre de tu empresa">
+            </div>
+            <div class="form-group">
+              <label for="cu-banco">¿Con qué banco trabajas?</label>
+              <select id="cu-banco" name="banco" class="form-input">
                 <option value="">Selecciona una opción</option>
-                <option>Contabilidad y tributario</option>
-                <option>Recursos humanos</option>
-                <option>Revisión contable</option>
-                <option>Backoffice y gestión</option>
-                <option>Regularización de atrasos</option>
-                <option>Tecnología y automatización</option>
+                <option>Banco de Chile</option>
+                <option>Itaú</option>
+                <option>BancoEstado</option>
+                <option>Santander</option>
+                <option>BCI</option>
+                <option>Scotiabank</option>
+                <option>Otro</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="rc-situacion">¿Qué necesitas ordenar?</label>
-              <textarea id="rc-situacion" name="situacion" class="form-input" rows="4" maxlength="2000" placeholder="Cuéntanos brevemente tu situación y qué ayuda necesitas." required style="min-height:120px; resize:vertical"></textarea>
+              <label for="cu-perfil">¿Eres...?</label>
+              <select id="cu-perfil" name="perfil" class="form-input" required>
+                <option value="">Selecciona una opción</option>
+                <option>Dueño o dueña de pyme</option>
+                <option>Contador o estudio contable</option>
+                <option>Otro</option>
+              </select>
             </div>
             <label class="form-consent">
               <input type="checkbox" name="consentimiento" value="si" required>
-              <span>Acepto que Griffin Asesores me contacte para responder esta solicitud.</span>
+              <span>Acepto que Griffin Asesores me contacte sobre el piloto de Cuadra. Mis datos se usarán solo para eso.</span>
             </label>
             <button type="submit" class="btn btn-gold">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"></path><path d="m22 2-7 20-4-9-9-4 20-7Z"></path></svg>
-              Solicitar orientación
+              Unirme a la lista de espera
             </button>
-            <p class="form-disclaimer">Sin spam. Usaremos tus datos solo para responder esta solicitud.</p>
           </form>
         </div>
         <div class="resource-card reveal reveal-delay-1">
-          <strong>Qué revisamos al inicio</strong>
+          <strong>Piloto 2026</strong>
           <ul>
-            <li>Obligaciones y atrasos más urgentes</li>
-            <li>Volumen mensual de documentos</li>
-            <li>Riesgos laborales o tributarios visibles</li>
-            <li>Alcance recomendado para partir</li>
+            <li>Sin costo durante el piloto</li>
+            <li>Funciona por Telegram</li>
+            <li>Tú revisas y confirmas todo</li>
           </ul>
-          <div class="resource-meta">
-            <span>Respuesta 24-48 horas</span>
-            <span>Próximos pasos claros</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="contacto">
-      <div class="container cta-shell">
-        <div class="reveal">
-          <small>Hablemos de tu empresa</small>
-          <h2>Agenda tu reunión inicial de 20 minutos y salgamos del desorden con un plan claro.</h2>
-        </div>
-        <div class="cta-actions reveal reveal-delay-1">
-          <a class="btn btn-gold" href="https://wa.me/56933195234?text=Hola%20Griffin%20Asesores%2C%20quiero%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
-          <a class="btn btn-dark" href="mailto:contacto@griffinasesores.cl">contacto@griffinasesores.cl</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="rules" aria-labelledby="rules-title">
-      <div class="container">
-        <h2 id="rules-title">Reglas comerciales</h2>
-        <div class="rules-grid">
-          <div class="rule-card reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path></svg>
-            <p>Los honorarios se definen tras el diagnóstico inicial, según volumen, complejidad y alcance.</p>
-          </div>
-          <div class="rule-card reveal reveal-delay-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            <p>Pagos mensuales se realizan por adelantado.</p>
-          </div>
-          <div class="rule-card reveal reveal-delay-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            <p>Meses atrasados y rectificatorias se cotizan como proyectos aparte.</p>
-          </div>
-          <div class="rule-card reveal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            <p>El servicio comienza con información y accesos mínimos entregados por la empresa.</p>
-          </div>
-          <div class="rule-card reveal reveal-delay-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <p>Los plazos dependen de la calidad y oportunidad de la documentación recibida.</p>
-          </div>
-          <div class="rule-card reveal reveal-delay-2">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
-            <p>La confidencialidad de la información es parte central del trabajo.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -2498,7 +2265,7 @@
 
   <footer>
     <div class="container footer-main">
-      <a class="brand" href="#inicio">
+      <a class="brand" href="index.html">
           <img class="brand-logo" src="assets/logo/svg/logo-horizontal-sin-tagline-oscuro.svg" alt="Griffin Asesores" width="150" height="44">
         </a>
       <div class="footer-info"><strong>Correo</strong><span>contacto@griffinasesores.cl</span></div>
