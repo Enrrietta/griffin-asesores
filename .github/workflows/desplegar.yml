@@ -63,9 +63,10 @@ jobs:
 
       - name: Desplegar en Cloudflare
         if: steps.token.outputs.listo == 'true'
-        uses: cloudflare/wrangler-action@v3
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          wranglerVersion: '4.147.0'
           command: deploy
 
       - name: Comprobar que el sitio responde
