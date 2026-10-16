@@ -11,10 +11,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'index.html'
-      - 'cuadra.html'
-      - 'herramientas.html'
-      - 'blog.html'
+      - '*.html'
       - 'assets/**'
       - 'wrangler.jsonc'
       - '.github/workflows/desplegar.yml'
@@ -57,7 +54,7 @@ jobs:
         if: steps.token.outputs.listo == 'true'
         run: |
           mkdir dist
-          cp index.html cuadra.html herramientas.html blog.html dist/
+          cp ./*.html dist/
           cp -r assets dist/assets
           find dist -type f | sort
 
@@ -73,7 +70,7 @@ jobs:
         if: steps.token.outputs.listo == 'true'
         run: |
           sleep 10
-          for ruta in "" "cuadra.html" "herramientas.html" "assets/indicadores.json"; do
+          for ruta in "" "cuadra.html" "herramientas.html" "privacidad.html" "assets/indicadores.json"; do
             codigo=$(curl -sL -o /dev/null -w '%{http_code}' "https://www.griffinasesores.cl/$ruta")
             echo "/$ruta -> $codigo"
             [ "$codigo" = "200" ] || { echo "::error::/$ruta respondio $codigo"; exit 1; }
