@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog | Griffin Asesores | Contabilidad, RRHH y Auditoría</title>
-  <meta name="description" content="Artículos, guías y recursos sobre contabilidad, RRHH, auditoría y cumplimiento para pymes en Chile. Griffin Asesores.">
+  <title>Blog | Griffin Asesores | Contabilidad, RRHH y tecnología</title>
+  <meta name="description" content="Artículos, guías y recursos sobre contabilidad, RRHH, tecnología y cumplimiento para pymes en Chile. Griffin Asesores.">
   <link rel="icon" href="/assets/logo/favicon/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/logo/favicon/favicon.ico" sizes="48x48">
   <link rel="apple-touch-icon" href="/assets/logo/favicon/apple-touch-icon.png">
@@ -12,8 +12,8 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CL">
   <meta property="og:site_name" content="Griffin Asesores">
-  <meta property="og:title" content="Blog | Griffin Asesores | Contabilidad, RRHH y Auditoría">
-  <meta property="og:description" content="Artículos, guías y recursos sobre contabilidad, RRHH, auditoría y cumplimiento para pymes en Chile. Griffin Asesores.">
+  <meta property="og:title" content="Blog | Griffin Asesores | Contabilidad, RRHH y tecnología">
+  <meta property="og:description" content="Artículos, guías y recursos sobre contabilidad, RRHH, tecnología y cumplimiento para pymes en Chile. Griffin Asesores.">
   <meta property="og:url" content="https://www.griffinasesores.cl/blog.html">
   <meta property="og:image" content="https://www.griffinasesores.cl/assets/logo/png/og-image-1200x630.png">
   <meta property="og:image:width" content="1200">
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #14171C;
@@ -425,8 +425,8 @@
       min-height: 340px;
       color: var(--white);
       background:
-        linear-gradient(105deg, rgba(var(--navy-rgb), .97) 0%, rgba(var(--navy-rgb), .92) 42%, rgba(var(--navy-rgb), .55) 72%, rgba(var(--navy-rgb), .2) 100%),
-        url("assets/noticias2.png") center / cover no-repeat;
+        linear-gradient(90deg, rgba(20,23,28,.96) 0%, rgba(20,23,28,.82) 45%, rgba(20,23,28,.45) 100%),
+        url("assets/hero/hero-inicio.webp") right center / cover no-repeat;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -989,6 +989,44 @@
     }
     .footer-row a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
     .footer-row a:hover { color: var(--gold); }
+
+    /* Títulos de tarjeta en Manrope; Cinzel queda para H1 y H2 */
+    .service-card h3, .sector-focus h3, .tech-card h3, .cuadra-step h3,
+    .cuadra-item strong, .cuadra-security strong, .blog-card h3 {
+      font-family: Manrope, Inter, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .tech-card h3 { font-size: 1.35rem; }
+
+    /* Portadas de artículos con la paleta actual (sin fotos de stock) */
+    .page-hero::before { display: none; }
+    .post-cover {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      background:
+        radial-gradient(circle at 75% 25%, rgba(63, 181, 150, .16), transparent 55%),
+        linear-gradient(145deg, var(--grafito-800), var(--grafito-900));
+      transition: transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    .post-cover::before {
+      content: "";
+      position: absolute;
+      inset: 14% 18%;
+      border: 1px solid rgba(var(--gold-rgb), .35);
+      border-radius: 18px;
+    }
+    .post-cover svg { position: relative; width: 52px; height: 52px; }
+    .blog-featured .post-cover svg { width: 72px; height: 72px; }
+    .blog-card:hover .post-cover, .blog-featured:hover .post-cover { transform: scale(1.04); }
+    .blog-category { z-index: 1; }
+    @media (max-width: 768px) {
+      .page-hero { min-height: 0; padding: 0; }
+      .page-hero-content { padding: 36px 0; }
+    }
   </style>
 </head>
 <body>
@@ -1002,6 +1040,7 @@
         <div class="nav-links">
           <a href="index.html#quienes-somos">Quiénes somos</a>
           <a href="index.html#servicios">Servicios</a>
+          <a href="cuadra.html">Cuadra</a>
           <a href="index.html#sectores">Sectores</a>
           <a href="index.html#faq">FAQ</a>
           <div class="nav-dropdown">
@@ -1032,6 +1071,7 @@
         <div class="mobile-panel-inner">
           <a href="index.html#quienes-somos">Quiénes somos</a>
           <a href="index.html#servicios">Servicios</a>
+          <a href="cuadra.html">Cuadra</a>
           <a href="index.html#sectores">Sectores</a>
           <a href="index.html#faq">FAQ</a>
           <a class="mobile-toggle" href="javascript:void(0)">Herramientas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -1056,7 +1096,7 @@
       <div class="container page-hero-content">
         <small>Blog</small>
         <h1>Recursos, guías y opiniones<br>para tu empresa.</h1>
-        <p class="page-hero-lead">Publicamos contenido práctico sobre contabilidad, cumplimiento laboral, auditoría y gestión para que tomes mejores decisiones.</p>
+        <p class="page-hero-lead">Publicamos contenido práctico sobre contabilidad, cumplimiento laboral, tecnología y gestión para que tomes mejores decisiones.</p>
       </div>
     </section>
 
@@ -1065,7 +1105,7 @@
         <a href="#" class="blog-featured reveal">
           <div class="blog-featured-image">
             <span class="blog-category">Contabilidad</span>
-            <img src="assets/noticias2.png" alt="Checklist Dirección del Trabajo" loading="lazy">
+            <span class="post-cover" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l2 2 4-4"></path><path d="M8 3h8l2 3v15H6V6l2-3Z"></path><path d="M9 17h6"></path></svg></span>
           </div>
           <div class="blog-featured-content">
             <div class="blog-date">
@@ -1082,7 +1122,7 @@
           <article class="blog-card reveal reveal-delay-1">
             <div class="blog-image">
               <span class="blog-category">RRHH</span>
-              <img src="assets/noticias2.png" alt="Previred" loading="lazy">
+              <span class="post-cover" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path></svg></span>
             </div>
             <div class="blog-content">
               <div class="blog-date">
@@ -1097,8 +1137,8 @@
 
           <article class="blog-card reveal reveal-delay-2">
             <div class="blog-image">
-              <span class="blog-category">Auditoría</span>
-              <img src="assets/hero-griffin-office.png" alt="Auditoría" loading="lazy">
+              <span class="blog-category">Revisión contable</span>
+              <span class="post-cover" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"></path></svg></span>
             </div>
             <div class="blog-content">
               <div class="blog-date">
@@ -1114,7 +1154,7 @@
           <article class="blog-card reveal reveal-delay-3">
             <div class="blog-image">
               <span class="blog-category">Cumplimiento</span>
-              <img src="assets/noticias2.png" alt="Cumplimiento" loading="lazy">
+              <span class="post-cover" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path><path d="m9 12 2 2 4-5"></path></svg></span>
             </div>
             <div class="blog-content">
               <div class="blog-date">
@@ -1122,7 +1162,7 @@
                 Próximamente
               </div>
               <h3>F29: errores comunes que el SII multa todos los meses</h3>
-              <p>Los errores de formularioario más frecuentes y cómo prevenirlos antes del plazo.</p>
+              <p>Los errores de formulario más frecuentes y cómo prevenirlos antes del plazo.</p>
               <span class="blog-link">Próximamente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
             </div>
           </article>

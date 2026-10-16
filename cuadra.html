@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Manrope:wght@700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #14171C;
@@ -1444,7 +1444,7 @@
       width: 18px; height: 18px;
       flex-shrink: 0;
       margin-top: 1px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23ecd659' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") center/contain no-repeat;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%234FD1A5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") center/contain no-repeat;
     }
     .resource-meta {
       display: flex;
@@ -2021,6 +2021,33 @@
     }
     .footer-row a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
     .footer-row a:hover { color: var(--gold); }
+
+    /* Títulos de tarjeta en Manrope; Cinzel queda para H1 y H2 */
+    .service-card h3, .sector-focus h3, .tech-card h3, .cuadra-step h3,
+    .cuadra-item strong, .cuadra-security strong, .blog-card h3 {
+      font-family: Manrope, Inter, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .tech-card h3 { font-size: 1.35rem; }
+
+    /* Cuadra: menta en fondo oscuro y esmeralda en fondo claro */
+    .section-title small, .faq small, .resource small { color: var(--esmeralda); }
+    .section-title small::before, .section-title small::after { background: linear-gradient(90deg, transparent, var(--esmeralda)); }
+    .section-title small::after { background: linear-gradient(90deg, var(--esmeralda), transparent); }
+    .faq small::before, .resource small::before { background: var(--esmeralda); box-shadow: none; }
+    .cuadra-dark .section-title small { color: var(--cuadra); }
+    .cuadra-dark .section-title small::before { background: linear-gradient(90deg, transparent, var(--cuadra)); }
+    .cuadra-dark .section-title small::after { background: linear-gradient(90deg, var(--cuadra), transparent); }
+    .cuadra-step b { background: var(--grafito-900); color: var(--cuadra); }
+    .cuadra-dark .cuadra-item { border-color: rgba(79, 209, 165, .22); }
+    .cuadra-dark .cuadra-item strong { color: var(--cuadra); }
+    .cuadra-security { border-left-color: var(--esmeralda); }
+    #lista-de-espera .btn-gold { background: var(--cuadra); color: var(--grafito-900); box-shadow: 0 10px 28px rgba(79, 209, 165, .2); }
+    #lista-de-espera .resource-card strong { color: var(--cuadra); }
+    #lista-de-espera .resource-card { border-color: rgba(79, 209, 165, .25); }
+    #lista-de-espera .resource-card::before { background: linear-gradient(90deg, transparent, rgba(79, 209, 165, .5), transparent); }
+    .faq-item.open { border-color: rgba(31, 111, 92, .35); }
   </style>
 </head>
 <body>

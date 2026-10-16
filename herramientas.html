@@ -517,7 +517,7 @@
       box-shadow: 0 0 0 3px rgba(var(--gold-rgb), .14);
     }
     select.ctrl { cursor: pointer; appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23af8f29' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237A5F0F' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       padding-right: 38px;
@@ -985,6 +985,15 @@
     }
     .footer-row a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
     .footer-row a:hover { color: var(--gold); }
+
+    /* Títulos de tarjeta en Manrope; Cinzel queda para H1 y H2 */
+    .service-card h3, .sector-focus h3, .tech-card h3, .cuadra-step h3,
+    .cuadra-item strong, .cuadra-security strong, .blog-card h3 {
+      font-family: Manrope, Inter, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .tech-card h3 { font-size: 1.35rem; }
   </style>
 </head>
 <body>
@@ -998,6 +1007,7 @@
         <div class="nav-links">
           <a href="index.html#quienes-somos">Quiénes somos</a>
           <a href="index.html#servicios">Servicios</a>
+          <a href="cuadra.html">Cuadra</a>
           <a href="index.html#sectores">Sectores</a>
           <a href="index.html#faq">FAQ</a>
           <div class="nav-dropdown">
@@ -1028,6 +1038,7 @@
         <div class="mobile-panel-inner">
           <a href="index.html#quienes-somos">Quiénes somos</a>
           <a href="index.html#servicios">Servicios</a>
+          <a href="cuadra.html">Cuadra</a>
           <a href="index.html#sectores">Sectores</a>
           <a href="index.html#faq">FAQ</a>
           <a class="mobile-toggle" href="javascript:void(0)">Herramientas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 9l6 6 6-6"/></svg></a>
